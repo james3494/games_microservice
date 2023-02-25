@@ -6,13 +6,13 @@ const makeExpressCallback = buildMakeExpressCallback({
 
 const express = require('express');
 const api = express.Router();
-const {  } = require('../controllers');
+const { postHitMethod } = require('../controllers');
 
 api.use(express.json());
 
-api.post( `${process.env.PATH_ROUTE}/hitMethods`, makeExpressCallback(loginUser) );
-api.put( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
-api.get( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
-api.delete( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
+api.post( `${process.env.PATH_ROUTE}/hitMethods`, makeExpressCallback(postHitMethod) );
+// api.put( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
+// api.get( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
+// api.delete( `${process.env.PATH_ROUTE}/hitMethods/:_id`, makeExpressCallback(refreshToken) );
 
 module.exports = api;

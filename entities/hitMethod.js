@@ -7,16 +7,20 @@ module.exports = {
        createdBy,
        themes = [],
        difficulty = 3,
+       disabled = false,
        createdOn = Date.now(),
        modifiedOn = Date.now(),
        _id = Id.makeId(),
      } = {}) {
 
        if (!Id.isValidId(_id)) {
-          throw new Error('HitMethod must have a valid id.');
+          throwError('HitMethod must have a valid id.', 400);
        }
        if (!Id.isValidId(createdBy)) {
-          throw new Error('createdBy must be a valid id.');
+          throwError('createdBy must be a valid id.', 400);
+       }
+       if (typeof disabled !== 'boolean') {
+          throwError('disabled must be a boolean.', 400);
        }
        if (typeof modifiedOn !== 'number' || modifiedOn > Date.now()) {
          throwError('modifiedOn must be a number and in the past.', 400);
@@ -24,8 +28,8 @@ module.exports = {
        if (typeof createdOn !== 'number' || createdOn > Date.now()) {
          throwError('createdOn must be a number and in the past.', 400);
        }
-       if (typeof description !== 'string' || description.length < 20 || description.length > 200) {
-         throwError('Description must be a string between 20 and 200 characters.', 400);
+       if (typeof description !== 'string' || description.length < 10 || description.length > 200) {
+         throwError('Description must be a string between 10 and 200 characters.', 400);
        }
        if (typeof difficulty !== 'number' || difficulty < 1 || difficulty > 5) {
          throwError('Difficulty must be a number between 1 and 5.', 400);
@@ -40,7 +44,7 @@ module.exports = {
        const allowedThemes = ['admin', 'superAdmin'];
        if (!themes.every(theme => allowedThemes.includes(theme))) {
         throwError('All themes must be one of [' + allowedThemes.reduce((string, theme) => string + ' ' + theme) + ']', 400);
-       }}
+       }
 
 
        return Object.freeze({
@@ -48,12 +52,14 @@ module.exports = {
          getModifiedOn: () => modifiedOn,
          getId: () => _id,
          getCreatedBy: () => createdBy,
+         isDisabled: () => disabled,
          getThemes: () => themes,
          getDifficulty: () => difficulty,
          getDescription: () => description,
          getAll: () => ({
            createdOn,
            _id,
+           disabled,
            modifiedOn,
            createdBy,
            description,

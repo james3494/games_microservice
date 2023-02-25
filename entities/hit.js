@@ -1,35 +1,37 @@
 
 
 module.exports = {
-    buildMakeHit ({ Id }) {
+    buildMakeHit ({ Id, throwError }) {
      return function makeHit ({
        chaserID,
        targetID,
        gameID,
        hitMethodID,
-       status = 'inProgress',
+       status = 'awaiting',
        createdOn = Date.now(),
        _id = Id.makeId(),
      } = {}) {
 
        if (!Id.isValidId(_id)) {
-          throw new Error('Hit must have a valid id.');
+          throwError('Hit must have a valid id.');
        }
-       // also check whether each of the following exist
        if (!Id.isValidId(chaserID)) {
-          throw new Error('hunter must have a valid id.');
+          throwError('chaser must have a valid id.');
         }
         if (!Id.isValidId(targetID)) {
-          throw new Error('hunted must have a valid id.');
+          throwError('target must have a valid id.');
         }
         if (!Id.isValidId(gameID)) {
-          throw new Error('Game must have a valid id.');
+          throwError('Game must have a valid id.');
         }
         if (!Id.isValidId(hitMethodID)) {
-          throw new Error('hitMethodID must have a valid id.');
+          throwError('hitMethod must have a valid id.');
         }
-        if (!['inProgress', 'success', 'fail'].includes(status)) {
-          throw new Error(`${status} is not a valid status.`);
+        if (typeof createdOn !== 'number' || createdOn > Date.now()) {
+          throwError('createdOn must be a number and in the past.', 400);
+        }
+        if (!['awaiting', 'inProgress', 'success', 'fail'].includes(status)) {
+          throwError(`${status} is not a valid status.`);
         }
 
        return Object.freeze({
@@ -40,7 +42,6 @@ module.exports = {
          getGameID: () => gameID,
          getChaserID: () => chaserID,
          getTargetID: () => targetID,
-         setStatus,
          getAll: () => ({
            createdOn,
            _id,
@@ -52,16 +53,6 @@ module.exports = {
          })
        });
 
-       function setStatus (newStatus) {
-        if (!['inProgress', 'success', 'fail'].includes(status)) {
-          throw new Error(`${status} is not a valid status.`);
-        }
-
-        if (status == 'success' || status == 'fail') {
-          throw new Error(`You cannot update the status from ${status}.`);
-        }
-        status = newStatus;
-       }
 
      };
    }

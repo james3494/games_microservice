@@ -1,27 +1,7 @@
-const mongodb = require('mongodb');
 
-const { makeHitMethodDb } = require('./hitMethodDb');
+const { makeHitMethodsDb } = require('./hitMethodsDb');
+const { makeDb, buildGeneralDb } = require('database');
 
-const MongoClient = mongodb.MongoClient;
-const url = process.env.DB_URL;
-const dbName = process.env.DB_NAME;
-const db = { connected : false };
+const hitMethodsDb = makeHitMethodsDb({ makeDb, buildGeneralDb });
 
-if(!url) throw new Error ('No db url found');
-if(!dbName) throw new Error ('No db name found');
-
-db.client = new MongoClient(url);
-db.client.on('open', () => db.connected=true );
-db.client.on('topologyClosed', () => db.connected=false );
-
-
-const makeDb = async function () {
-  if (!db.connected) {
-    await db.client.connect();
-  }
-  return db.client.db(dbName);
-};
-
-const hitMethodDb = makeHitMethodDb({ makeDb });
-
-module.exports =  { hitMethodDb };
+module.exports =  { hitMethodsDb };
