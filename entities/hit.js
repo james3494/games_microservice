@@ -3,10 +3,10 @@
 module.exports = {
     buildMakeHit ({ Id, throwError }) {
      return function makeHit ({
-       chaserID,
-       targetID,
-       gameID,
-       hitMethodID,
+       chaserId,
+       targetId,
+       gameId,
+       hitMethodId,
        status = 'awaiting',
        createdOn = Date.now(),
        _id = Id.makeId(),
@@ -15,16 +15,16 @@ module.exports = {
        if (!Id.isValidId(_id)) {
           throwError('Hit must have a valid id.');
        }
-       if (!Id.isValidId(chaserID)) {
+       if (!Id.isValidId(chaserId)) {
           throwError('chaser must have a valid id.');
         }
-        if (!Id.isValidId(targetID)) {
+        if (!Id.isValidId(targetId)) {
           throwError('target must have a valid id.');
         }
-        if (!Id.isValidId(gameID)) {
+        if (!Id.isValidId(gameId)) {
           throwError('Game must have a valid id.');
         }
-        if (!Id.isValidId(hitMethodID)) {
+        if (!Id.isValidId(hitMethodId)) {
           throwError('hitMethod must have a valid id.');
         }
         if (typeof createdOn !== 'number' || createdOn > Date.now()) {
@@ -38,18 +38,18 @@ module.exports = {
          getCreatedOn: () => createdOn,
          getId: () => _id,
          getStatus: () => status,
-         getHitMethodID: () => hitMethodID,
-         getGameID: () => gameID,
-         getChaserID: () => chaserID,
-         getTargetID: () => targetID,
+         getHitMethodId: () => hitMethodId,
+         getGameId: () => gameId,
+         getChaserId: () => chaserId,
+         getTargetId: () => targetId,
          getAll: () => ({
            createdOn,
            _id,
            status,
-           hitMethodID,
-           gameID,
-           chaserID,
-           targetID
+           hitMethodId,
+           gameId,
+           chaserId,
+           targetId
          })
        });
 

@@ -1,6 +1,6 @@
 
 module.exports = {
-  buildPostHitMethod ({ addHitMethod, catchError, throwError, getLoggedIn }) {
+  buildPostHitMethod ({ createHitMethod, catchError, throwError, getLoggedIn }) {
     return async function (httpRequest) {
      try {
        const { ...hitMethodInfo } = httpRequest.body;
@@ -13,7 +13,7 @@ module.exports = {
          throwError("You must be an admin to create a hitMethod.", 400);
        }
 
-       const insertedId = await addHitMethod({ createdBy: _id, ...hitMethodInfo });
+       const { insertedId } = await createHitMethod({ createdBy: _id, ...hitMethodInfo });
 
        return {
          headers: { 'Content-Type': 'application/json' },

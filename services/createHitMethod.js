@@ -1,11 +1,11 @@
 const { makeHitMethod } = require('../entities');
 
 module.exports = {
-   makeAddHitMethod ({ hitMethodsDb }) {
+   makeCreateHitMethod ({ hitMethodsDb }) {
     return async function ({ ...hitMethodParams }) {
       const hitMethod = makeHitMethod({ ...hitMethodParams });
 
-      return hitMethodsDb.insert({
+      return await hitMethodsDb.insert({
         ... hitMethod.getAll()
       });
     };

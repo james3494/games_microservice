@@ -14,7 +14,7 @@ module.exports = {
 
       const toEdit = makeHitMethod({ ...hitMethod, ...hitMethodInfo });
 
-      const updated = await hitMethodsDb.update({
+      return await hitMethodsDb.update({
         _id: toEdit.getId(),
         description: toEdit.getDescription(),
         difficulty: toEdit.getDifficulty(),
@@ -22,9 +22,6 @@ module.exports = {
         themes: toEdit.getThemes(),
         modifiedOn: Date.now(),
       });
-      if (!updated) throwError("Error editing hitMethod", 500)
-
-      return { ...updated };
     };
   }
 } ;

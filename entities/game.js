@@ -1,7 +1,7 @@
 
 
 module.exports = {
-    buildMakeGame ({ Id, throwError }) {
+    buildMakeGame ({ Id, throwError, allowedThemes = [] }) {
      return function makeGame ({
        location, // in time this can be coordinates or something chosen on a map
        startTime,
@@ -39,7 +39,7 @@ module.exports = {
        if (typeof location !== 'string' || location.length < 2 || location.length > 60) {
          throwError('Location must be a string between 2 and 60 characters.', 400);
        }
-       if (theme && (typeof theme !== 'string' || ![].includes(theme))) {
+       if (theme && (typeof theme !== 'string' || !allowedThemes.includes(theme))) {
          throwError(`${theme} is not a valid theme.`, 400);
        }
        if (typeof difficulty !== 'number' || difficulty < 1 || difficulty > 5) {

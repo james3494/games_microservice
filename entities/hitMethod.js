@@ -1,7 +1,7 @@
 
 
 module.exports = {
-    buildMakeHitMethod ({ Id }) {
+    buildMakeHitMethod ({ Id, throwError, allowedThemes = [] }) {
      return function makeHitMethod ({
        description,
        createdBy,
@@ -41,7 +41,6 @@ module.exports = {
        if ((new Set(themes)).size !== themes.length) {
         throwError('Themes must not be repeated.', 400);
        }
-       const allowedThemes = ['admin', 'superAdmin'];
        if (!themes.every(theme => allowedThemes.includes(theme))) {
         throwError('All themes must be one of [' + allowedThemes.reduce((string, theme) => string + ' ' + theme) + ']', 400);
        }
