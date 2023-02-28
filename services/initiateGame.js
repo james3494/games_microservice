@@ -12,7 +12,8 @@ module.exports = {
 
       const potentialHitMethods = await filterHitMethods({
         difficulty: game.getDifficulty(),
-        themes: game.getTheme()
+        themes: game.getTheme(),
+        disabled: false
       });
 
       if (players.length > potentialHitMethods.length) {

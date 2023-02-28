@@ -9,7 +9,7 @@ module.exports = {
        if (!_id) {
          throwError("You must be logged in to create a hitMethod.", 400);
        }
-       if (!groups || !groups.includes('admin')) {
+       if (!groups && !loggedIn.groups?.includes('huntedAdmin') && !loggedIn.groups?.includes('superAdmin')) {
          throwError("You must be an admin to create a hitMethod.", 400);
        }
 

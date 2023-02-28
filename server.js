@@ -5,6 +5,13 @@ const app = express();
 const api = require ('./routes');
 const port = process.env.PORT || 3000;
 
+// check api key
+app.use((req, res, next) => {
+  const apiKey = req.get("X-Api-Key");
+  if (!apiKey || apiKey !== process.env.API_KEY) {
+    res.status(403).send('Microservices can only be accessed via the API gateway.');
+  } else next();
+});
 
 app.use(api);
 
