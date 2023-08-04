@@ -6,12 +6,14 @@ const makeExpressCallback = buildMakeExpressCallback({
 
 const express = require('express');
 const api = express.Router();
-const { postHitMethod } = require('../controllers');
+const { postHitMethod, postGame } = require('../controllers');
 
 api.use(express.json());
 // todo change to unplurified words
 
 api.post( `${process.env.PATH_ROUTE}/hitMethods`, makeExpressCallback(postHitMethod) );
+api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
+
 // put hitMethods/:id - edit a hit method
 // get hitMethods - filters hit methods
 // get hitMethods/:id - gets specific hitMethod
