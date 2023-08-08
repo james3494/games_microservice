@@ -1,10 +1,10 @@
 {
-  "name": "hunted_microservice",
+  "name": "takeout_microservice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha -r dotenv/config",
+    "test": "NODE_ENV=test mocha -r dotenv/config",
     "start": "NODE_ENV=development nodemon server.js",
     "start-prod": "NODE_ENV=production node server.js",
     "lint": "eslint ./ --ignore-pattern ./node_modules"
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "cuid": "^2.1.8",
-    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git",
+    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git#8c0da50",
     "database": "https://james3494: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@github.com/james3494/database.git",
     "dotenv": "^16.0.0",
     "express": "^4.17.3"

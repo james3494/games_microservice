@@ -1,4 +1,4 @@
-const { takeOutMethodsDb, takeOutsDb, gamesDb } = require('../dataAccess');
+const { takeoutMethodsDb, takeoutsDb, gamesDb } = require('../dataAccess');
 
 const { makeCreateHitMethod } = require('./createHitMethod');
 const { makeEditHitMethod } = require('./editHitMethod');
@@ -14,20 +14,20 @@ const { makeFilterHits } = require('./filterHits');
 
 const { throwError } = require('errorHandling');
 
-const createHitMethod = makeCreateHitMethod({ takeOutMethodsDb });
-const editHitMethod = makeEditHitMethod({ takeOutMethodsDb, throwError });
-const filterHitMethods = makeFilterHitMethods({ takeOutMethodsDb, throwError });
+const createHitMethod = makeCreateHitMethod({ takeoutMethodsDb });
+const editHitMethod = makeEditHitMethod({ takeoutMethodsDb, throwError });
+const filterHitMethods = makeFilterHitMethods({ takeoutMethodsDb, throwError });
 
-const createHit = makeCreateHit({ takeOutsDb });
-const editHit = makeEditHit({ takeOutsDb, throwError });
-const filterHits = makeFilterHits({ takeOutsDb, throwError });
+const createHit = makeCreateHit({ takeoutsDb });
+const editHit = makeEditHit({ takeoutsDb, throwError });
+const filterHits = makeFilterHits({ takeoutsDb, throwError });
 
 const createGame = makeCreateGame({ gamesDb });
 const editGame = makeEditGame({ gamesDb, throwError });
 const filterGames = makeFilterGames({ gamesDb, throwError });
 const initiateGame = makeInitiateGame({ gamesDb, throwError, filterHitMethods, createHit, editGame, shuffleArray });
 
-const executeHit = makeExecuteHit({ takeOutsDb, throwError, filterHits, createHit, editHit, editGame });
+const executeHit = makeExecuteHit({ takeoutsDb, throwError, filterHits, createHit, editHit, editGame });
 
 const hitMethodService = Object.freeze({
   createHitMethod,

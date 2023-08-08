@@ -1,6 +1,6 @@
 
 module.exports = {
-  makeTakeOutsDb ({ makeDb, buildGeneralDb }) {
-    return buildGeneralDb({ makeDb, collectionName: 'hits' });
+  makeTakeoutsDb ({ makeDb, buildGeneralDb }) {
+    return buildGeneralDb({ makeDb, collectionName: 'takeouts' });
   }
 };

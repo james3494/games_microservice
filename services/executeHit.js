@@ -1,9 +1,9 @@
 const { makeHit } = require('../entities');
 
 module.exports = {
-   makeExecuteHit ({ takeOutsDb, throwError, filterHits, createHit, editHit, editGame }) {
+   makeExecuteHit ({ takeoutsDb, throwError, filterHits, createHit, editHit, editGame }) {
     return async function ({ _id }) {
-      const hitInfo = await takeOutsDb.findById({ _id });
+      const hitInfo = await takeoutsDb.findById({ _id });
       if (!hitInfo) {
         throwError("No hit found to initiate.", 400);
       }
