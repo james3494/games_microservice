@@ -1,16 +1,16 @@
 
-const { makeHitMethodsDb } = require('./hitMethodsDb');
-const { makeHitsDb } = require('./hitsDb');
+const { makeTakeOutMethodsDb } = require('./takeOutMethodsDb');
+const { makeTakeOutsDb } = require('./takeOutsDb');
 const { makeGamesDb } = require('./gamesDb');
 const { makeDb, buildGeneralDb } = require('database');
 
-const hitMethodsDb = makeHitMethodsDb({ makeDb, buildGeneralDb });
-const hitsDb = makeHitsDb({ makeDb, buildGeneralDb });
+const takeOutMethodsDb = makeTakeOutMethodsDb({ makeDb, buildGeneralDb });
+const takeOutsDb = makeTakeOutsDb({ makeDb, buildGeneralDb });
 const gamesDb = makeGamesDb({ makeDb, buildGeneralDb });
 
 const dbs = Object.freeze({
-  hitMethodsDb,
-  hitsDb,
+  takeOutMethodsDb,
+  takeOutsDb,
   gamesDb
 });
 

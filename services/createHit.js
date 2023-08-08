@@ -1,11 +1,11 @@
 const { makeHit } = require('../entities');
 
 module.exports = {
-   makeCreateHit ({ hitsDb }) {
+   makeCreateHit ({ takeOutsDb }) {
     return async function ({ ...hitInfo }) {
       const hit = makeHit({ ...hitInfo });
 
-      return await hitsDb.insert({
+      return await takeOutsDb.insert({
         ... hit.getAll()
       });
     };

@@ -1,6 +1,6 @@
 
 module.exports = {
-  makeHitMethodsDb ({ makeDb, buildGeneralDb }) {
+  makeTakeOutMethodsDb ({ makeDb, buildGeneralDb }) {
     return buildGeneralDb({ makeDb, collectionName: 'hitMethods' });
   }
 };
