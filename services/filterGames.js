@@ -16,7 +16,7 @@ module.exports = {
       // do try catch statements in a loop to prevent it dying if there's one corrupt game
       (gameInfos || []).forEach(gameInfo => {
         try {
-          const game = makeHit(gameInfo);
+          const game = makeTakeout(gameInfo);
           gamesRtn.push( game.getAll() );
         } catch (e) {
           console.log(e);

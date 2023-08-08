@@ -1,8 +1,8 @@
 
 
 module.exports = {
-    buildMakeHitMethod ({ Id, throwError, allowedThemes = [] }) {
-     return function makeHitMethod ({
+    buildMakeTakeoutMethod ({ Id, throwError, allowedThemes = [] }) {
+     return function makeTakeoutMethod ({
        description,
        createdBy,
        themes = [],
@@ -14,7 +14,7 @@ module.exports = {
      } = {}) {
 
        if (!Id.isValidId(_id)) {
-          throwError('HitMethod must have a valid id.', 400);
+          throwError('TakeoutMethod must have a valid id.', 400);
        }
        if (!Id.isValidId(createdBy)) {
           throwError('createdBy must be a valid id.', 400);

@@ -6,19 +6,19 @@ const makeExpressCallback = buildMakeExpressCallback({
 
 const express = require('express');
 const api = express.Router();
-const { postHitMethod, postGame } = require('../controllers');
+const { postTakeoutMethod, postGame } = require('../controllers');
 
 api.use(express.json());
 // todo change to unplurified words
 
-api.post( `${process.env.PATH_ROUTE}/hitMethods`, makeExpressCallback(postHitMethod) );
+api.post( `${process.env.PATH_ROUTE}/takeoutMethods`, makeExpressCallback(postTakeoutMethod) );
 api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 
-// put hitMethods/:id - edit a hit method
-// get hitMethods - filters hit methods
-// get hitMethods/:id - gets specific hitMethod
-// get hitMethods/:id/:field - gets specific hitMethod field
-// delete hitMethods/:id - disables a hit method
+// put takeoutMethods/:id - edit a takeout method
+// get takeoutMethods - filters takeout methods
+// get takeoutMethods/:id - gets specific takeoutMethod
+// get takeoutMethods/:id/:field - gets specific takeoutMethod field
+// delete takeoutMethods/:id - disables a takeout method
 // post game - creates a game
 // put game/:id - edits a game
 // get game - filters games
@@ -28,9 +28,9 @@ api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 // put game/:id/players - edits the players
 // put game/:id/admins - edits the admins
 // initiate a game - sometimes this will be an automatic thing at the start time, othertimes someone will click start
-// get game/:id/hits - filters hits
-// get game/:id/hits/:id - gets specific hit
-// execute a hit - someones successfully completed a hit. this could either come from the target or chaser
-// finish game - this will either be called by someone or called from executing a hit if it's the last one
+// get game/:id/takeouts - filters takeouts
+// get game/:id/takeouts/:id - gets specific takeout
+// execute a takeout - someones successfully completed a takeout. this could either come from the target or chaser
+// finish game - this will either be called by someone or called from executing a takeout if it's the last one
 
 module.exports = api;

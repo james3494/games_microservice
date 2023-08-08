@@ -1,19 +1,19 @@
 
 
 module.exports = {
-    buildMakeHit ({ Id, throwError }) {
-     return function makeHit ({
+    buildMakeTakeout ({ Id, throwError }) {
+     return function makeTakeout ({
        chaserId,
        targetId,
        gameId,
-       hitMethodId,
+       takeoutMethodId,
        status = 'awaiting',
        createdOn = Date.now(),
        _id = Id.makeId(),
      } = {}) {
 
        if (!Id.isValidId(_id)) {
-          throwError('Hit must have a valid id.');
+          throwError('Takeout must have a valid id.');
        }
        if (!Id.isValidId(chaserId)) {
           throwError('chaser must have a valid id.');
@@ -24,8 +24,8 @@ module.exports = {
         if (!Id.isValidId(gameId)) {
           throwError('Game must have a valid id.');
         }
-        if (!Id.isValidId(hitMethodId)) {
-          throwError('hitMethod must have a valid id.');
+        if (!Id.isValidId(takeoutMethodId)) {
+          throwError('takeoutMethod must have a valid id.');
         }
         if (typeof createdOn !== 'number' || createdOn > Date.now()) {
           throwError('createdOn must be a number and in the past.', 400);
@@ -38,7 +38,7 @@ module.exports = {
          getCreatedOn: () => createdOn,
          getId: () => _id,
          getStatus: () => status,
-         getHitMethodId: () => hitMethodId,
+         getTakeoutMethodId: () => takeoutMethodId,
          getGameId: () => gameId,
          getChaserId: () => chaserId,
          getTargetId: () => targetId,
@@ -46,7 +46,7 @@ module.exports = {
            createdOn,
            _id,
            status,
-           hitMethodId,
+           takeoutMethodId,
            gameId,
            chaserId,
            targetId

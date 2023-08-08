@@ -1,22 +1,22 @@
 
 
 const { Id } = require('./Id');
-const { buildMakeHitMethod } = require('./hitMethod');
-const { buildMakeHit } = require('./hit');
+const { buildMakeTakeoutMethod } = require('./takeoutMethod');
+const { buildMakeTakeout } = require('./takeout');
 const { buildMakeGame } = require('./game');
 const { throwError } = require('errorHandling');
 
 const allowedThemes = ['alcoholFree', 'home', 'out'];
 
-const makeHitMethod = buildMakeHitMethod({ Id, throwError, allowedThemes });
-const makeHit = buildMakeHit({ Id, throwError });
+const makeTakeoutMethod = buildMakeTakeoutMethod({ Id, throwError, allowedThemes });
+const makeTakeout = buildMakeTakeout({ Id, throwError });
 const makeGame = buildMakeGame({ Id, throwError, allowedThemes });
 
 
 
 
 module.exports = {
-  makeHitMethod,
-  makeHit,
+  makeTakeoutMethod,
+  makeTakeout,
   makeGame
 };

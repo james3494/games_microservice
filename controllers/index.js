@@ -1,6 +1,6 @@
 
-const { createHitMethod, editHitMethod } = require('../services');
-const { buildPostHitMethod } = require('./postHitMethod');
+const { createTakeoutMethod, editTakeoutMethod } = require('../services');
+const { buildPostTakeoutMethod } = require('./postTakeoutMethod');
 const { catchError, throwError } = require('errorHandling');
 
 const getLoggedIn = (httpRequest) => {
@@ -8,10 +8,10 @@ const getLoggedIn = (httpRequest) => {
   return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 }
 
-const postHitMethod = buildPostHitMethod({ createHitMethod, catchError, throwError, getLoggedIn });
+const postTakeoutMethod = buildPostTakeoutMethod({ createTakeoutMethod, catchError, throwError, getLoggedIn });
 
-const hitMethodController = Object.freeze({
-  postHitMethod
+const takeoutMethodController = Object.freeze({
+  postTakeoutMethod
 });
 
-module.exports = { ...hitMethodController };
+module.exports = { ...takeoutMethodController };

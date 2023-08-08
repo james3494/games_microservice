@@ -1,49 +1,49 @@
 const { takeoutMethodsDb, takeoutsDb, gamesDb } = require('../dataAccess');
 
-const { makeCreateHitMethod } = require('./createHitMethod');
-const { makeEditHitMethod } = require('./editHitMethod');
-const { makeFilterHitMethods } = require('./filterHitMethods');
+const { makeCreateTakeoutMethod } = require('./createTakeoutMethod');
+const { makeEditTakeoutMethod } = require('./editTakeoutMethod');
+const { makeFilterTakeoutMethods } = require('./filterTakeoutMethods');
 const { makeEditGame } = require('./editGame');
 const { makeFilterGames } = require('./filterGames');
 const { makeInitiateGame } = require('./initiateGame');
 const { makeCreateGame } = require('./createGame');
-const { makeCreateHit } = require('./createHit');
-const { makeExecuteHit } = require('./executeHit');
-const { makeEditHit } = require('./editHit');
-const { makeFilterHits } = require('./filterHits');
+const { makeCreateTakeout } = require('./createTakeout');
+const { makeExecuteTakeout } = require('./executeTakeout');
+const { makeEditTakeout } = require('./editTakeout');
+const { makeFilterTakeouts } = require('./filterTakeouts');
 
 const { throwError } = require('errorHandling');
 
-const createHitMethod = makeCreateHitMethod({ takeoutMethodsDb });
-const editHitMethod = makeEditHitMethod({ takeoutMethodsDb, throwError });
-const filterHitMethods = makeFilterHitMethods({ takeoutMethodsDb, throwError });
+const createTakeoutMethod = makeCreateTakeoutMethod({ takeoutMethodsDb });
+const editTakeoutMethod = makeEditTakeoutMethod({ takeoutMethodsDb, throwError });
+const filterTakeoutMethods = makeFilterTakeoutMethods({ takeoutMethodsDb, throwError });
 
-const createHit = makeCreateHit({ takeoutsDb });
-const editHit = makeEditHit({ takeoutsDb, throwError });
-const filterHits = makeFilterHits({ takeoutsDb, throwError });
+const createTakeout = makeCreateTakeout({ takeoutsDb });
+const editTakeout = makeEditTakeout({ takeoutsDb, throwError });
+const filterTakeouts = makeFilterTakeouts({ takeoutsDb, throwError });
 
 const createGame = makeCreateGame({ gamesDb });
 const editGame = makeEditGame({ gamesDb, throwError });
 const filterGames = makeFilterGames({ gamesDb, throwError });
-const initiateGame = makeInitiateGame({ gamesDb, throwError, filterHitMethods, createHit, editGame, shuffleArray });
+const initiateGame = makeInitiateGame({ gamesDb, throwError, filterTakeoutMethods, createTakeout, editGame, shuffleArray });
 
-const executeHit = makeExecuteHit({ takeoutsDb, throwError, filterHits, createHit, editHit, editGame });
+const executeTakeout = makeExecuteTakeout({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, editGame });
 
-const hitMethodService = Object.freeze({
-  createHitMethod,
-  editHitMethod,
-  filterHitMethods,
-  createHit,
-  editHit,
-  filterHits,
+const takeoutMethodService = Object.freeze({
+  createTakeoutMethod,
+  editTakeoutMethod,
+  filterTakeoutMethods,
+  createTakeout,
+  editTakeout,
+  filterTakeouts,
   createGame,
   editGame,
   initiateGame,
-  executeHit,
+  executeTakeout,
 });
 
 
-module.exports = { ...hitMethodService };
+module.exports = { ...takeoutMethodService };
 
 
 
