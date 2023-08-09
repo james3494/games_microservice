@@ -17,13 +17,10 @@ api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 // put takeoutMethods/:id - edit a takeout method
 // get takeoutMethods - filters takeout methods
 // get takeoutMethods/:id - gets specific takeoutMethod
-// get takeoutMethods/:id/:field - gets specific takeoutMethod field
 // delete takeoutMethods/:id - disables a takeout method
-// post game - creates a game
 // put game/:id - edits a game
 // get game - filters games
 // get game/:id - gets specific game
-// get game/:id/:field - gets specific game field
 // put game/:id/invitees - edits the invitees
 // put game/:id/players - edits the players
 // put game/:id/admins - edits the admins
