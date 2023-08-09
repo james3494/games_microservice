@@ -5,6 +5,10 @@ takeout-invalid-gameId
 takeout-invalid-takeoutMethodId
 takeout-invalid-createOn
 takeout-invalid-status
+takeout-status-fixed
+takeout-not-found
+takeout-next-not-found
+
 game-invalid-id
 game-invalid-createdBy
 game-invalid-modifiedOn
@@ -21,6 +25,9 @@ game-invalid-status
 game-invalid-players
 game-invalid-invited
 game-invalid-admins
+game-not-found
+game-insufficient-takeout-methods
+
 takeoutMethod-invalid-id
 takeoutMethod-invalid-createdBy
 takeoutMethod-invalid-disabled
@@ -29,3 +36,7 @@ takeoutMethod-invalid-createdOn
 takeoutMethod-invalid-description
 takeoutMethod-invalid-difficulty
 takeoutMethod-invalid-theme
+takeoutMethod-not-found
+
+filters-not-object
+
