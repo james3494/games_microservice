@@ -1,25 +1,24 @@
-
 module.exports = {
-  buildPostGame ({ createGame, catchError, throwError, getLoggedIn }) {
+  buildPostGame({ createGame, throwError, getLoggedIn }) {
     return async function (httpRequest) {
-     try {
-       const { ...gameInfo } = httpRequest.body;
+      const { ...gameInfo } = httpRequest.body;
 
-       const { _id } = getLoggedIn(httpRequest);
-       if (!_id) {
-         throwError("You must be logged in to create a game.", 400);
-       }
+      const { _id } = getLoggedIn(httpRequest);
+      if (!_id) {
+        throwError({
+          title: "You must be logged in to create a game.",
+          error: "game-not-logged-in",
+          status: 403,
+        });
+      }
 
-       const { insertedId } = await createGame({ createdBy: _id, ...gameInfo });
+      const { insertedId } = await createGame({ createdBy: _id, ...gameInfo });
 
-       return {
-         headers: { 'Content-Type': 'application/json' },
-         statusCode: 201,
-         body: { insertedId }
-       };
-     } catch (e) {
-       catchError(e);
-     }
+      return {
+        headers: { "Content-Type": "application/json" },
+        statusCode: 201,
+        body: { insertedId },
+      };
     };
-  }
+  },
 };

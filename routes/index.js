@@ -1,11 +1,9 @@
-const { buildMakeExpressCallback } = require('../expressCallback/index');
-
-const makeExpressCallback = buildMakeExpressCallback({
-  getCookies: (req) => req.cookies // the cookie parser is being used so we can easily get cookies
-})
-
+const catchError = require('errorHandling').buildCatchError({ logErrors: process.env.LOG_ERRORS });
+const makeExpressCallback = buildMakeExpressCallback({ catchError })
 const express = require('express');
 const api = express.Router();
+
+
 const { postTakeoutMethod, postGame } = require('../controllers');
 
 api.use(express.json());

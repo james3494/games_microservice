@@ -1,6 +1,6 @@
 
 module.exports = {
-  buildMakeExpressCallback({ getCookies }) {
+  buildMakeExpressCallback({ catchError }) {
     return  function (controller) {
       return (req, res) => {
         const httpRequest = {
@@ -10,24 +10,21 @@ module.exports = {
           ip: req.ip,
           method: req.method,
           path: req.path,
-          cookies: getCookies(req),
           headers: {
             'Content-Type': req.get('Content-Type'),
             Referer: req.get('referer'),
             'User-Agent': req.get('User-Agent'),
-            Authorization: req.get('Authorization')
+            "X-Current-User": req.get("X-Current-User")
           }
         };
 
         controller(httpRequest)
-          .then(httpResponse => {
-            if (httpResponse.headers)
-              res.set(httpResponse.headers);
-
-            res.type('json');
-            res.status(httpResponse.statusCode).send(httpResponse.body);
+          .then((httpResponse) => {
+            if (httpResponse.headers) res.set(httpResponse.headers);
+            res.set('Content-Type', 'application/json');
+            res.status(httpResponse.status).send(httpResponse.body);
           })
-          .catch(() => res.status(500).send({ error: 'An unknown error occurred.' }));
+          .catch(err => catchError(res, err));
       };
     }
   }

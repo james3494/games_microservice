@@ -27,6 +27,7 @@ game-invalid-invited
 game-invalid-admins
 game-not-found
 game-insufficient-takeout-methods
+game-not-logged-in
 
 takeoutMethod-invalid-id
 takeoutMethod-invalid-createdBy
@@ -37,6 +38,8 @@ takeoutMethod-invalid-description
 takeoutMethod-invalid-difficulty
 takeoutMethod-invalid-theme
 takeoutMethod-not-found
+takeoutMethod-not-logged-in
+takeoutMethod-insufficient-admin
 
 filters-not-object
 
