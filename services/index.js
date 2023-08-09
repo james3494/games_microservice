@@ -12,7 +12,7 @@ const { makeExecuteTakeout } = require('./executeTakeout');
 const { makeEditTakeout } = require('./editTakeout');
 const { makeFilterTakeouts } = require('./filterTakeouts');
 
-const { throwError } = require('errorHandling');
+const throwError = require('errorHandling').buildThrowError({ logErrors: process.env.LOG_ERRORS });
 
 const createTakeoutMethod = makeCreateTakeoutMethod({ takeoutMethodsDb });
 const editTakeoutMethod = makeEditTakeoutMethod({ takeoutMethodsDb, throwError });

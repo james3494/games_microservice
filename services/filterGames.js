@@ -7,7 +7,13 @@ module.exports = {
     return async function ({ ...filters }) {
 
       if (typeof filters !== 'object') {
-        throwError("Filters must be an object.", 400);
+        throwError({
+          title: `Incorrect filters.`,
+          error: "filters-not-object",
+          status: 400,
+          detail: 'filters should be a mongodb style object'
+        });
+        
       }
 
       const gameInfos = await gamesDb.customFind(filters);

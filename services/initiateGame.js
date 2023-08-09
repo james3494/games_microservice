@@ -5,7 +5,11 @@ module.exports = {
     return async function ({ _id }) {
       const gameInfo = await gamesDb.findById({ _id });
       if (!gameInfo) {
-        throwError("No game found to initiate.", 400);
+        throwError({
+          title: `No game found to initiate.`,
+          error: "game-not-found",
+          status: 404,
+        });
       }
       const game = makeGame({ ...gameInfo });
       const players = game.getPlayers();
@@ -17,7 +21,12 @@ module.exports = {
       });
 
       if (players.length > potentialTakeoutMethods.length) {
-        throwError("More players than available takeoutMethods.", 400);
+        throwError({
+          title: `More players than available takeoutMethods`,
+          error: "game-insufficient-takeout-methods",
+          status: 400,
+          detail: "You could either ask an admin to add more takeoutMethods or reduce the size of the game."
+        });
       }
 
       // randomly order the players then choose a random takeoutMethod

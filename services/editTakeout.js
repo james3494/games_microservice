@@ -7,7 +7,11 @@ module.exports = {
       const takeoutInfo = await takeoutsDb.findById({ _id });
 
       if (takeoutInfo.status == 'success' || takeoutInfo.status == 'fail') {
-        throwError(`You cannot update the status from ${takeoutInfo.status}.`, 400);
+        throwError({
+          title: `You cannot update the status from ${takeoutInfo.status}.`,
+          error: "takeout-status-fixed",
+          status: 400,
+        });
       }
       const takeout = makeTakeout({ ...takeoutInfo, status });
 

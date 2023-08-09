@@ -6,12 +6,20 @@ module.exports = {
   makeEditGame ({ gamesDb, throwError }) {
     return async function ({ ...gameInfo }) {
       if (!gameInfo._id) {
-        throwError('You must supply an id to edit a game.', 400);
+        throwError({
+          title: "You must supply an id to edit a game.",
+          error: "game-invalid-id",
+          status: 400,
+        });
       }
 
       const game = await gamesDb.findById({ _id: gameInfo._id });
       if (!game) {
-        throwError("No game found to edit.", 400);
+        throwError({
+          title: "No game found with that id.",
+          error: "game-not-found",
+          status: 404,
+        });
       }
 
       const toEdit = makeGame({ ...game, ...gameInfo });

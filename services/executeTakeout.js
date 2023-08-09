@@ -5,7 +5,11 @@ module.exports = {
     return async function ({ _id }) {
       const takeoutInfo = await takeoutsDb.findById({ _id });
       if (!takeoutInfo) {
-        throwError("No takeout found to initiate.", 400);
+        throwError({
+          title: `No takeout found to initiate.`,
+          error: "takeout-not-found",
+          status: 404,
+        });
       }
       const filteredTakeouts = filterTakeouts({
         gameId: takeoutInfo.gameId,
@@ -14,7 +18,11 @@ module.exports = {
       });
 
       if (filteredTakeouts.length !== 1) {
-        throwError("No next takeout found.", 400);
+        throwError({
+          title: `No next takeout found.`,
+          error: "takeout-next-not-found",
+          status: 404,
+        });
       }
       const nextTakeout = filteredTakeouts[0];
 
