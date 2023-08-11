@@ -32,5 +32,6 @@ api.put( `${process.env.PATH_ROUTE}/game/:id`, makeExpressCallback(putGame) );
 // get game/:id/takeouts/:id - gets specific takeout
 // put game/:id/takeouts/:id/status execute a takeout - someones successfully completed a takeout. this could either come from the target or chaser
 // put game/:id/status finish game - this will either be called by someone or called from executing a takeout if it's the last one
+api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the takeout microservice!") );
 
 module.exports = api;
