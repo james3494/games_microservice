@@ -9,8 +9,10 @@ const {
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
+const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
 const { buildPostGame } = require("./postGame");
 const { buildPutGame } = require("./putGame");
+const { buildGetGame } = require("./getGame");
 const throwError = require("errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });
@@ -41,6 +43,12 @@ const putTakeoutMethod = buildPutTakeoutMethod({
   getLoggedIn,
 });
 
+const getTakeoutMethod = buildGetTakeoutMethod({
+  filterTakeoutMethods,
+  throwError,
+  getLoggedIn,
+});
+
 const postGame = buildPostGame({
   createGame,
   throwError,
@@ -62,6 +70,7 @@ const getGame = buildGetGame({
 const takeoutMethodController = Object.freeze({
   postTakeoutMethod,
   putTakeoutMethod,
+  getTakeoutMethod,
   postGame,
   putGame,
   getGame
