@@ -3,6 +3,9 @@ const {
   editTakeoutMethod,
   createGame,
   editGame,
+  filterGames,
+  filterTakeoutMethods,
+  filterTakeouts,
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
@@ -50,11 +53,18 @@ const putGame = buildPutGame({
   getLoggedIn,
 });
 
+const getGame = buildGetGame({
+  filterGames,
+  throwError,
+  getLoggedIn,
+});
+
 const takeoutMethodController = Object.freeze({
   postTakeoutMethod,
   putTakeoutMethod,
   postGame,
-  putGame
+  putGame,
+  getGame
 });
 
 module.exports = { ...takeoutMethodController };

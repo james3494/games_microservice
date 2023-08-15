@@ -1,35 +1,30 @@
-const { makeGame } = require('../entities');
-
-// expects filters to be a mongodb style object. A bit bad that we need mongo specific code now floating around elsewhere
+const { makeGame } = require("../entities");
 
 module.exports = {
-   makeFilterGames ({ gamesDb, throwError }) {
+  makeFilterGames({ gamesDb, throwError }) {
     return async function ({ ...filters }) {
-
-      if (typeof filters !== 'object') {
+      if (typeof filters !== "object") {
         throwError({
-          title: `Incorrect filters.`,
+          title: "Invalid filters.",
           error: "filters-not-object",
           status: 400,
-          detail: 'filters should be a mongodb style object'
+          detail: "The filters parameter must be an object",
         });
-        
       }
 
-      const gameInfos = await gamesDb.customFind(filters);
+      const fromDb = await gamesDb.smartFilter(filters);
 
-      let gamesRtn = [];
+      let rtn = [];
       // do try catch statements in a loop to prevent it dying if there's one corrupt game
-      (gameInfos || []).forEach(gameInfo => {
+      (fromDb || []).forEach((gameInfo) => {
         try {
-          const game = makeTakeout(gameInfo);
-          gamesRtn.push( game.getAll() );
+          const game = makeGame(gameInfo);
+          rtn.push(game.getAll());
         } catch (e) {
           console.log(e);
         }
       });
-      return gamesRtn;
+      return rtn;
     };
-
-  }
+  },
 };

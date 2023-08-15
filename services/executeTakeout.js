@@ -1,4 +1,3 @@
-const { makeTakeout } = require('../entities');
 
 module.exports = {
    makeExecuteTakeout ({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, editGame }) {

@@ -1,34 +1,30 @@
-const { makeTakeout } = require('../entities');
-
-// expects filters to be a mongodb style object. A bit bad that we need mongo specific code now floating around elsewhere
+const { makeTakeout } = require("../entities");
 
 module.exports = {
-   makeFilterTakeouts ({ takeoutsDb, throwError }) {
+  makeFilterTakeouts({ takeoutsDb, throwError }) {
     return async function ({ ...filters }) {
-
-      if (typeof filters !== 'object') {
+      if (typeof filters !== "object") {
         throwError({
-          title: `Incorrect filters.`,
+          title: "Invalid filters.",
           error: "filters-not-object",
           status: 400,
-          detail: 'filters should be a mongodb style object'
+          detail: "The filters parameter must be an object",
         });
       }
 
-      const takeoutInfos = await takeoutsDb.customFind(filters);
+      const fromDb = await takeoutsDb.smartFilter(filters);
 
-      let takeoutsRtn = [];
+      let rtn = [];
       // do try catch statements in a loop to prevent it dying if there's one corrupt takeout
-      (takeoutInfos || []).forEach(takeoutInfo => {
+      (fromDb || []).forEach((takeoutInfo) => {
         try {
           const takeout = makeTakeout(takeoutInfo);
-          takeoutsRtn.push( takeout.getAll() );
+          rtn.push(takeout.getAll());
         } catch (e) {
           console.log(e);
         }
       });
-      return takeoutsRtn;
+      return rtn;
     };
-
-  }
+  },
 };

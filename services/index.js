@@ -40,6 +40,7 @@ const takeoutMethodService = Object.freeze({
   editGame,
   initiateGame,
   executeTakeout,
+  filterGames
 });
 
 
