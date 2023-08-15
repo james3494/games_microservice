@@ -1,6 +1,5 @@
 // TODO: add error handling - i.e who can access this?
 // which fields to return?
-// send 404 if an _id is posted and not found
 
 module.exports = {
   buildGetGame({ filterGames, throwError, getLoggedIn }) {
@@ -22,6 +21,13 @@ module.exports = {
         }));
 
       if (_id) {
+        if (body.length < 1) {
+          throwError({
+            status: 404,
+            title: "game not found with specified id",
+            error: "game-not-found"
+          })
+        }
         body = body[0];
       }
 

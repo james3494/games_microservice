@@ -6,7 +6,7 @@ module.exports = {
        description,
        createdBy,
        themes = [],
-       difficulty = 3,
+       difficulty = 3, // number between 1 and 10 
        disabled = false,
        createdOn = Date.now(),
        modifiedOn = Date.now(),
@@ -55,9 +55,9 @@ module.exports = {
           status: 400,
         });
        }
-       if (typeof difficulty !== 'number' || difficulty < 1 || difficulty > 5) {
+       if (typeof difficulty !== 'number' || difficulty < 1 || difficulty > 10) {
         throwError({
-          title: 'Difficulty must be a number between 1 and 5.',
+          title: 'Difficulty must be a number between 1 and 10.',
           error: "takeoutMethod-invalid-difficulty",
           status: 400,
         });

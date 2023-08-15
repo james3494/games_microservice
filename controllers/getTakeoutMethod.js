@@ -1,6 +1,5 @@
 // TODO: add error handling - i.e who can access this?
 // which fields to return? 
-// send 404 if an _id is posted and not found
 
 module.exports = {
     buildGetTakeoutMethod({ filterTakeoutMethods, throwError, getLoggedIn }) {
@@ -15,11 +14,21 @@ module.exports = {
         } else filterObj = filters;
   
         const filtered = await filterTakeoutMethods(filterObj);
-        let body = filtered.filter(takeoutMethod => takeoutMethod.players.includes(loggedInId)).map(takeoutMethod => ({
+        let body = filtered.map(takeoutMethod => ({
           _id: takeoutMethod._id,
+          description: takeoutMethod.description,
+          difficulty: takeoutMethod.difficulty,
+          themes: takeoutMethod.themes,
         }))
   
         if (_id) {
+          if (body.length < 1) {
+            throwError({
+              status: 404,
+              title: "TakeoutMethod not found with specified id",
+              error: "takeoutMethod-not-found"
+            })
+          }
           body = body[0];
         }
   
