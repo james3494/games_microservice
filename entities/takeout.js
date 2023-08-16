@@ -9,55 +9,33 @@ module.exports = {
       createdOn = Date.now(),
       _id = Id.makeId(),
     } = {}) {
-      if (!Id.isValidId(_id)) {
-        throwError({
-          title: "Takeout must have a valid id.",
-          error: "takeout-invalid-id",
-          status: 400,
-        });
-      }
-      if (!Id.isValidId(chaserId)) {
-        throwError({
-          title: "chaser must have a valid id.",
-          error: "takeout-invalid-chaserId",
-          status: 400,
-        });
-      }
-      if (!Id.isValidId(targetId)) {
-        throwError({
-          title: "target must have a valid id.",
-          error: "takeout-invalid-targetId",
-          status: 400,
-        });
-      }
-      if (!Id.isValidId(gameId)) {
-        throwError({
-          title: "Game must have a valid id.",
-          error: "takeout-invalid-gameId",
-          status: 400,
-        });
-      }
-      if (!Id.isValidId(takeoutMethodId)) {
-        throwError({
-          title: "takeoutMethod must have a valid id.",
-          error: "takeout-invalid-takeoutMethodId",
-          status: 400,
-        });
-      }
-      if (typeof createdOn !== "number" || createdOn > Date.now()) {
-        throwError({
-          title: "createdOn must be a number and in the past.",
-          error: "takeout-invalid-createOn",
-          status: 400,
-        });
-      }
-      if (!["awaiting", "inProgress", "success", "fail"].includes(status)) {
-        throwError({
-          title: `${status} is not a valid status.`,
-          error: "takeout-invalid-status",
-          status: 400,
-        });
-      }
+      
+      const getAll = () => ({
+        createdOn,
+        _id,
+        status,
+        takeoutMethodId,
+        gameId,
+        chaserId,
+        targetId,
+      })
+
+      Object.entries( getAll() ).forEach(([key, value]) => {
+        if (!validation[key])
+          throwError({
+            status: 500,
+            title: "no validation found for " + key,
+            error: "validation-missing-key",
+          });
+        const { passed, rule, reason } = validation[key](value);
+        if (!passed)
+          throwError({
+            status: 400,
+            error: "takeout-invalid-" + key,
+            title: rule,
+            detail: reason,
+          });
+      });
 
       return Object.freeze({
         getCreatedOn: () => createdOn,
@@ -67,15 +45,7 @@ module.exports = {
         getGameId: () => gameId,
         getChaserId: () => chaserId,
         getTargetId: () => targetId,
-        getAll: () => ({
-          createdOn,
-          _id,
-          status,
-          takeoutMethodId,
-          gameId,
-          chaserId,
-          targetId,
-        }),
+        getAll,
       });
     };
   },
