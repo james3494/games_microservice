@@ -1,8 +1,8 @@
 
-const testsFunc = require("../testsFunc.js");
+const testsFunc = require("./testsFunc.js");
 const doTakeoutMethodTests = require("./takeoutMethod");
 const doGameTests = require("./game");
-const pingTests = require("../pingTests.js");
+const pingTests = require("./pingTests.js");
 
 
 

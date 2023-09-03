@@ -1,10 +1,9 @@
 
 const testsFunc = require("../testsFunc.js");
-const postTakeoutMethodTests = require("./postTakeoutMethodTests.js");
 
 
 
-module.exports = () => describe("Testing takeout microservice - takeoutMethod", () => {
+module.exports = () => describe("Testing takeout microservice - game", () => {
     let entity = {
         description : "Convince ~name~ to eat something from your hand",
         themes : ['party'],
@@ -16,15 +15,8 @@ module.exports = () => describe("Testing takeout microservice - takeoutMethod", 
     }
 
 
-    // create takeoutMethod tests - must stay at the top to have a takeoutMethod to work with for other tests
-    describe("POST /takeoutMethod", () => {
-        testsFunc({ 
-            tests: postTakeoutMethodTests, 
-            method: "post",
-            setEntityId,
-            entity
-        })
-    })
+    // create game tests - must stay at the top to have a game to work with for other tests
+    
     // OTHER TESTS GO HERE
 // ___________________________________________________________________________________________________________________
 
@@ -35,7 +27,7 @@ module.exports = () => describe("Testing takeout microservice - takeoutMethod", 
 
 
 // ___________________________________________________________________________________________________________________
-    // delete takeoutMethod tests - must stay at the bottom to clean up
+    // delete game tests - must stay at the bottom to clean up
 
 });
 

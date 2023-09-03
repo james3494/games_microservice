@@ -1,15 +1,15 @@
 
 const testsFunc = require("../testsFunc.js");
 const postTakeoutMethodTests = require("./postTakeoutMethodTests.js");
+const getTakeoutMethodTests = require("./getTakeoutMethodTests.js");
 
 
 
 module.exports = () => describe("Testing takeout microservice - takeoutMethod", () => {
     let entity = {
-        firstName: "Testy",
-        lastName: "McTestface",
-        email: "test@test.com",
-        password: "MyPassword1"
+        description : "Convince ~name~ to eat something from your hand",
+        themes : ['party'],
+        difficulty : 3, 
     }
 
     const setEntityId = (_id) => {
@@ -29,7 +29,13 @@ module.exports = () => describe("Testing takeout microservice - takeoutMethod", 
     // OTHER TESTS GO HERE
 // ___________________________________________________________________________________________________________________
 
-
+    describe("GET /takeoutMethod", () => {
+        testsFunc({ 
+            tests: getTakeoutMethodTests, 
+            method: "get",
+            entity
+        })
+    })
 
 
 

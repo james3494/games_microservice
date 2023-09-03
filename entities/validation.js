@@ -29,10 +29,10 @@ module.exports = {
       if (typeof value !== "number" || !Number.isInteger(value)) {
         rtn.passed = false;
         rtn.reason = `Difficulty is not an integer`;
-      } else if (value.length < minVal) {
+      } else if (value < minVal) {
         rtn.passed = false;
         rtn.reason = `Difficulty is less than ${minVal}`;
-      } else if (value.length > maxVal) {
+      } else if (value > maxVal) {
         rtn.passed = false;
         rtn.reason = `Difficulty is more than ${maxVal}`;
       }
@@ -100,7 +100,7 @@ module.exports = {
       return rtn;
     },
     themes: (value) => {
-      const allowedThemes = [];
+      const allowedThemes = [ 'office', 'party', 'noAlcohol', 'kids' ];
       let rtn = {
         rule: `Must be an array with no repeated entries. All entries must be one of ${JSON.stringify(
           allowedThemes
@@ -252,10 +252,10 @@ module.exports = {
       if (typeof value !== "number" || !Number.isInteger(value)) {
         rtn.passed = false;
         rtn.reason = `Difficulty is not an integer`;
-      } else if (value.length < minVal) {
+      } else if (value < minVal) {
         rtn.passed = false;
         rtn.reason = `Difficulty is less than ${minVal}`;
-      } else if (value.length > maxVal) {
+      } else if (value > maxVal) {
         rtn.passed = false;
         rtn.reason = `Difficulty is more than ${maxVal}`;
       }

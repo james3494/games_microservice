@@ -1,5 +1,5 @@
-# users microservice
-A microservice for the hunted game n jamesmabon.co.uk
+# Takeout microservice
+A microservice for the gameplay for the takeOut app. 
 
 ## To do
 

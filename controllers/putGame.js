@@ -35,7 +35,7 @@ module.exports = {
 
       return {
         headers: { "Content-Type": "application/json" },
-        statusCode: 201,
+        status: 201,
         body: { modifiedCount, success: true },
       };
     };

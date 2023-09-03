@@ -1,77 +1,68 @@
-const endpoint = 'users'
+const endpoint = 'takeoutMethod'
+const user_id = "clm256k9w00003g5xafvyw4ld" // stub
 
 const postUsers = [
-    (user) => ({
+    (takeoutMethod) => ({
+      expectedStatus: 403,
+      endpoint,
+      loggedInUser: {
+        _id: user_id,
+        admin: { takeout: false }
+      },
+      expectedBody: {
+        error: "takeoutMethod-insufficient-admin",
+        status: 403
+      },
+      should: "should return an error for insufficient admin permissions",
+      sendBody: takeoutMethod
+    }),
+    (takeoutMethod) => ({
       expectedStatus: 400,
       endpoint,
+      loggedInUser: {
+        _id: user_id,
+        admin: { takeout: true }
+      },
       expectedBody: {
-        error: "user-invalid-password",
+        error: "takeoutMethod-invalid-difficulty",
         status: 400
       },
-      should: "should return an error for an invalid password",
+      should: "should return an error for an invalid difficulty",
       sendBody: {
-        ...user,
-        password: "MyPass"
+        ...takeoutMethod,
+        difficulty: 11
       }
     }),
-    (user) => ({
+    (takeoutMethod) => ({
       expectedStatus: 400,
       endpoint,
+      loggedInUser: {
+        _id: user_id,
+        admin: { takeout: true }
+      },
       expectedBody: {
-        error: "user-invalid-email",
+        error: "takeoutMethod-invalid-themes",
         status: 400
       },
-      should: "should return an error for an invalid email",
+      should: "should return an error for an invalid theme",
       sendBody: {
-        ...user,
-        email: "justanemail",
+        ...takeoutMethod,
+        themes: [ 'notARealTHeme' ]
       }
     }),
-    (user) => ({
-      expectedStatus: 400,
-      endpoint,
-      expectedBody: {
-        error: "user-invalid-firstName",
-        status: 400
-      },
-      should: "should return an error for an invalid firstName",
-      sendBody: {
-        ...user,
-        firstName: "Testy*"
-      }
-    }),
-    (user) => ({
-      expectedStatus: 400,
-      should: "should return an error for an invalid lastName",
-      endpoint,
-      expectedBody: {
-        error: "user-invalid-lastName",
-        status: 400
-      },
-      sendBody: { 
-        ...user, 
-        lastName: "McTestfacethisisareallyreallylonglastnamesolonginfactithinkitsoverthelimit",
-      }
-    }),
-    (user) => ({
+    (takeoutMethod) => ({
       expectedStatus: 201,
       endpoint,
+      loggedInUser: {
+        _id: user_id,
+        admin: { takeout: true }
+      },
       expectedBody: {
         insertedId: "notnull"
       },
-      should: "should return an insertedId and a successful status. The user should have been created",
-      sendBody: user,
+      should: "should return an insertedId and a successful status. The takeoutMethod should have been created",
+      sendBody: takeoutMethod,
     }),
-    (user) => ({
-      expectedStatus: 401,
-      should: "should return an error for trying to create a user which already exists",
-      endpoint,
-      expectedBody: {
-        error: "user-already-exists",
-        status: 401
-      },
-      sendBody: user
-    })
   ]
   
 

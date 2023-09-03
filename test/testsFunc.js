@@ -25,6 +25,7 @@ const testsFunc = ({ tests, method, setEntityId, entity }) => {
                         Object.entries(test.expectedBody || {}).forEach(([key, value]) => {
                             if (value === null || value === "null") expect(res.body[key]).to.be.null
                             else if (value === "notnull") expect(res.body[key]).not.to.be.null
+                            else if (typeof value == 'object') expect(JSON.stringify(res.body[key])).to.be.equal(JSON.stringify(value))
                             else expect(res.body[key]).to.be.equal(value)
                         })
                     }

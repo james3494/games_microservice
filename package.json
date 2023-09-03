@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "cuid": "^2.1.8",
-    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git#8c0da50",
-    "database": "https://james3494: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@github.com/james3494/database.git#8d60c31",
+    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git#bd5b77f",
+    "database": "https://james3494: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@github.com/james3494/database.git#ad93912",
     "dotenv": "^16.0.0",
     "express": "^4.17.3"
   },
