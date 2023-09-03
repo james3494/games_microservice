@@ -3,6 +3,7 @@ const { takeoutMethodsDb, takeoutsDb, gamesDb } = require('../dataAccess');
 const { makeCreateTakeoutMethod } = require('./createTakeoutMethod');
 const { makeEditTakeoutMethod } = require('./editTakeoutMethod');
 const { makeFilterTakeoutMethods } = require('./filterTakeoutMethods');
+const { makeRemoveTakeoutMethod } = require('./removeTakeoutMethod');
 const { makeEditGame } = require('./editGame');
 const { makeFilterGames } = require('./filterGames');
 const { makeInitiateGame } = require('./initiateGame');
@@ -17,6 +18,7 @@ const throwError = require('errorHandling').buildThrowError({ logErrors: process
 const createTakeoutMethod = makeCreateTakeoutMethod({ takeoutMethodsDb });
 const editTakeoutMethod = makeEditTakeoutMethod({ takeoutMethodsDb, throwError });
 const filterTakeoutMethods = makeFilterTakeoutMethods({ takeoutMethodsDb, throwError });
+const removeTakeoutMethod = makeRemoveTakeoutMethod({ takeoutMethodsDb, throwError });
 
 const createTakeout = makeCreateTakeout({ takeoutsDb });
 const editTakeout = makeEditTakeout({ takeoutsDb, throwError });
@@ -33,6 +35,7 @@ const takeoutMethodService = Object.freeze({
   createTakeoutMethod,
   editTakeoutMethod,
   filterTakeoutMethods,
+  removeTakeoutMethod,
   createTakeout,
   editTakeout,
   filterTakeouts,

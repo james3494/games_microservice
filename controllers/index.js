@@ -6,10 +6,12 @@ const {
   filterGames,
   filterTakeoutMethods,
   filterTakeouts,
+  removeTakeoutMethod
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
 const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
+const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
 const { buildPostGame } = require("./postGame");
 const { buildPutGame } = require("./putGame");
 const { buildGetGame } = require("./getGame");
@@ -49,6 +51,12 @@ const getTakeoutMethod = buildGetTakeoutMethod({
   getLoggedIn,
 });
 
+const deleteTakeoutMethod = buildDeleteTakeoutMethod({
+  removeTakeoutMethod,
+  throwError,
+  getLoggedIn,
+});
+
 const postGame = buildPostGame({
   createGame,
   throwError,
@@ -71,6 +79,7 @@ const takeoutMethodController = Object.freeze({
   postTakeoutMethod,
   putTakeoutMethod,
   getTakeoutMethod,
+  deleteTakeoutMethod,
   postGame,
   putGame,
   getGame

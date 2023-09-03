@@ -10,6 +10,7 @@ const {
     postGame,
     putTakeoutMethod,
     getTakeoutMethod,
+    deleteTakeoutMethod,
     putGame,
     getGame
 } = require('../controllers');
@@ -20,13 +21,13 @@ api.post( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(postTak
 api.put( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(putTakeoutMethod) );
 api.get( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(getTakeoutMethod) );
 api.get( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(getTakeoutMethod) );
+api.delete( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(deleteTakeoutMethod) );
 
 api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 api.put( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(putGame) );
 api.get( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(getGame) );
 api.get( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(getGame) );
 
-// delete takeoutMethods/:id - disables a takeout method
 // patch game/:id/invitees - edits the invitees
 // patch game/:id/players - edits the players
 // patch game/:id/admins - edits the admins

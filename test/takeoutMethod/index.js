@@ -2,6 +2,7 @@
 const testsFunc = require("../testsFunc.js");
 const postTakeoutMethodTests = require("./postTakeoutMethodTests.js");
 const getTakeoutMethodTests = require("./getTakeoutMethodTests.js");
+const deleteTakeoutMethodTests = require("./deleteTakeoutMethodTests.js");
 
 
 
@@ -43,6 +44,13 @@ module.exports = () => describe("Testing takeout microservice - takeoutMethod", 
 
 // ___________________________________________________________________________________________________________________
     // delete takeoutMethod tests - must stay at the bottom to clean up
+    describe("DELETE /takeoutMethod", () => {
+        testsFunc({ 
+            tests: deleteTakeoutMethodTests, 
+            method: "delete",
+            entity
+        })
+    })
 
 });
 
