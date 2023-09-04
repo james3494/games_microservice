@@ -8,6 +8,7 @@ takeout-invalid-status
 takeout-status-fixed
 takeout-not-found
 takeout-next-not-found
+takeout-not-deleted
 
 game-invalid-id
 game-invalid-createdBy
@@ -25,9 +26,12 @@ game-invalid-status
 game-invalid-players
 game-invalid-invited
 game-invalid-admins
+game-invalid-user-id
 game-not-found
 game-insufficient-takeout-methods
 game-not-logged-in
+game-not-deleted
+game-user-not-invited
 
 takeoutMethod-invalid-id
 takeoutMethod-invalid-createdBy

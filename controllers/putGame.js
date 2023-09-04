@@ -8,6 +8,8 @@ module.exports = {
         theme,
         difficulty,
         maxDuration,
+        invited,
+        admins
       } = httpRequest.body;
 
       const { _id } = httpRequest.params;
@@ -21,7 +23,15 @@ module.exports = {
         });
       }
 
+
       // get game and check loggedIn._id is in game admins (or the user is a superadmin)
+      if (!loggedIn._id !== '' && !loggedIn.admin.super && !loggedIn.admin.takeout) {
+        throwError({
+          title: "You must be an admin to edit a game.",
+          error: "game-insufficient-admin",
+          status: 403,
+        });
+      }
 
       const { modifiedCount } = await editGame({
         _id,
@@ -31,6 +41,8 @@ module.exports = {
         ...(theme ? { theme } : {}),
         ...(difficulty ? { difficulty } : {}),
         ...(maxDuration ? { maxDuration } : {}),
+        ...(invited ? { invited } : {}),
+        ...(admins ? { admins } : {})
       });
 
       return {

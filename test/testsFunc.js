@@ -8,6 +8,7 @@ const testsFunc = ({ tests, method, setEntityId, entity }) => {
         let should = test({}).should;
         it(should, (done) => {
             test = test(entity || {})
+
             request(app)
             [method](`${process.env.PATH_ROUTE}/${test.endpoint}`)
             .send(test.sendBody)
@@ -16,7 +17,6 @@ const testsFunc = ({ tests, method, setEntityId, entity }) => {
             .set("X-Current-User", JSON.stringify(test.loggedInUser || null))
             .set("Content-Type", "application/json")
             .end((error, res) => {
-
                 try {
                     expect(res.statusCode).to.be.equal(test.expectedStatus)
                     if (typeof test.expectedBody === 'function') {

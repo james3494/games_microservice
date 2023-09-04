@@ -103,7 +103,7 @@ module.exports = {
         });
       }
 
-      if (!admins.every((admin) => player.includes(admin))) {
+      if (!admins.every((admin) => players.includes(admin))) {
         throwError({
           title: "All admins must be players in the game.",
           error: "game-invalid-admins",

@@ -6,7 +6,10 @@ const {
   filterGames,
   filterTakeoutMethods,
   filterTakeouts,
-  removeTakeoutMethod
+  removeTakeoutMethod,
+  removeGame,
+  acceptGameInvitation,
+  declineGameInvitation
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
@@ -15,6 +18,8 @@ const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
 const { buildPostGame } = require("./postGame");
 const { buildPutGame } = require("./putGame");
 const { buildGetGame } = require("./getGame");
+const { buildDeleteGame } = require("./deleteGame");
+const { buildPatchGameInvited } = require("./patchGameInvited");
 const throwError = require("errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });
@@ -74,6 +79,17 @@ const getGame = buildGetGame({
   throwError,
   getLoggedIn,
 });
+const deleteGame = buildDeleteGame({
+  removeGame,
+  throwError,
+  getLoggedIn,
+});
+const patchGameInvited = buildPatchGameInvited({
+  acceptGameInvitation,
+  declineGameInvitation,
+  throwError,
+  getLoggedIn,
+});
 
 const takeoutMethodController = Object.freeze({
   postTakeoutMethod,
@@ -82,7 +98,9 @@ const takeoutMethodController = Object.freeze({
   deleteTakeoutMethod,
   postGame,
   putGame,
-  getGame
+  getGame,
+  deleteGame,
+  patchGameInvited
 });
 
 module.exports = { ...takeoutMethodController };

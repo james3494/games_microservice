@@ -8,10 +8,14 @@ const { makeEditGame } = require('./editGame');
 const { makeFilterGames } = require('./filterGames');
 const { makeInitiateGame } = require('./initiateGame');
 const { makeCreateGame } = require('./createGame');
+const { makeRemoveGame } = require('./removeGame');
+const { makeAcceptGameInvitation } = require('./acceptGameInvitation');
+const { makeDeclineGameInvitation } = require('./declineGameInvitation');
 const { makeCreateTakeout } = require('./createTakeout');
 const { makeExecuteTakeout } = require('./executeTakeout');
 const { makeEditTakeout } = require('./editTakeout');
 const { makeFilterTakeouts } = require('./filterTakeouts');
+const { makeRemoveTakeouts } = require('./removeTakeouts');
 
 const throwError = require('errorHandling').buildThrowError({ logErrors: process.env.LOG_ERRORS });
 
@@ -23,11 +27,15 @@ const removeTakeoutMethod = makeRemoveTakeoutMethod({ takeoutMethodsDb, throwErr
 const createTakeout = makeCreateTakeout({ takeoutsDb });
 const editTakeout = makeEditTakeout({ takeoutsDb, throwError });
 const filterTakeouts = makeFilterTakeouts({ takeoutsDb, throwError });
+const removeTakeouts = makeRemoveTakeouts({ takeoutsDb, throwError });
 
 const createGame = makeCreateGame({ gamesDb });
 const editGame = makeEditGame({ gamesDb, throwError });
 const filterGames = makeFilterGames({ gamesDb, throwError });
 const initiateGame = makeInitiateGame({ gamesDb, throwError, filterTakeoutMethods, createTakeout, editGame, shuffleArray });
+const removeGame = makeRemoveGame({ gamesDb, removeTakeouts, filterTakeouts, throwError });
+const acceptGameInvitation = makeAcceptGameInvitation({ gamesDb, throwError });
+const declineGameInvitation = makeDeclineGameInvitation({ gamesDb, throwError });
 
 const executeTakeout = makeExecuteTakeout({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, editGame });
 
@@ -43,7 +51,10 @@ const takeoutMethodService = Object.freeze({
   editGame,
   initiateGame,
   executeTakeout,
-  filterGames
+  filterGames,
+  removeGame,
+  acceptGameInvitation,
+  declineGameInvitation
 });
 
 

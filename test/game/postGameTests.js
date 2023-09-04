@@ -1,70 +1,66 @@
-const endpoint = 'takeoutMethod'
+const endpoint = 'game'
 const user_id = "clm256k9w00003g5xafvyw4ld" // stub
 
-const postTakeoutMethods = [
-    (takeoutMethod) => ({
+const postGame = [
+    (game) => ({
       expectedStatus: 403,
       endpoint,
       loggedInUser: {
-        _id: user_id,
         admin: { takeout: false }
       },
       expectedBody: {
-        error: "takeoutMethod-insufficient-admin",
+        error: "game-not-logged-in",
         status: 403
       },
-      should: "should return an error for insufficient admin permissions",
-      sendBody: takeoutMethod
+      should: "should return an error for needing to be logged in to create a game",
+      sendBody: game
     }),
-    (takeoutMethod) => ({
+    (game) => ({
       expectedStatus: 400,
       endpoint,
       loggedInUser: {
         _id: user_id,
-        admin: { takeout: true }
       },
       expectedBody: {
-        error: "takeoutMethod-invalid-difficulty",
+        error: "game-invalid-difficulty",
         status: 400
       },
       should: "should return an error for an invalid difficulty",
       sendBody: {
-        ...takeoutMethod,
+        ...game,
         difficulty: 11
       }
     }),
-    (takeoutMethod) => ({
+    (game) => ({
       expectedStatus: 400,
       endpoint,
       loggedInUser: {
         _id: user_id,
-        admin: { takeout: true }
       },
       expectedBody: {
-        error: "takeoutMethod-invalid-themes",
+        error: "game-invalid-theme",
         status: 400
       },
       should: "should return an error for an invalid theme",
       sendBody: {
-        ...takeoutMethod,
-        themes: [ 'notARealTHeme' ]
+        ...game,
+        theme: 'notARealTHeme'
       }
     }),
-    (takeoutMethod) => ({
+    (game) => ({
       expectedStatus: 201,
       endpoint,
       loggedInUser: {
         _id: user_id,
-        admin: { takeout: true }
       },
       expectedBody: {
         insertedId: "notnull"
       },
-      should: "should return an insertedId and a successful status. The takeoutMethod should have been created",
-      sendBody: takeoutMethod,
+      should: "should return an insertedId and a successful status. The game should have been created",
+      sendBody: game,
     }),
   ]
   
 
   
-  module.exports = postTakeoutMethods
+  module.exports = postGame

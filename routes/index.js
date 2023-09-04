@@ -12,7 +12,9 @@ const {
     getTakeoutMethod,
     deleteTakeoutMethod,
     putGame,
-    getGame
+    getGame,
+    deleteGame,
+    patchGameInvited
 } = require('../controllers');
 
 api.use(express.json());
@@ -27,10 +29,9 @@ api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 api.put( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(putGame) );
 api.get( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(getGame) );
 api.get( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(getGame) );
+api.delete( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(deleteGame) );
+api.patch( `${process.env.PATH_ROUTE}/game/:_id/invited/:user_id`, makeExpressCallback(patchGameInvited) );
 
-// patch game/:id/invitees - edits the invitees
-// patch game/:id/players - edits the players
-// patch game/:id/admins - edits the admins
 // put game/:id/status initiate a game - sometimes this will be an automatic thing at the start time, othertimes someone will click start
 // get game/:id/takeouts - filters takeouts. Takeouts should only be got through a game
 // get game/:id/takeouts/:id - gets specific takeout

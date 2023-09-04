@@ -1,3 +1,7 @@
+
+const allowedThemes = [ 'office', 'party', 'noAlcohol', 'kids' ];
+
+
 module.exports = {
   buildTakeoutMethodValidation: ({ Id }) => ({
     description: (value) => {
@@ -100,7 +104,6 @@ module.exports = {
       return rtn;
     },
     themes: (value) => {
-      const allowedThemes = [ 'office', 'party', 'noAlcohol', 'kids' ];
       let rtn = {
         rule: `Must be an array with no repeated entries. All entries must be one of ${JSON.stringify(
           allowedThemes
@@ -312,7 +315,6 @@ module.exports = {
       return rtn;
     },
     theme: (value) => {
-      const allowedThemes = [];
       let rtn = {
         rule: `Must be one of ${JSON.stringify(allowedThemes)}`,
         passed: true,
@@ -334,7 +336,7 @@ module.exports = {
         } else if (new Set(value).size !== value.length) {
           rtn.passed = false;
           rtn.reason = `players contains repeated entries`;
-        } else if (!value.every((theme) => Id.isValidId(value))) {
+        } else if (!value.every((_id) => Id.isValidId(_id))) {
           rtn.passed = false;
           rtn.reason = `players contains an entry which isnt a valid Id`;
         }
@@ -351,7 +353,7 @@ module.exports = {
         } else if (new Set(value).size !== value.length) {
           rtn.passed = false;
           rtn.reason = `invited contains repeated entries`;
-        } else if (!value.every((theme) => Id.isValidId(value))) {
+        } else if (!value.every((_id) => Id.isValidId(_id))) {
           rtn.passed = false;
           rtn.reason = `invited contains an entry which isnt a valid Id`;
         }
@@ -368,7 +370,7 @@ module.exports = {
         } else if (new Set(value).size !== value.length) {
           rtn.passed = false;
           rtn.reason = `admins contains repeated entries`;
-        } else if (!value.every((theme) => Id.isValidId(value))) {
+        } else if (!value.every((_id) => Id.isValidId(_id))) {
           rtn.passed = false;
           rtn.reason = `admins contains an entry which isnt a valid Id`;
         }

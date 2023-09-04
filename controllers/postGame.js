@@ -12,7 +12,13 @@ module.exports = {
         });
       }
 
-      const { insertedId } = await createGame({ createdBy: _id, ...gameInfo });
+      const { insertedId } = await createGame({
+        ...gameInfo,
+        createdBy: _id,
+        admins: (gameInfo.admins || []).concat(_id),
+        players: (gameInfo.players || []).concat(_id),
+      });
+
 
       return {
         headers: { "Content-Type": "application/json" },
