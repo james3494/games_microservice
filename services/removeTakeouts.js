@@ -16,21 +16,14 @@ module.exports = {
           });
       }
 
-      let deletedCount = 0;
-      // this is highly inefficient
-      existingTakeouts.forEach(async existingTakeout => {
-        const takeout = makeTakeout(existingTakeout);
-        deletedCount += await takeoutsDb.remove({
-           _id: takeout.getId()
-        }).deletedCount;
-      })
+      const { deletedCount } = await takeoutsDb.removeMany({ _idArray: existingTakeouts.map(takeout => takeout._id) })
 
       if (deletedCount !== _idArray.length) {
         throwError({ 
             title: "Failed to delete all takeouts.", 
             error:  "takeout-not-deleted", 
             status: 400, 
-            detail: "The deletedCount does not match the number of takeouts passed in"
+            detail: `The deletedCount (${deletedCount}) does not match the number of takeouts passed in (${_idArray.length})`
           });
       }
 

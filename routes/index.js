@@ -14,7 +14,9 @@ const {
     putGame,
     getGame,
     deleteGame,
-    patchGameInvited
+    patchGameInvited,
+    putGameStart,
+    getTakeout
 } = require('../controllers');
 
 api.use(express.json());
@@ -31,10 +33,10 @@ api.get( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(getGame) );
 api.get( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(getGame) );
 api.delete( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(deleteGame) );
 api.patch( `${process.env.PATH_ROUTE}/game/:_id/invited/:user_id`, makeExpressCallback(patchGameInvited) );
+api.put( `${process.env.PATH_ROUTE}/game/:_id/started`, makeExpressCallback(putGameStart) );
+api.get( `${process.env.PATH_ROUTE}/takeout`, makeExpressCallback(getTakeout) );
+api.get( `${process.env.PATH_ROUTE}/takeout/:_id`, makeExpressCallback(getTakeout) );
 
-// put game/:id/status initiate a game - sometimes this will be an automatic thing at the start time, othertimes someone will click start
-// get game/:id/takeouts - filters takeouts. Takeouts should only be got through a game
-// get game/:id/takeouts/:id - gets specific takeout
 // put game/:id/takeouts/:id/status execute a takeout - someones successfully completed a takeout. this could either come from the target or chaser
 // put game/:id/status finish game - this will either be called by someone or called from executing a takeout if it's the last one
 api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the takeout microservice!") );

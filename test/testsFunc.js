@@ -2,15 +2,15 @@ const request = require("supertest");
 const { app } = require("../server.js");
 const expect = require('chai').expect;
 
-const testsFunc = ({ tests, method, setEntityId, entity }) => {
+const testsFunc = ({ tests, method, editEntity, entity }) => {
     tests.forEach((test) => {
         // this is a hack - need should now but need to initialise test inside it to get updated entity
-        let should = test({}).should;
+        let should = test.should || test({}).should;
         it(should, (done) => {
             test = test(entity || {})
 
             request(app)
-            [method](`${process.env.PATH_ROUTE}/${test.endpoint}`)
+            [test.method || method](`${process.env.PATH_ROUTE}/${test.endpoint}`)
             .send(test.sendBody)
             .query(test.query)
             .set(test.apiKeyOverride === null ? "X-Other" : "X-Api-Key", test.apiKeyOverride || process.env.API_KEY)
@@ -35,7 +35,7 @@ const testsFunc = ({ tests, method, setEntityId, entity }) => {
                     console.log(res ? res.body : "no response body")
                     throw err
                 } finally {
-                    if (res?.body?.insertedId && setEntityId) setEntityId(res.body.insertedId)
+                    if (editEntity) editEntity(res.body)
                 }
 
                 done()

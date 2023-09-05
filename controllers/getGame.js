@@ -6,7 +6,7 @@ module.exports = {
     return async function (httpRequest) {
       const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
-      const loggedInId = getLoggedIn()._id;
+      const loggedIn = getLoggedIn(httpRequest);
 
       let filterObj = {};
       if (_id) {
@@ -14,10 +14,18 @@ module.exports = {
       } else filterObj = filters;
 
       const filtered = await filterGames(filterObj);
-      let body = filtered
-        .filter((game) => game.players.includes(loggedInId))
-        .map((game) => ({
+      let body = filtered.map((game) => ({
           _id: game._id,
+          location: game.location,
+          description: game.description,
+          difficulty: game.difficulty,
+          theme: game.theme,
+          players: game.players,
+          invited: game.invited,
+          admins: game.admins,
+          startTime: game.startTime,
+          maxDuration: game.maxDuration,
+          status: game.status,
         }));
 
       if (_id) {
@@ -39,3 +47,4 @@ module.exports = {
     };
   },
 };
+

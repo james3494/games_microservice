@@ -55,7 +55,7 @@ module.exports = {
 
       // validation between fields
 
-      if (startTime < Date.now() && !finished && status !== "inProgress") {
+      if (startTime < Date.now() && status !== "finished" && status !== "inProgress") {
         throwError({
           title: `Status must be inProgress while the game is in progress.`,
           error: "game-invalid-status",

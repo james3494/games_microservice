@@ -12,9 +12,9 @@ module.exports = {
         });
       }
       const game = makeGame({ ...gameInfo });
-      const players = game.getPlayers();
+      let players = game.getPlayers();
 
-      const potentialTakeoutMethods = await filterTakeoutMethods({
+      let potentialTakeoutMethods = await filterTakeoutMethods({
         difficulty: game.getDifficulty(),
         themes: game.getTheme(),
         disabled: false
@@ -29,23 +29,22 @@ module.exports = {
         });
       }
 
-      // randomly order the players then choose a random takeoutMethod
+      // randomly order the players and takeoutMethods
       players = shuffleArray(players);
-      let usedMethods = [];
-      players.forEach((playerId, index) => {
-        const rand = Math.floor( Math.random() * potentialTakeoutMethods.length );
-        createTakeout({
+      potentialTakeoutMethods = shuffleArray(potentialTakeoutMethods);
+
+      players.forEach(async (playerId, index) => {
+        await createTakeout({
           chaserId: playerId,
           targetId: players[ (index + 1) % players.length ],
           gameId: _id,
-          takeoutMethodId: potentialTakeoutMethods[rand]._id,
+          takeoutMethodId: potentialTakeoutMethods[index]._id,
           status: 'inProgress'
         })
-        potentialTakeoutMethods.splice(rand, 1);
       })
 
 
-      editGame({
+      return await editGame({
         _id,
         status: 'inProgress',
         startTime: Date.now(),

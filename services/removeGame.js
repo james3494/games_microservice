@@ -14,7 +14,7 @@ module.exports = {
           });
       }
       const game = makeGame(existingGame);
-      const takeouts = filterTakeouts({
+      const takeouts = await filterTakeouts({
         gameId: game.getId()
       })
 
