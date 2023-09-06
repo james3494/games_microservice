@@ -16,7 +16,8 @@ const {
     deleteGame,
     patchGameInvited,
     putGameStart,
-    getTakeout
+    getTakeout,
+    putTakeoutStatus
 } = require('../controllers');
 
 api.use(express.json());
@@ -36,8 +37,8 @@ api.patch( `${process.env.PATH_ROUTE}/game/:_id/invited/:user_id`, makeExpressCa
 api.put( `${process.env.PATH_ROUTE}/game/:_id/started`, makeExpressCallback(putGameStart) );
 api.get( `${process.env.PATH_ROUTE}/takeout`, makeExpressCallback(getTakeout) );
 api.get( `${process.env.PATH_ROUTE}/takeout/:_id`, makeExpressCallback(getTakeout) );
+api.put( `${process.env.PATH_ROUTE}/takeout/:_id/executed`, makeExpressCallback(putTakeoutStatus) );
 
-// put game/:id/takeouts/:id/status execute a takeout - someones successfully completed a takeout. this could either come from the target or chaser
 // put game/:id/status finish game - this will either be called by someone or called from executing a takeout if it's the last one
 api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the takeout microservice!") );
 

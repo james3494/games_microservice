@@ -44,10 +44,12 @@ module.exports = {
 
       editTakeout({
         _id,
+        completedAt: Date.now(),
         status: 'success'
       })
       editTakeout({
         _id: nextTakeout._id,
+        completedAt: Date.now(),
         status: 'fail'
       })
     };

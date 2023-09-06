@@ -205,6 +205,20 @@ module.exports = {
       }
       return rtn;
     },
+    completedAt: (value) => {
+      let rtn = {
+        rule: `If it exists, must be of type number (system time) and in the past`,
+        passed: true,
+      };
+      if (typeof value !== "number") {
+        rtn.passed = false;
+        rtn.reason = `completedAt is not of type number`;
+      } else if (value > Date.now()) {
+        rtn.passed = false;
+        rtn.reason = `completedAt is not in the past`;
+      }
+      return rtn;
+    },
   }),
   buildGameValidation: ({ Id }) => ({
     description: (value) => {

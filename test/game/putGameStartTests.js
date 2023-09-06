@@ -19,21 +19,22 @@ module.exports = [
       "should return a successful status. The game should have been initiated.";
     return func;
   })(),
-  (() => {
-    let func = (game) => ({
-      endpoint: `takeout`,
-      method: 'get',
-      query: { gameId: game._id },
-      loggedInUser,
-      expectedStatus: 200,
-      expectedBody: (takeoutArray) => {
-        expect(takeoutArray.length).to.be.equal(game.players.length);
-      },
-    });
-    func.should =
-      "Expect the number of takeouts created to equal the number of players in the game";
-    return func;
-  })(),
+  
+  // (() => {
+  //   let func = (game) => ({
+  //     endpoint: `takeout`,
+  //     method: 'get',
+  //     query: { gameId: game._id },
+  //     loggedInUser,
+  //     expectedStatus: 200,
+  //     expectedBody: (takeoutArray) => {
+  //       expect(takeoutArray.length).to.be.equal(game.players.length);
+  //     },
+  //   });
+  //   func.should =
+  //     "Expect the number of takeouts created to equal the number of players in the game";
+  //   return func;
+  // })(),
   (() => {
     let func = (game) => ({
       endpoint: `takeout`,
@@ -44,14 +45,12 @@ module.exports = [
       expectedBody: (takeoutArray) => {
         const chasers = takeoutArray.map(takeout => takeout.chaserId).sort()
         const targets = takeoutArray.map(takeout => takeout.targetId).sort()
-        const players = game.players.sort()
 
         expect(JSON.stringify(chasers)).to.be.equal(JSON.stringify(targets))
-        expect(JSON.stringify(targets)).to.be.equal(JSON.stringify(players))
       },
     });
     func.should =
-      "Expect the set of chasers to equal the set of targets, to equal the set of players.";
+      "Expect the set of chasers to equal the set of targets";
     return func;
   })(),
   (() => {

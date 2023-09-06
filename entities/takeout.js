@@ -5,6 +5,7 @@ module.exports = {
       targetId,
       gameId,
       takeoutMethodId,
+      completedAt,
       status = "awaiting",
       createdOn = Date.now(),
       _id = Id.makeId(),
@@ -19,6 +20,7 @@ module.exports = {
         gameId,
         chaserId,
         targetId,
+        completedAt
       })
 
 
@@ -39,6 +41,17 @@ module.exports = {
           });
       });
 
+
+
+      if ( completedAt && !["success", "fail"].includes(status) ) {
+        throwError({
+          title:
+            "CompletedAt must only be set if the status is 'success' or 'fail'.",
+          error: "game-invalid-completedAt",
+          status: 400,
+        });
+      }
+
       return Object.freeze({
         getCreatedOn: () => createdOn,
         getId: () => _id,
@@ -47,6 +60,7 @@ module.exports = {
         getGameId: () => gameId,
         getChaserId: () => chaserId,
         getTargetId: () => targetId,
+        getCompletedAt: () => completedAt,
         getAll,
       });
     };
