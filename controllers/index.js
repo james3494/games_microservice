@@ -11,7 +11,7 @@ const {
   initiateGame,
   acceptGameInvitation,
   declineGameInvitation,
-  executeTakeout
+  executeTakeout,
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
@@ -31,7 +31,9 @@ const throwError = require("errorHandling").buildThrowError({
 
 const getLoggedIn = (httpRequest) => {
   try {
-    return JSON.parse(httpRequest.headers["X-Current-User"]);
+    let loggedIn = JSON.parse(httpRequest.headers["X-Current-User"]) || {};
+    if (!loggedIn.admin) loggedIn.admin = {};
+    return loggedIn;
   } catch (err) {
     throwError({
       title: "invalid user header passed",
@@ -107,7 +109,7 @@ const getTakeout = buildGetTakeout({
 const putTakeoutStatus = buildPutTakeoutStatus({
   executeTakeout,
   throwError,
-  getLoggedIn
+  getLoggedIn,
 });
 
 const takeoutMethodController = Object.freeze({
@@ -122,7 +124,7 @@ const takeoutMethodController = Object.freeze({
   patchGameInvited,
   putGameStart,
   getTakeout,
-  putTakeoutStatus
+  putTakeoutStatus,
 });
 
 module.exports = { ...takeoutMethodController };

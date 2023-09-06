@@ -210,10 +210,10 @@ module.exports = {
         rule: `If it exists, must be of type number (system time) and in the past`,
         passed: true,
       };
-      if (typeof value !== "number") {
+      if (value && typeof value !== "number") {
         rtn.passed = false;
         rtn.reason = `completedAt is not of type number`;
-      } else if (value > Date.now()) {
+      } else if (value && value > Date.now()) {
         rtn.passed = false;
         rtn.reason = `completedAt is not in the past`;
       }

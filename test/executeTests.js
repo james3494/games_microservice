@@ -42,15 +42,13 @@ const executeTest = (test) => {
             // print res.body in the case of a failed response
             console.log("Response body: ");
             console.log(res ? res.body : "no response body");
-            // print res.error in the case of a failed response
-            console.log("Response error: ");
-            console.log(res ? res.error : "no response error");
             throw err;
           }
           done();
-        });
+        })
+        ;
     });
-  });
+  }).timeout(5000);
 };
 
 module.exports = (tests) => {

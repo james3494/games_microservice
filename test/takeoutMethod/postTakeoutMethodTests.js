@@ -1,7 +1,9 @@
 const endpoint = "takeoutMethod";
 const method = "post";
 const user_id = "clm256k9w00003g5xafvyw4ld"; // stub
-const data = require(`../data/2.js`);
+const data = {
+  takeoutMethods: []
+}
 const loggedInUser = {
   _id: user_id,
   admin: { takeout: true },
@@ -88,7 +90,7 @@ module.exports = [
     expected: {
       statusCode: 201,
       body: {
-        insertedId: "clm39jnfi00029wrebr2vavh0",
+        insertedId: testTakeoutMethod._id,
         success: true
       },
     },

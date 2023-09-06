@@ -1,55 +1,54 @@
-const user_id = "clm256k9w00003g5xafvyw4ld" // stub
+
+const data = require(`../data/1.js`);
+const loggedInUser = {
+  _id: "clm256k9w00003g5xafvyw4ld", // stub
+  admin: { super: true },
+};
+const method = "delete";
 
 
-const deleteGameTests = [
-    (game) => ({
-      expectedStatus: 403,
-      endpoint: `game/${game._id}`,
-      expectedBody: {
-        status: 403,
-        error: "game-insufficient-admin"
-      },
+module.exports = [
+    {
       should: "should return an error about insufficient admin permissions",
-      sendBody: {
-        _id: game._id
+      data,
+      endpoint: `game/${data.games[0]._id}`,
+      method,
+      send: {
+        loggedInUser: { ...loggedInUser, admin: {} }
       },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: false }
+      expect: {
+        statusCode: 403,
+        body: {
+          status: 403,
+          error: "game-insufficient-admin"
+        }
       }
-    }),
-    (game) => ({
-      expectedStatus: 200,
-      endpoint: `game/${game._id}`,
-      expectedBody: {
-        deletedId: game._id
-      },
-      should: "should return a deletedId and a successful status",
-      sendBody: {
-        _id: game._id
-      },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: true }
+    },
+    {
+      should: "should return a deletedId",
+      data,
+      endpoint: `game/${data.games[0]._id}`,
+      method,
+      send: { loggedInUser },
+      expect: {
+        statusCode: 200,
+        body: { deletedId: data.games[0]._id }
       }
-    }),
-    (game) => ({
-      expectedStatus: 404,
-      endpoint: `game/${game._id}`,
-      should: "should return a 404 as the game has already been deleted and can't be found",
-      expectedBody: {
-        error: "game-not-found",
-        status: 404
-      },
-      sendBody: {
-        _id: game._id
-      },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: true }
+    },
+    {
+      should: "should return a 404 as the game is not in the data",
+      data,
+      endpoint: `game/thisidisnotinthedata`,
+      method,
+      send: { loggedInUser },
+      expect: {
+        statusCode: 404,
+        body: { 
+          error: "game-not-found",
+          status: 404
+        }
       }
-    }),
+    },
   ]
 
 
-  module.exports = deleteGameTests

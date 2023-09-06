@@ -1,5 +1,4 @@
 
-const data3 = require(`../data/3.js`);
 const returnFields = ({ _id, description, difficulty, themes }) => ({
   _id,
   description,
@@ -7,13 +6,13 @@ const returnFields = ({ _id, description, difficulty, themes }) => ({
   themes,
 });
 
+const data = require(`../data/3.js`);
 const loggedInUser = {
   _id: "clm256k9w00003g5xafvyw4ld", // stub
   admin: { takeout: true },
 };
 const method = "get";
 const endpoint = "takeoutMethod";
-const data = data3;
 
 module.exports = [
   {
@@ -21,11 +20,11 @@ module.exports = [
       "should return an object corresponding to the takeoutMethod requested",
     method,
     data,
-    endpoint: `${endpoint}/${data3.takeoutMethods[0]._id}`,
+    endpoint: `${endpoint}/${data.takeoutMethods[0]._id}`,
     send: { loggedInUser },
     expect: {
       statusCode: 200,
-      body: returnFields(data3.takeoutMethods[0]),
+      body: returnFields(data.takeoutMethods[0]),
     },
   },
   {

@@ -1,7 +1,7 @@
 const endpoint = "ping";
 const method = "get";
 
-const pingTests = [
+module.exports = [
   {
     should: "should return an error because no api key is used",
     endpoint,
@@ -36,4 +36,3 @@ const pingTests = [
   },
 ];
 
-module.exports = pingTests;
