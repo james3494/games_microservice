@@ -16,7 +16,7 @@ module.exports = {
           });
       }
 
-      const { deletedCount } = await takeoutsDb.removeMany({ _idArray: existingTakeouts.map(takeout => takeout._id) })
+      const { deletedCount } = await takeoutsDb.removeMany( existingTakeouts.map(takeout => takeout._id) )
 
       if (deletedCount !== _idArray.length) {
         throwError({ 

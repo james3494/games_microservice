@@ -1,70 +1,96 @@
-const endpoint = 'takeoutMethod'
-const user_id = "clm256k9w00003g5xafvyw4ld" // stub
+const endpoint = "takeoutMethod";
+const method = "post";
+const user_id = "clm256k9w00003g5xafvyw4ld"; // stub
+const data = require(`../data/2.js`);
+const loggedInUser = {
+  _id: user_id,
+  admin: { takeout: true },
+}
 
-const postTakeoutMethods = [
-    (takeoutMethod) => ({
-      expectedStatus: 403,
-      endpoint,
-      loggedInUser: {
-        _id: user_id,
-        admin: { takeout: false }
-      },
-      expectedBody: {
+const testTakeoutMethod = {
+  _id: "clm39jnfi00029wrebr2vavh0",
+  createdOn: 1693734089310,
+  disabled: false,
+  modifiedOn: 1693734089310,
+  createdBy: user_id,
+  description: "Convince ~name~ to eat something from your hand",
+  themes: ["party"],
+  difficulty: 3,
+}
+
+module.exports = [
+  {
+    should: "should return an error for insufficient admin permissions",
+    endpoint,
+    method,
+    data,
+    send: {
+      loggedInUser: { ...loggedInUser, admin: {} },
+      body: testTakeoutMethod
+    },
+    expected: {
+      statusCode: 403,
+      body: {
         error: "takeoutMethod-insufficient-admin",
-        status: 403
+        status: 403,
       },
-      should: "should return an error for insufficient admin permissions",
-      sendBody: takeoutMethod
-    }),
-    (takeoutMethod) => ({
-      expectedStatus: 400,
-      endpoint,
-      loggedInUser: {
-        _id: user_id,
-        admin: { takeout: true }
-      },
-      expectedBody: {
-        error: "takeoutMethod-invalid-difficulty",
-        status: 400
-      },
-      should: "should return an error for an invalid difficulty",
-      sendBody: {
-        ...takeoutMethod,
+    },
+  },
+  {
+    should: "should return an error for an invalid difficulty",
+    endpoint,
+    method,
+    data,
+    send: {
+      loggedInUser,
+      body: {
+        ...testTakeoutMethod,
         difficulty: 11
       }
-    }),
-    (takeoutMethod) => ({
-      expectedStatus: 400,
-      endpoint,
-      loggedInUser: {
-        _id: user_id,
-        admin: { takeout: true }
+    },
+    expected: {
+      statusCode: 400,
+      body: {
+        error: "takeoutMethod-invalid-difficulty",
+        status: 400,
       },
-      expectedBody: {
-        error: "takeoutMethod-invalid-themes",
-        status: 400
-      },
-      should: "should return an error for an invalid theme",
-      sendBody: {
-        ...takeoutMethod,
+    },
+  },
+  {
+    should: "should return an error for an invalid theme",
+    endpoint,
+    method,
+    data,
+    send: {
+      loggedInUser,
+      body: {
+        ...testTakeoutMethod,
         themes: [ 'notARealTHeme' ]
       }
-    }),
-    (takeoutMethod) => ({
-      expectedStatus: 201,
-      endpoint,
-      loggedInUser: {
-        _id: user_id,
-        admin: { takeout: true }
+    },
+    expected: {
+      statusCode: 400,
+      body: {
+        error: "takeoutMethod-invalid-theme",
+        status: 400,
       },
-      expectedBody: {
-        insertedId: "notnull"
+    },
+  },
+  {
+    should: "should return an insertedId and a successful status. The takeoutMethod should have been created",
+    endpoint,
+    method,
+    data,
+    send: {
+      loggedInUser,
+      body: testTakeoutMethod
+    },
+    expected: {
+      statusCode: 201,
+      body: {
+        insertedId: "clm39jnfi00029wrebr2vavh0",
+        success: true
       },
-      should: "should return an insertedId and a successful status. The takeoutMethod should have been created",
-      sendBody: takeoutMethod,
-    }),
-  ]
-  
-
-  
-  module.exports = postTakeoutMethods
+    },
+  },
+];

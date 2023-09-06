@@ -26,7 +26,7 @@ module.exports = {
       status: "awaiting",
     },
   ],
-  takoutMethods: [
+  takeoutMethods: [
     {
       _id: "clm39jnfi00029wrebr2vavh0",
       createdOn: 1693734089310,

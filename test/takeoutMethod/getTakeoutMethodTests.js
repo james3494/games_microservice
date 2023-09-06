@@ -1,109 +1,48 @@
-const expect = require("chai").expect;
 
-const ourTakeoutMethodInArray = (takeoutMethod, array) => {
-  const element = array.find((el) => el._id == takeoutMethod._id);
-  expect(element).to.not.be.an("undefined");
-};
-
-const ourTakeoutMethodNotInArray = (takeoutMethod, array) => {
-  const element = array.find((el) => el._id == takeoutMethod._id);
-  expect(element).to.be.an("undefined");
-};
-
+const data3 = require(`../data/3.js`);
+const returnFields = ({ _id, description, difficulty, themes }) => ({
+  _id,
+  description,
+  difficulty,
+  themes,
+});
 
 const loggedInUser = {
-  _id: "clm256k9w00003g5xafvyw4ld",  // stub
+  _id: "clm256k9w00003g5xafvyw4ld", // stub
   admin: { takeout: true },
 };
+const method = "get";
+const endpoint = "takeoutMethod";
+const data = data3;
 
-const getTakeoutMethods = [
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod/${takeoutMethod._id}`,
-    expectedBody: {
-      _id: takeoutMethod._id,
-      description: takeoutMethod.description,
-      difficulty: takeoutMethod.difficulty,
-      themes: takeoutMethod.themes,
-    },
-    should: "should return an object of the one takeoutMethod we have created",
-  }),
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) => ourTakeoutMethodInArray(takeoutMethod, resBody),
+module.exports = [
+  {
     should:
-      "should return an array which contains our created takeoutMethod (querying themes)",
-    query: {
-      themes: takeoutMethod?.themes?.[0],
+      "should return an object corresponding to the takeoutMethod requested",
+    method,
+    data,
+    endpoint: `${endpoint}/${data3.takeoutMethods[0]._id}`,
+    send: { loggedInUser },
+    expect: {
+      statusCode: 200,
+      body: returnFields(data3.takeoutMethods[0]),
     },
-  }),
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) => ourTakeoutMethodInArray(takeoutMethod, resBody),
-    should:
-      "should return an array which contains our created takeoutMethod (querying difficulty)",
-    query: {
-      difficulty: takeoutMethod?.difficulty,
+  },
+  {
+    should: "should return 2 elements from dataset 3. (querying themes)",
+    method,
+    data,
+    endpoint,
+    send: {
+      loggedInUser,
+      query: { themes: "office" },
     },
-  }),
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) => ourTakeoutMethodInArray(takeoutMethod, resBody),
-    should:
-      "should return an array which contains our created takeoutMethod (querying section of description)",
-    query: {
-      description: takeoutMethod?.description?.substring(
-        3,
-        takeoutMethod.description?.length
-      ),
+    expect: {
+      statusCode: 200,
+      body: [
+        returnFields(data.takeoutMethods[2]),
+        returnFields(data.takeoutMethods[3]),
+      ],
     },
-  }),
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) => ourTakeoutMethodInArray(takeoutMethod, resBody),
-    should:
-      "should return an array which contains our created takeoutMethod (querying themes and difficulty)",
-    query: {
-      difficulty: takeoutMethod?.difficulty,
-      themes: takeoutMethod?.themes?.[0],
-    },
-  }),
-
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) =>
-      ourTakeoutMethodNotInArray(takeoutMethod, resBody),
-    should:
-      "should return an array which does NOT contain our created takeoutMethod (querying themes with wrong difficulty)",
-    query: {
-      difficulty: takeoutMethod?.difficulty + 1,
-      themes: takeoutMethod?.themes?.[0],
-    },
-  }),
-  (takeoutMethod) => ({
-    expectedStatus: 200,
-    loggedInUser,
-    endpoint: `takeoutMethod`,
-    expectedBody: (resBody) =>
-      ourTakeoutMethodNotInArray(takeoutMethod, resBody),
-    should:
-      "should return an array which does NOT contain our created takeoutMethod (querying difficulty with wrong themes)",
-    query: {
-      difficulty: takeoutMethod?.difficulty,
-      themes: takeoutMethod?.themes?.[0] + "a",
-    },
-  }),
+  },
 ];
-
-module.exports = getTakeoutMethods;

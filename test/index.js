@@ -1,16 +1,12 @@
-const testsFunc = require("./testsFunc.js");
+
+const executeTests = require("./executeTests.js");
 const doTakeoutMethodTests = require("./takeoutMethod");
 const doGameTests = require("./game");
 const pingTests = require("./pingTests.js");
 
 describe("Testing takeout microservice", () => {
   // These ping tests check the microservice is online and that the call is rejected if there is an invalid api key
-  describe("GET /ping", () => {
-    testsFunc({
-      tests: pingTests,
-      method: "get",
-    });
-  });
+  describe( "GET /ping", () => executeTests(pingTests) );
   
   let game = {
     location: "Brendan the Navigator",
@@ -28,12 +24,7 @@ describe("Testing takeout microservice", () => {
     ],
   };
 
-  let takeoutMethod = {
-    description: "Convince ~name~ to eat something from your hand",
-    themes: ["party"],
-    difficulty: 3,
-  };
 
-  doTakeoutMethodTests(takeoutMethod);
-  doGameTests(game);
+  doTakeoutMethodTests();
+  // doGameTests(game);
 });

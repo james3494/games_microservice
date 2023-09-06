@@ -1,55 +1,55 @@
-const user_id = "clm256k9w00003g5xafvyw4ld" // stub
+
+const data = require(`../data/3.js`);
+const loggedInUser = {
+  _id: "clm256k9w00003g5xafvyw4ld", // stub
+  admin: { super: true },
+};
+const method = "delete";
 
 
-const deleteTakeoutMethod = [
-    (takeoutMethod) => ({
-      expectedStatus: 403,
-      endpoint: `takeoutMethod/${takeoutMethod._id}`,
-      expectedBody: {
-        status: 403,
-        error: "takeoutMethod-insufficient-admin"
-      },
+
+module.exports = [
+    {
       should: "should return an error about insufficient admin permissions",
-      sendBody: {
-        _id: takeoutMethod._id
+      data,
+      endpoint: `takeoutMethod/${data.takeoutMethods[0]._id}`,
+      method,
+      send: {
+        loggedInUser: { ...loggedInUser, admin: {} }
       },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: false }
+      expect: {
+        statusCode: 403,
+        body: {
+          status: 403,
+          error: "takeoutMethod-insufficient-admin"
+        }
       }
-    }),
-    (takeoutMethod) => ({
-      expectedStatus: 200,
-      endpoint: `takeoutMethod/${takeoutMethod._id}`,
-      expectedBody: {
-        deletedId: takeoutMethod._id
-      },
-      should: "should return a deletedId and a successful status",
-      sendBody: {
-        _id: takeoutMethod._id
-      },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: true }
+    },
+    {
+      should: "should return a deletedId",
+      data,
+      endpoint: `takeoutMethod/${data.takeoutMethods[0]._id}`,
+      method,
+      send: { loggedInUser },
+      expect: {
+        statusCode: 200,
+        body: { deletedId: data.takeoutMethods[0]._id }
       }
-    }),
-    (takeoutMethod) => ({
-      expectedStatus: 404,
-      endpoint: `takeoutMethod/${takeoutMethod._id}`,
-      should: "should return a 404 as the takeoutMethod has already been deleted and can't be found",
-      expectedBody: {
-        error: "takeoutMethod-not-found",
-        status: 404
-      },
-      sendBody: {
-        _id: takeoutMethod._id
-      },
-      loggedInUser: {
-        _id: user_id,
-        admin: { super: true }
+    },
+    {
+      should: "should return a 404 as the takeoutMethod is not in the data",
+      data,
+      endpoint: `takeoutMethod/thisidisnotinthedata`,
+      method,
+      send: { loggedInUser },
+      expect: {
+        statusCode: 404,
+        body: { 
+          error: "takeoutMethod-not-found",
+          status: 404
+        }
       }
-    }),
+    },
   ]
 
 
-  module.exports = deleteTakeoutMethod

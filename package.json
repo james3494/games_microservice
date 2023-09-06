@@ -13,13 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "cuid": "^2.1.8",
-    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git#bd5b77f",
-    "database": "https://james3494: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@github.com/james3494/database.git#cbd05a8",
+    "database": "https://james3494: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@github.com/james3494/database.git#87529b8",
     "dotenv": "^16.0.0",
+    "errorHandling": "https://james3494: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@github.com/james3494/errorHandling.git#bd5b77f",
     "express": "^4.17.3"
   },
   "devDependencies": {
     "chai": "^4.3.6",
+    "deep-equal-in-any-order": "^2.0.6",
     "eslint": "^8.13.0",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
