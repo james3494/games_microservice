@@ -6,7 +6,7 @@ const {
   buildTakeoutMethodValidation,
   buildTakeoutValidation,
   buildGameValidation,
-} = require("./validation");
+} = require("validation");
 
 const throwError = require("errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
