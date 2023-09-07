@@ -1,6 +1,3 @@
-// TODO: add error handling - i.e who can access this?
-// which fields to return?
-
 module.exports = {
   buildGetGame({ filterGames, throwError, getLoggedIn }) {
     return async function (httpRequest) {
@@ -13,8 +10,23 @@ module.exports = {
         filterObj = { _id };
       } else filterObj = filters;
 
-      const filtered = await filterGames(filterObj);
-      let body = filtered.map((game) => ({
+      const foundGames = await filterGames(filterObj);
+      const loggedInIsAdmin = loggedIn.admin.takeout || loggedIn.admin.super;
+
+      let body = foundGames
+        .filter((game) => {
+          // can get a game if:
+          // a) you are an admin
+          if (loggedInIsAdmin) return true;
+
+          // b) you are a player in the game
+          if (game.players.includes(loggedIn._id)) return true;
+
+          // c) you are invited to the game
+          if (game.invited.includes(loggedIn._id)) return true;
+          return false;
+        })
+        .map((game) => ({
           _id: game._id,
           location: game.location,
           description: game.description,
@@ -34,8 +46,8 @@ module.exports = {
           throwError({
             status: 404,
             title: "game not found with specified id",
-            error: "game-not-found"
-          })
+            error: "game-not-found",
+          });
         }
         body = body[0];
       }
@@ -48,4 +60,3 @@ module.exports = {
     };
   },
 };
-

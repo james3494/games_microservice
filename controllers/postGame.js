@@ -3,8 +3,8 @@ module.exports = {
     return async function (httpRequest) {
       const { ...gameInfo } = httpRequest.body;
 
-      const { _id } = getLoggedIn(httpRequest);
-      if (!_id) {
+      const loggedIn = getLoggedIn(httpRequest);
+      if (!loggedIn) {
         throwError({
           title: "You must be logged in to create a game.",
           error: "game-not-logged-in",
@@ -14,9 +14,9 @@ module.exports = {
 
       const { insertedId } = await createGame({
         ...gameInfo,
-        createdBy: _id,
-        admins: (gameInfo.admins || []).concat(_id),
-        players: (gameInfo.players || []).concat(_id),
+        createdBy: loggedIn._id,
+        admins: (gameInfo.admins || []).concat(loggedIn._id),
+        players: (gameInfo.players || []).concat(loggedIn._id),
       });
 
 

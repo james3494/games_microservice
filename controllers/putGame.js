@@ -1,5 +1,5 @@
 module.exports = {
-  buildPutGame({ editGame, throwError, getLoggedIn }) {
+  buildPutGame({ editGame, throwError, getLoggedIn, filterGames }) {
     return async function (httpRequest) {
       const {
         location,
@@ -9,7 +9,7 @@ module.exports = {
         difficulty,
         maxDuration,
         invited,
-        admins
+        admins,
       } = httpRequest.body;
 
       const { _id } = httpRequest.params;
@@ -23,9 +23,15 @@ module.exports = {
         });
       }
 
+      const isAdmin = (await filterGames({ _id }))[0].admins.includes(
+        loggedIn._id
+      );
 
-      // get game and check loggedIn._id is in game admins (or the user is a superadmin)
-      if (!loggedIn._id !== '' && !loggedIn.admin.super && !loggedIn.admin.takeout) {
+      if (
+        !isAdmin &&
+        !loggedIn.admin.super &&
+        !loggedIn.admin.takeout
+      ) {
         throwError({
           title: "You must be an admin to edit a game.",
           error: "game-insufficient-admin",
@@ -42,7 +48,7 @@ module.exports = {
         ...(difficulty ? { difficulty } : {}),
         ...(maxDuration ? { maxDuration } : {}),
         ...(invited ? { invited } : {}),
-        ...(admins ? { admins } : {})
+        ...(admins ? { admins } : {}),
       });
 
       return {

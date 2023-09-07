@@ -3,8 +3,8 @@ module.exports = {
     return async function (httpRequest) {
       const { ...takeoutMethodInfo } = httpRequest.body;
 
-      const { _id, admin } = getLoggedIn(httpRequest);
-      if (!_id) {
+      const loggedIn= getLoggedIn(httpRequest);
+      if (!getLoggedIn._id) {
         throwError({
           title: "You must be logged in to create a takeoutMethod.",
           error: "takeoutMethod-not-logged-in",
@@ -12,8 +12,8 @@ module.exports = {
         });
       }
       if (
-        !admin?.takeout &&
-        !admin?.super
+        !loggedIn.admin.takeout &&
+        !loggedIn.admin.super
       ) {
         throwError({
           title: "You must be an admin to create a takeoutMethod.",
@@ -23,7 +23,7 @@ module.exports = {
       }
 
       const { insertedId } = await createTakeoutMethod({
-        createdBy: _id,
+        createdBy: getLoggedIn._id,
         ...takeoutMethodInfo,
       });
 

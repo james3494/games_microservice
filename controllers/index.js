@@ -32,6 +32,8 @@ const throwError = require("errorHandling").buildThrowError({
 const getLoggedIn = (httpRequest) => {
   try {
     let loggedIn = JSON.parse(httpRequest.headers["X-Current-User"]) || {};
+    // if no _id the user is not logged in
+    if (!loggedIn._id) return null;
     if (!loggedIn.admin) loggedIn.admin = {};
     return loggedIn;
   } catch (err) {
@@ -60,7 +62,6 @@ const putTakeoutMethod = buildPutTakeoutMethod({
 const getTakeoutMethod = buildGetTakeoutMethod({
   filterTakeoutMethods,
   throwError,
-  getLoggedIn,
 });
 
 const deleteTakeoutMethod = buildDeleteTakeoutMethod({
@@ -79,6 +80,7 @@ const putGame = buildPutGame({
   editGame,
   throwError,
   getLoggedIn,
+  filterGames
 });
 
 const getGame = buildGetGame({
@@ -101,15 +103,19 @@ const putGameStart = buildPutGameStart({
   initiateGame,
   throwError,
   getLoggedIn,
+  filterGames
 });
 const getTakeout = buildGetTakeout({
   filterTakeouts,
   throwError,
+  getLoggedIn,
+  filterGames
 });
 const putTakeoutStatus = buildPutTakeoutStatus({
   executeTakeout,
   throwError,
   getLoggedIn,
+  filterTakeouts
 });
 
 const takeoutMethodController = Object.freeze({

@@ -3,10 +3,9 @@ A microservice for the gameplay for the takeOut app.
 
 ## To do
 
-- nail down who can access things ,and whether the returned object changes depending on who accessed it
-
-- More tests could be created for error catching. 
+- write some tests to check access
 
 - create endpoints like /game/:_id/takeouts to get takeouts? Similarly /user/:_id/games ? 
 
-- method for checking whether a player is part of a game from the controller
+- make takeout include the takeoutMethod text then make takeout methods only accessible by admins?
+

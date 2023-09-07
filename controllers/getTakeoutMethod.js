@@ -1,7 +1,8 @@
-// TODO: add error handling - i.e who can access this?
+// TODO: anything to prevent peple just getting takeout methods? they have to be accessible 
+// maybe make this only accessible to admins and then behind the scenes the takeoutMethod text is added to the takeout
 
 module.exports = {
-    buildGetTakeoutMethod({ filterTakeoutMethods, throwError, getLoggedIn }) {
+    buildGetTakeoutMethod({ filterTakeoutMethods, throwError }) {
       return async function (httpRequest) {
         const { ...filters } = httpRequest.query;
         const { _id } = httpRequest.params;

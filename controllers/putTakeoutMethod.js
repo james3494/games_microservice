@@ -1,4 +1,3 @@
-// todo: need to check createdBy to check whether it's possible to edit this takeoutMethod
 
 module.exports = {
   buildPutTakeoutMethod({ editTakeoutMethod, throwError, getLoggedIn }) {
@@ -14,7 +13,16 @@ module.exports = {
           status: 403,
         });
       }
-      // get takeout method and check loggedIn._id == createdBy (or the user is a superadmin)
+      if (
+        !loggedIn.admin.takeout &&
+        !loggedIn.admin.super
+      ) {
+        throwError({
+          title: "You must be an admin to create a takeoutMethod.",
+          error: "takeoutMethod-insufficient-admin",
+          status: 403,
+        });
+      }
 
       const { modifiedCount } = await editTakeoutMethod({
         _id,

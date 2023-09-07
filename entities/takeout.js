@@ -6,7 +6,7 @@ module.exports = {
       gameId,
       takeoutMethodId,
       completedAt = null,
-      status = "awaiting",
+      status = "inProgress",
       createdOn = Date.now(),
       _id = Id.makeId(),
     } = {}) {
