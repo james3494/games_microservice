@@ -7,12 +7,18 @@ const chai = require("chai");
 chai.use(deepEqualInAnyOrder);
 const { expect } = chai;
 
+
+// test body can be an object or a function returning true (for pass) or false (for fail)
 const checkBody = (testBody, resBody) => {
-  Object.entries(testBody || {}).forEach(([key, value]) => {
-    if (typeof value == "object")
-      expect(resBody[key]).to.deep.equalInAnyOrder(value);
-    else expect(resBody[key]).to.be.equal(value);
-  });
+  if (typeof testBody === 'function') {
+    expect(testBody(resBody)).to.be.equal(true)
+  } else {
+    Object.entries(testBody || {}).forEach(([key, value]) => {
+      if (typeof value == "object")
+        expect(resBody[key]).to.deep.equalInAnyOrder(value);
+      else expect(resBody[key]).to.be.equal(value);
+    });
+  }
 };
 
 const executeTest = (test) => {
@@ -48,7 +54,7 @@ const executeTest = (test) => {
         })
         ;
     });
-  }).timeout(5000);
+  }).timeout(2000);
 };
 
 module.exports = (tests) => {

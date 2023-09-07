@@ -5,12 +5,19 @@ module.exports = {
       const takeoutInfo = await takeoutsDb.findById({ _id });
       if (!takeoutInfo) {
         throwError({
-          title: `No takeout found to initiate.`,
+          title: `No takeout found to execute.`,
           error: "takeout-not-found",
           status: 404,
         });
       }
-      const filteredTakeouts = filterTakeouts({
+      if (takeoutInfo.status !== 'inProgress') {
+        throwError({
+          title: `You can only execute a takeout that is in progress.`,
+          error: "takeout-invalid-status",
+          status: 400,
+        });
+      }
+      const filteredTakeouts = await filterTakeouts({
         gameId: takeoutInfo.gameId,
         status: 'inProgress',
         chaserId: takeoutInfo.targetId
@@ -26,7 +33,7 @@ module.exports = {
       const nextTakeout = filteredTakeouts[0];
 
       if (nextTakeout.targetId !== takeoutInfo.chaserId) {
-        createTakeout({
+        await createTakeout({
           chaserId: takeoutInfo.chaserId,
           targetId: nextTakeout.targetId,
           gameId: takeoutInfo.gameId,
@@ -35,23 +42,25 @@ module.exports = {
         })
       } else {
         // all takeouts completed - i's the end of the game
-        editGame({
+        await editGame({
           _id: takeoutInfo.gameId,
           finishTime: Date.now(),
           status: 'finished',
         })
       }
 
-      editTakeout({
+      await editTakeout({
         _id,
         completedAt: Date.now(),
         status: 'success'
       })
-      editTakeout({
+      await editTakeout({
         _id: nextTakeout._id,
         completedAt: Date.now(),
         status: 'fail'
       })
+
+      return { sucess: true }
     };
   }
 };

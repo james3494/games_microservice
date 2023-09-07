@@ -19,6 +19,7 @@ module.exports = {
           targetId: takeout.targetId,
           takeoutMethodId: takeout.takeoutMethodId,
           status: takeout.status,
+          completedAt: takeout.completedAt
         }))
   
         if (_id) {

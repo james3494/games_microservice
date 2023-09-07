@@ -5,8 +5,6 @@ A microservice for the gameplay for the takeOut app.
 
 - move validation out to seperate module
 
-- create controllers for all of the required routes. 
-
 - nail down who can access things ,and whether the returned object changes depending on who accessed it
 
 - More tests could be created for error catching. 

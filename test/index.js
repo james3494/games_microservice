@@ -5,7 +5,7 @@ const doPingTests = require("./ping");
 
 describe("Testing takeout microservice", () => {
 
-  // doPingTests();
-  // doTakeoutMethodTests();
+  doPingTests();
+  doTakeoutMethodTests();
   doGameTests();
 });

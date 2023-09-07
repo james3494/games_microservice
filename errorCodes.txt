@@ -32,6 +32,7 @@ game-insufficient-takeout-methods
 game-not-logged-in
 game-not-deleted
 game-user-not-invited
+game-already-started
 
 takeoutMethod-invalid-id
 takeoutMethod-invalid-createdBy

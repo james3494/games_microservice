@@ -23,14 +23,14 @@ module.exports = {
           });
         }
   
-        const { modifiedCount } = await executeTakeout({
+        const { success } = await executeTakeout({
           _id
         });
   
         return {
           headers: { "Content-Type": "application/json" },
-          status: 201,
-          body: { modifiedCount, success: modifiedCount == 1 },
+          status: 200,
+          body: { success },
         };
       };
     },

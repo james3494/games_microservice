@@ -5,6 +5,7 @@ const deleteGameTests = require("./deleteGameTests.js");
 const putGameStartTests = require("./putGameStartTests.js");
 const getGameTests = require("./getGameTests.js");
 const getTakeoutTests = require("./getTakeoutTests.js");
+const putTakeoutExecutedTests = require("./putTakeoutExecutedTests.js");
 
 module.exports = () => {
 
@@ -14,14 +15,7 @@ module.exports = () => {
   describe("GET /takeout", () => executeTests(getTakeoutTests));
   describe("PATCH /game/:id/invited", () => executeTests(patchGameInvitedTests));
   describe("DELETE /game/:id/invited", () => executeTests(deleteGameTests));
-
-
-  // describe("PUT /game/:id/started", () => {
-  //   testsFunc({
-  //     tests: putGameStartTests,
-  //     method: "put",
-  //     entity,
-  //   });
-  // });
+  describe("PUT /game/:id/started", () => executeTests(putGameStartTests));
+  describe("PUT /takeout/:id/executed", () => executeTests(putTakeoutExecutedTests));
 
 };

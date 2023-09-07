@@ -12,6 +12,16 @@ module.exports = {
         });
       }
       const game = makeGame({ ...gameInfo });
+      const status = game.getStatus();
+      if (status !== 'awaiting') {
+        throwError({
+          title: `Game already started`,
+          error: "game-already-started",
+          status: 400,
+          detail: "You cannot initiate a game which has already started"
+        });
+      }
+
       let players = game.getPlayers();
 
       let potentialTakeoutMethods = await filterTakeoutMethods({
@@ -28,6 +38,14 @@ module.exports = {
           detail: "You could either ask an admin to add more takeoutMethods or reduce the size of the game."
         });
       }
+      if (players.length < 2) {
+        throwError({
+          title: `You must have at least 2 players to start a game`,
+          error: "game-insufficient-players",
+          status: 400,
+          detail: "You could invite more players to the game"
+        });
+      }
 
       // randomly order the players and takeoutMethods
       players = shuffleArray(players);
@@ -35,7 +53,7 @@ module.exports = {
 
       players.forEach(async (playerId, index) => {
         await createTakeout({
-          chaserId: playerId,
+          chaserId: players[index],
           targetId: players[ (index + 1) % players.length ],
           gameId: _id,
           takeoutMethodId: potentialTakeoutMethods[index]._id,

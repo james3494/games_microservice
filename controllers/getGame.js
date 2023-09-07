@@ -24,6 +24,7 @@ module.exports = {
           invited: game.invited,
           admins: game.admins,
           startTime: game.startTime,
+          finishTime: game.finishTime,
           maxDuration: game.maxDuration,
           status: game.status,
         }));

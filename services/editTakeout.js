@@ -3,7 +3,7 @@ const { makeTakeout } = require('../entities');
 
 module.exports = {
    makeEditTakeout ({ takeoutsDb, throwError }) {
-    return async function ({ _id, status }) {
+    return async function ({ _id, status, completedAt }) {
       const takeoutInfo = await takeoutsDb.findById({ _id });
 
       if (takeoutInfo.status == 'success' || takeoutInfo.status == 'fail') {
@@ -13,11 +13,12 @@ module.exports = {
           status: 400,
         });
       }
-      const takeout = makeTakeout({ ...takeoutInfo, status });
+      const takeout = makeTakeout({ ...takeoutInfo, status, completedAt });
 
       return await takeoutsDb.update({
         _id: takeout.getId(),
-        status: takeout.getStatus()
+        status: takeout.getStatus(),
+        completedAt: takeout.getCompletedAt()
       });
     };
   }

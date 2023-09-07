@@ -5,7 +5,7 @@ module.exports = {
       targetId,
       gameId,
       takeoutMethodId,
-      completedAt,
+      completedAt = null,
       status = "awaiting",
       createdOn = Date.now(),
       _id = Id.makeId(),

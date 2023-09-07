@@ -5,6 +5,7 @@ const returnFields = ({
   targetId,
   takeoutMethodId,
   status,
+  completedAt
 }) => ({
   _id,
   gameId,
@@ -12,6 +13,7 @@ const returnFields = ({
   targetId,
   takeoutMethodId,
   status,
+  completedAt
 });
 
 const data = require(`../data/6.js`);
