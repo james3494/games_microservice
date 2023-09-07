@@ -4,5 +4,5 @@ const pingTests = require("./pingTests.js");
   // These ping tests check the microservice is online and that the call is rejected if there is an invalid api key
 
 module.exports = () => {
-  describe("POST /game", () => executeTests(pingTests));
+  describe("GET /ping", () => executeTests(pingTests));
 };
