@@ -35,6 +35,7 @@ module.exports = {
           players: game.players,
           invited: game.invited,
           admins: game.admins,
+          expectedStartTime: game.expectedStartTime,
           startTime: game.startTime,
           finishTime: game.finishTime,
           maxDuration: game.maxDuration,

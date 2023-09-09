@@ -1,4 +1,4 @@
-const returnFields = ({ _id, location, description, difficulty, theme, players, invited, admins, startTime, maxDuration, status, finishTime }) => ({
+const returnFields = ({ _id, location, description, difficulty, theme, players, invited, admins, startTime, expectedStartTime, maxDuration, status, finishTime }) => ({
   _id,
   location,
   description,
@@ -7,7 +7,8 @@ const returnFields = ({ _id, location, description, difficulty, theme, players, 
   players,
   invited,
   admins,
-  startTime,
+  startTime, 
+  expectedStartTime,
   maxDuration,
   status,
   finishTime

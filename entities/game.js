@@ -3,6 +3,7 @@ module.exports = {
     return function makeGame({
       location, // in time this can be coordinates or something chosen on a map
       startTime,
+      expectedStartTime,
       createdBy,
       description = "",
       players = [],
@@ -30,6 +31,7 @@ module.exports = {
         invited,
         admins,
         location,
+        expectedStartTime,
         startTime,
         finishTime,
         maxDuration,
@@ -115,6 +117,7 @@ module.exports = {
         getCreatedOn: () => createdOn,
         getId: () => _id,
         getLocation: () => location,
+        getExpectedStartTime: () => expectedStartTime,
         getStartTime: () => startTime,
         getFinishTime: () => finishTime,
         getMaxDuration: () => maxDuration,
