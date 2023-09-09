@@ -57,14 +57,22 @@ module.exports = {
 
       // validation between fields
 
-      if (startTime < Date.now() && status !== "finished" && status !== "inProgress") {
+      if (finishTime && !startTime) {
+        throwError({
+          title: `If finishTime is set, startTime must also be set.`,
+          error: "game-invalid-startTime",
+          status: 400,
+        });
+      }
+
+      if (startTime && startTime < Date.now() && status !== "finished" && status !== "inProgress") {
         throwError({
           title: `Status must be inProgress while the game is in progress.`,
           error: "game-invalid-status",
           status: 400,
         });
       }
-      if (startTime > Date.now() && status !== "awaiting") {
+      if (startTime && startTime > Date.now() && status !== "awaiting") {
         throwError({
           title: `Status must be awaiting before the game has started.`,
           error: "game-invalid-status",
@@ -80,7 +88,7 @@ module.exports = {
       }
 
 
-      if ( finishTime && finishTime < startTime ) {
+      if ( startTime && finishTime && finishTime < startTime ) {
         throwError({
           title:
             "finishTime must be after the game started.",
@@ -89,7 +97,7 @@ module.exports = {
         });
       }
 
-      if (maxDuration && maxDuration + startTime < Date.now() && !finishTime) {
+      if (startTime && maxDuration && maxDuration + startTime < Date.now() && !finishTime) {
         throwError({
           title: "The game is over its maxDuration, a finishTime must be set.",
           error: "game-invalid-finishTime",

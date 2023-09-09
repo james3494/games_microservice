@@ -17,6 +17,7 @@ module.exports = {
         invited: ["clm38831h0002cjrebqfqgkca"],
         admins: ["clm256k9w00003g5xafvyw4ld"],
         location: "Brendan the Navigator",
+        expectedStartTime: Date.now() - 1000 * 60 * 60,
         startTime: Date.now() - 1000 * 60 * 60,
         finishTime: null,
         maxDuration: null,

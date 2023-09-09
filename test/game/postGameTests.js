@@ -11,7 +11,7 @@ const testGame = {
   location: "Brendan the Navigator",
   theme: "party",
   difficulty: 3,
-  startTime: Date.now() + 24 * 60 * 60 * 1000, // starts in 24hrs
+  expectedStartTime: Date.now() + 24 * 60 * 60 * 1000, // starts in 24hrs
   description: "This is my first game, please come and join",
   invited: ["clm38831h0002cjrebqfqgkca", "clm39w2hf0002glre11it9nq6"],
   players: [
