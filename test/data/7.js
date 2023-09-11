@@ -23,6 +23,8 @@ module.exports = {
         startTime: null,
         maxDuration: 14400000,
         status: "awaiting",
+        photos: [],
+        title: "Birthday party"
       },
       {
         _id: "clm37ujq700026bre6kfmdca7",
@@ -47,6 +49,8 @@ module.exports = {
         startTime: null,
         maxDuration: 14400000,
         status: "awaiting",
+        photos: [],
+        title: "Birthday party"
       },
       {
         _id: "clm37mlxi00022cre4ukw0tn2",
@@ -71,6 +75,8 @@ module.exports = {
         startTime: null,
         maxDuration: 14400000,
         status: "inProgress",
+        photos: [],
+        title: "Birthday party"
       },
     ],
     takeoutMethods: [

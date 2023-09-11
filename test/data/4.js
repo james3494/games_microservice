@@ -25,6 +25,8 @@ module.exports = {
       startTime: null,
       maxDuration: 14400000,
       status: "awaiting",
+      photos: [],
+      title: "Birthday party"
     },
     {
       _id: "clm25hoqi0002jhre5soi09vx",
@@ -50,6 +52,8 @@ module.exports = {
       finishTime: null,
       maxDuration: 14400000,
       status: "awaiting",
+      photos: [],
+      title: "Birthday party"
     },
     {
       _id: "clm37kkdt0002zpreg662h9ez",
@@ -75,6 +79,8 @@ module.exports = {
       finishTime: null,
       maxDuration: 14400000,
       status: "awaiting",
+      photos: [],
+      title: "Birthday party"
     },
     {
       _id: "clm37mlxi00022cre4ukw0tn2",
@@ -101,6 +107,8 @@ module.exports = {
       finishTime: null,
       maxDuration: 14400000,
       status: "awaiting",
+      photos: [],
+      title: "Birthday party"
     },
     {
       _id: "clm384xbp0002axre9ky0f509",
@@ -126,6 +134,8 @@ module.exports = {
       finishTime: null,
       maxDuration: 1000 * 60 * 60 * 4,
       status: "inProgress",
+      photos: [],
+      title: "Birthday party"
     },
     {
       _id: "clm39w2hf0002glre11it9nq6",
@@ -152,6 +162,8 @@ module.exports = {
       finishTime: Date.now() - 1000 * 60 * 60 * 22,
       maxDuration: 14400000,
       status: "finished",
+      photos: [],
+      title: "Birthday party"
     },
   ],
 };

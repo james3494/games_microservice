@@ -3,7 +3,9 @@ module.exports = {
     return async function (httpRequest) {
       const {
         location,
-        startTime,
+        expectedStartTime,
+        title,
+        photos,
         description,
         theme,
         difficulty,
@@ -42,7 +44,9 @@ module.exports = {
       const { modifiedCount } = await editGame({
         _id,
         ...(location ? { location } : {}),
-        ...(startTime ? { startTime } : {}),
+        ...(expectedStartTime ? { expectedStartTime } : {}),
+        ...(photos ? { photos } : {}),
+        ...(title ? { title } : {}),
         ...(description ? { description } : {}),
         ...(theme ? { theme } : {}),
         ...(difficulty ? { difficulty } : {}),

@@ -9,6 +9,7 @@ const loggedInUser = {
 const testGame = {
   _id: "clm67jlrk0005qire3wpf97tp",
   location: "Brendan the Navigator",
+  title: "Brendans birthday party",
   theme: "party",
   difficulty: 3,
   expectedStartTime: Date.now() + 24 * 60 * 60 * 1000, // starts in 24hrs

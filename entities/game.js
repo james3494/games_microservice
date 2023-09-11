@@ -5,14 +5,16 @@ module.exports = {
       startTime,
       expectedStartTime,
       createdBy,
+      title = "",
+      photos = [],
       description = "",
       players = [],
       invited = [],
       admins = [],
       status = "awaiting",
       theme,
-      difficulty = 5,
-      maxDuration = 1000*60*60*4, // in ms
+      difficulty = 3,
+      maxDuration = 1000 * 60 * 60 * 4, // in ms
       finishTime,
       createdOn = Date.now(),
       modifiedOn = Date.now(),
@@ -36,6 +38,8 @@ module.exports = {
         finishTime,
         maxDuration,
         status,
+        title, 
+        photos
       })
 
 
@@ -138,6 +142,8 @@ module.exports = {
         getCreatedBy: () => createdBy,
         getDifficulty: () => difficulty,
         getDescription: () => description,
+        getTitle: () => title,
+        getPhotos: () => photos,
         getAll,
       });
     };

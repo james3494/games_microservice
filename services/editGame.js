@@ -29,6 +29,7 @@ module.exports = {
         description: toEdit.getDescription(),
         difficulty: toEdit.getDifficulty(),
         expectedStartTime: toEdit.getExpectedStartTime(),
+        startTime: toEdit.getStartTime(),
         maxDuration: toEdit.getMaxDuration(),
         location: toEdit.getLocation(),
         admins: toEdit.getAdmins(),

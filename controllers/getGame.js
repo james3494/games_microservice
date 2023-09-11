@@ -30,6 +30,8 @@ module.exports = {
           _id: game._id,
           location: game.location,
           description: game.description,
+          photos: game.photos,
+          title: game.title,
           difficulty: game.difficulty,
           theme: game.theme,
           players: game.players,

@@ -25,6 +25,8 @@ module.exports = {
       finishTime: null,
       maxDuration: 14400000,
       status: "inProgress",
+      photos: [],
+      title: "Birthday party"
     },
   ],
   takeoutMethods: [
