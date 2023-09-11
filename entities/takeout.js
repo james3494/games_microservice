@@ -5,6 +5,7 @@ module.exports = {
       targetId,
       gameId,
       takeoutMethodId,
+      methodText,
       completedAt = null,
       status = "inProgress",
       createdOn = Date.now(),
@@ -20,6 +21,7 @@ module.exports = {
         gameId,
         chaserId,
         targetId,
+        methodText,
         completedAt
       })
 
@@ -57,6 +59,7 @@ module.exports = {
         getId: () => _id,
         getStatus: () => status,
         getTakeoutMethodId: () => takeoutMethodId,
+        getMethodText: () => methodText,
         getGameId: () => gameId,
         getChaserId: () => chaserId,
         getTargetId: () => targetId,

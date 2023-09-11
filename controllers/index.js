@@ -62,6 +62,7 @@ const putTakeoutMethod = buildPutTakeoutMethod({
 const getTakeoutMethod = buildGetTakeoutMethod({
   filterTakeoutMethods,
   throwError,
+  getLoggedIn
 });
 
 const deleteTakeoutMethod = buildDeleteTakeoutMethod({

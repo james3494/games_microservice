@@ -57,6 +57,7 @@ module.exports = {
           targetId: players[ (index + 1) % players.length ],
           gameId: _id,
           takeoutMethodId: potentialTakeoutMethods[index]._id,
+          methodText: potentialTakeoutMethods[index].description,
           status: 'inProgress'
         })
       })

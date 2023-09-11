@@ -39,6 +39,7 @@ module.exports = {
           chaserId: takeout.chaserId,
           targetId: takeout.targetId,
           takeoutMethodId: takeout.takeoutMethodId,
+          methodText: takeout.methodText,
           status: takeout.status,
           completedAt: takeout.completedAt,
         }));

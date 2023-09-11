@@ -23,7 +23,7 @@ module.exports = {
       maxDuration: 14400000,
       status: "awaiting",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
     },
   ],
   takeoutMethods: [
@@ -88,6 +88,7 @@ module.exports = {
       chaserId: "clm25hoqi0002jhre5soi09vx",
       targetId: "clm37mlxi00022cre4ukw0tn2",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin",
     },
     {
       _id: "clm8viyn200049xrehiyz6dkh",
@@ -98,6 +99,7 @@ module.exports = {
       chaserId: "clm37mlxi00022cre4ukw0tn2",
       targetId: "clm37kkdt0002zpreg662h9ez",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin",
     },
     {
       _id: "clm8viyn100019xre4x9ghnhb",
@@ -108,6 +110,7 @@ module.exports = {
       chaserId: "clm37kkdt0002zpreg662h9ez",
       targetId: "clm256k9w00003g5xafvyw4ld",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin",
     },
     {
       _id: "clm8viyn100029xred3hs75o7",
@@ -118,6 +121,7 @@ module.exports = {
       chaserId: "clm256k9w00003g5xafvyw4ld",
       targetId: "clm25hoqi0002jhre5soi09vx",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin",
     },
   ],
 };

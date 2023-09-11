@@ -18,7 +18,7 @@ module.exports = {
         !loggedIn.admin.super
       ) {
         throwError({
-          title: "You must be an admin to create a takeoutMethod.",
+          title: "You must be an admin to edit a takeoutMethod.",
           error: "takeoutMethod-insufficient-admin",
           status: 403,
         });

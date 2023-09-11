@@ -38,6 +38,7 @@ module.exports = {
           targetId: nextTakeout.targetId,
           gameId: takeoutInfo.gameId,
           takeoutMethodId: nextTakeout.takeoutMethodId,
+          methodText: nextTakeout.methodText,
           status: 'inProgress'
         })
       } else {

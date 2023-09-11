@@ -100,6 +100,7 @@ module.exports = {
       takeoutMethodId: "clm5c5qqa0005gqgret15dq3k",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
     {
       _id: "clm67jm0o0009qiredarv678t",
@@ -109,6 +110,7 @@ module.exports = {
       takeoutMethodId: "clm3alfg20002ixre7tf5fmiw",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
     {
       _id: "clm67jm0p000aqire5cuv2i7u",
@@ -118,6 +120,7 @@ module.exports = {
       takeoutMethodId: "clm39jnfi00029wrebr2vavh0",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
     {
       _id: "clm67jm0p000bqire039235q3",
@@ -127,6 +130,7 @@ module.exports = {
       takeoutMethodId: "clm3apwzi0002ldrec1mbhla9",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
     {
       _id: "clm67jm0o0008qiregb2nda9j",
@@ -136,6 +140,7 @@ module.exports = {
       takeoutMethodId: "clm3ao0ng0002k4re91iog0gr",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
     {
       _id: "clm67jm0o0007qire7rk5h8nz",
@@ -145,6 +150,7 @@ module.exports = {
       takeoutMethodId: "clm39k3yw0002agre3ubt0j1j",
       status: "inProgress",
       completedAt: null,
+      methodText: "Convince ~name~ to eat something from your skin"
     },
   ],
 };
