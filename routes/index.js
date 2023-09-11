@@ -38,6 +38,7 @@ api.put( `${process.env.PATH_ROUTE}/game/:_id/started`, makeExpressCallback(putG
 api.get( `${process.env.PATH_ROUTE}/takeout`, makeExpressCallback(getTakeout) );
 api.get( `${process.env.PATH_ROUTE}/takeout/:_id`, makeExpressCallback(getTakeout) );
 api.put( `${process.env.PATH_ROUTE}/takeout/:_id/executed`, makeExpressCallback(putTakeoutStatus) );
+api.put( `${process.env.PATH_ROUTE}/takeout/executed`, makeExpressCallback(putTakeoutStatus) );
 
 // put game/:id/status finish game - this will either be called by someone or called from executing a takeout if it's the last one
 api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the takeout microservice!") );

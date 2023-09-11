@@ -12,7 +12,7 @@ module.exports = {
         });
       }
 
-      const isAdmin = (await filterGames({ _id }))[0].admins.includes(
+      const isAdmin = (await filterGames({ _id }))[0]?.admins?.includes(
         loggedIn._id
       );
 

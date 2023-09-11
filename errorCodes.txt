@@ -9,6 +9,7 @@ takeout-status-fixed
 takeout-not-found
 takeout-next-not-found
 takeout-not-deleted
+takeout-execute-insufficient-information
 
 game-invalid-id
 game-invalid-createdBy

@@ -6,7 +6,8 @@ module.exports = {
     filterTakeouts,
   }) {
     return async function (httpRequest) {
-      const { _id } = httpRequest.params;
+      let { _id } = httpRequest.params;
+      const { gameId, targetId } = httpRequest.query;
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
@@ -16,8 +17,32 @@ module.exports = {
           status: 403,
         });
       }
-      const isTarget =
-        (await filterTakeouts({ _id }))[0].targetId === loggedIn._id;
+
+      let takeout;
+      if (!_id) {
+        if (!gameId && !targetId) {
+          throwError({
+            title: "If no takeout _id is supplied, you must supply both a gameId and targetId.",
+            error: "takeout-execute-insufficient-information",
+            status: 401,
+          });
+        }
+        takeout = await filterTakeouts({ gameId, targetId, status: 'inProgress' });
+        if (takeout.length !== 1) {
+          throwError({
+            title: "No inProgress takeout found for that target and game.",
+            error: "takeout-not-found",
+            status: 404,
+          });
+        }
+        takeout = takeout[0]
+        // set _id to equal this takeout
+        _id = takeout._id;
+      }
+
+      if (!takeout) takeout = (await filterTakeouts({ _id }))[0];
+
+      const isTarget = takeout.targetId === loggedIn._id;
 
       // only the target can legitimise the takeout
       if (!isTarget && !loggedIn.admin.super && !loggedIn.admin.takeout) {

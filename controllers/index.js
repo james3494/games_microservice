@@ -24,7 +24,7 @@ const { buildDeleteGame } = require("./deleteGame");
 const { buildPatchGameInvited } = require("./patchGameInvited");
 const { buildPutGameStart } = require("./putGameStart");
 const { buildGetTakeout } = require("./getTakeout");
-const { buildPutTakeoutStatus } = require("./putTakeoutStatus");
+const { buildPutTakeoutStatus } = require("./putTakeoutExecuted");
 const throwError = require("errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });

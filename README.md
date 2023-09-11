@@ -7,4 +7,6 @@ A microservice for the gameplay for the takeOut app.
 
 - write some tests to check access
 
-- create endpoints like /game/:_id/takeouts to get takeouts? Similarly /user/:_id/games ? 
+- do anything about maxduration? auto complete?
+
+- auto finish games that have not started 4 hours after their expectedStartTime
