@@ -8,6 +8,7 @@ module.exports = {
       takeoutMethodId: "clm5c5qqa0005gqgret15dq3k",
       status: "success",
       completedAt: Date.now() - 1000 * 60 * 10,
+      startedAt: Date.now() - 1000 * 60 * 20,
       methodText: "Convince ~name~ to eat something from your skin",
     },
     {
@@ -18,6 +19,7 @@ module.exports = {
       takeoutMethodId: "clm3alfg20002ixre7tf5fmiw",
       status: "inProgress",
       completedAt: null,
+      startedAt: 1694073339614,
       methodText: "Convince ~name~ to eat something from your skin",
     },
     {
@@ -28,6 +30,7 @@ module.exports = {
       takeoutMethodId: "clm39jnfi00029wrebr2vavh0",
       status: "inProgress",
       completedAt: null,
+      startedAt: 1694073339614,
       methodText: "Convince ~name~ to eat something from your skin",
     },
     {
@@ -38,6 +41,7 @@ module.exports = {
       takeoutMethodId: "clm3apwzi0002ldrec1mbhla9",
       status: "inProgress",
       completedAt: null,
+      startedAt: 1694073339614,
       methodText: "Convince ~name~ to eat something from your skin",
     },
     {
@@ -48,6 +52,7 @@ module.exports = {
       takeoutMethodId: "clm3ao0ng0002k4re91iog0gr",
       status: "inProgress",
       completedAt: null,
+      startedAt: 1694073339614,
       methodText: "Convince ~name~ to eat something from your skin",
     },
     {
@@ -58,6 +63,7 @@ module.exports = {
       takeoutMethodId: "clm39k3yw0002agre3ubt0j1j",
       status: "fail",
       completedAt: Date.now() - 1000 * 60 * 10,
+      startedAt: Date.now() - 1000 * 60 * 20,
       methodText: "Convince ~name~ to eat something from your skin",
     },
   ],

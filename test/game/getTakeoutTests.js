@@ -6,6 +6,7 @@ const returnFields = ({
   takeoutMethodId,
   status,
   completedAt,
+  startedAt,
   methodText
 }) => ({
   _id,
@@ -15,6 +16,7 @@ const returnFields = ({
   takeoutMethodId,
   status,
   completedAt,
+  startedAt,
   methodText
 });
 

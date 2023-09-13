@@ -82,6 +82,7 @@ module.exports = {
     {
       _id: "clm8viyn200039xre0v1804jw",
       createdOn: 1694073339614,
+      startedAt: 1694073339614,
       status: "success",
       takeoutMethodId: "clm3alfg20002ixre7tf5fmiw",
       gameId: "clm67jlrk0005qire3wpf97tp",
@@ -93,6 +94,7 @@ module.exports = {
     {
       _id: "clm8viyn200049xrehiyz6dkh",
       createdOn: 1694073339614,
+      startedAt: 1694073339614,
       status: "fail",
       takeoutMethodId: "clm39k3yw0002agre3ubt0j1j",
       gameId: "clm67jlrk0005qire3wpf97tp",
@@ -104,6 +106,7 @@ module.exports = {
     {
       _id: "clm8viyn100019xre4x9ghnhb",
       createdOn: 1694073339613,
+      startedAt: 1694073339613,
       status: "success",
       takeoutMethodId: "clm3apwzi0002ldrec1mbhla9",
       gameId: "clm67jlrk0005qire3wpf97tp",
@@ -115,6 +118,7 @@ module.exports = {
     {
       _id: "clm8viyn100029xred3hs75o7",
       createdOn: 1694073339613,
+      startedAt: 1694073339613,
       status: "fail",
       takeoutMethodId: "clm3ao0ng0002k4re91iog0gr",
       gameId: "clm67jlrk0005qire3wpf97tp",
@@ -126,6 +130,7 @@ module.exports = {
     {
       _id: "clm8v8c6g00034tre26v50t2w",
       createdOn: 1694073339614,
+      startedAt: 1694073339614,
       status: "inProgress",
       takeoutMethodId: "clm39k3yw0002agre3ubt0j1j",
       gameId: "clm67jlrk0005qire3wpf97tp",
@@ -137,6 +142,7 @@ module.exports = {
     {
       _id: "clm67jlrk0005qire3wpf97tp",
       createdOn: 1694073339613,
+      startedAt: 1694073339613,
       status: "inProgress",
       takeoutMethodId: "clm3apwzi0002ldrec1mbhla9",
       gameId: "clm67jlrk0005qire3wpf97tp",

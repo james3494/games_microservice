@@ -9,6 +9,7 @@ module.exports = {
       completedAt = null,
       status = "inProgress",
       createdOn = Date.now(),
+      startedAt = Date.now(),
       _id = Id.makeId(),
     } = {}) {
       
@@ -22,7 +23,8 @@ module.exports = {
         chaserId,
         targetId,
         methodText,
-        completedAt
+        completedAt,
+        startedAt
       })
 
 
@@ -54,6 +56,16 @@ module.exports = {
         });
       }
 
+
+      if ( completedAt && completedAt < startedAt ) {
+        throwError({
+          title:
+            "completedAt must be after the game started.",
+          error: "takeout-invalid-completedAt",
+          status: 400,
+        });
+      }
+
       return Object.freeze({
         getCreatedOn: () => createdOn,
         getId: () => _id,
@@ -64,6 +76,7 @@ module.exports = {
         getChaserId: () => chaserId,
         getTargetId: () => targetId,
         getCompletedAt: () => completedAt,
+        getStartedAt: () => startedAt,
         getAll,
       });
     };

@@ -42,6 +42,7 @@ module.exports = {
           methodText: takeout.methodText,
           status: takeout.status,
           completedAt: takeout.completedAt,
+          startedAt: takeout.startedAt,
         }));
 
       if (_id) {
