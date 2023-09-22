@@ -1,4 +1,4 @@
-const returnFields = ({ _id, location, description, difficulty, theme, players, invited, title, photos, admins, startTime, expectedStartTime, maxDuration, status, finishTime }) => ({
+const returnFields = ({ _id, location, description, difficulty, theme, players, invited, title, photos, joinLink, admins, startTime, expectedStartTime, maxDuration, status, finishTime }) => ({
   _id,
   location,
   description,
@@ -13,7 +13,8 @@ const returnFields = ({ _id, location, description, difficulty, theme, players, 
   status,
   finishTime,
   title,
-  photos
+  photos, 
+  joinLink,
 });
 
 const data = require(`../data/4.js`);

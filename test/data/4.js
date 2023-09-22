@@ -26,7 +26,8 @@ module.exports = {
       maxDuration: 14400000,
       status: "awaiting",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
     {
       _id: "clm25hoqi0002jhre5soi09vx",
@@ -53,7 +54,8 @@ module.exports = {
       maxDuration: 14400000,
       status: "awaiting",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
     {
       _id: "clm37kkdt0002zpreg662h9ez",
@@ -80,7 +82,8 @@ module.exports = {
       maxDuration: 14400000,
       status: "awaiting",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
     {
       _id: "clm37mlxi00022cre4ukw0tn2",
@@ -108,7 +111,8 @@ module.exports = {
       maxDuration: 14400000,
       status: "awaiting",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
     {
       _id: "clm384xbp0002axre9ky0f509",
@@ -135,7 +139,8 @@ module.exports = {
       maxDuration: 1000 * 60 * 60 * 4,
       status: "inProgress",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
     {
       _id: "clm39w2hf0002glre11it9nq6",
@@ -163,7 +168,8 @@ module.exports = {
       maxDuration: 14400000,
       status: "finished",
       photos: [],
-      title: "Birthday party"
+      title: "Birthday party",
+      joinLink: "clm67jm0p000aqire5cuv2i7u"
     },
   ],
 };

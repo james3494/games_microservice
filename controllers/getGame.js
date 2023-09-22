@@ -42,6 +42,7 @@ module.exports = {
           finishTime: game.finishTime,
           maxDuration: game.maxDuration,
           status: game.status,
+          ...(loggedInIsAdmin || game.admins.includes(loggedIn._id) ? { joinLink: game.joinLink } : {}),
         }));
 
       if (_id) {
