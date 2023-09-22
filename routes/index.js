@@ -8,7 +8,7 @@ const api = express.Router();
 const { 
     postTakeoutMethod, 
     postGame,
-    putTakeoutMethod,
+    putTakeoutMethodDisabled,
     getTakeoutMethod,
     deleteTakeoutMethod,
     putGame,
@@ -24,7 +24,7 @@ const {
 api.use(express.json());
 
 api.post( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(postTakeoutMethod) );
-api.put( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(putTakeoutMethod) );
+api.put( `${process.env.PATH_ROUTE}/takeoutMethod/:_id/disabled`, makeExpressCallback(putTakeoutMethodDisabled) );
 api.get( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(getTakeoutMethod) );
 api.get( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(getTakeoutMethod) );
 api.delete( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(deleteTakeoutMethod) );

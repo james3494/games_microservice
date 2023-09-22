@@ -15,7 +15,7 @@ const {
   executeTakeout,
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
-const { buildPutTakeoutMethod } = require("./putTakeoutMethod");
+const { buildPutTakeoutMethodDisabled } = require("./putTakeoutMethodDisabled");
 const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
 const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
 const { buildPostGame } = require("./postGame");
@@ -55,7 +55,7 @@ const postTakeoutMethod = buildPostTakeoutMethod({
   getLoggedIn,
 });
 
-const putTakeoutMethod = buildPutTakeoutMethod({
+const putTakeoutMethodDisabled = buildPutTakeoutMethodDisabled({
   editTakeoutMethod,
   throwError,
   getLoggedIn,
@@ -128,7 +128,7 @@ const putTakeoutStatus = buildPutTakeoutStatus({
 
 const takeoutMethodController = Object.freeze({
   postTakeoutMethod,
-  putTakeoutMethod,
+  putTakeoutMethodDisabled,
   getTakeoutMethod,
   deleteTakeoutMethod,
   postGame,

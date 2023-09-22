@@ -11,9 +11,7 @@ A microservice for the gameplay for the takeOut app.
 
 - auto finish games that have not started 4 hours after their expectedStartTime
 
-- tests for editing games.
-
-- should only be able to disable takeout methods and create them. NO EDITING. THat could cause problems
+- joinLink shoulsd be returned on GET but only for game admins
 
 - add reviewing to takeoutMethods
 
