@@ -26,18 +26,16 @@ module.exports = {
 
       return await gamesDb.update({
         _id: toEdit.getId(),
+        title: toEdit.getTitle(),
+        photos: toEdit.getPhotos(),
         description: toEdit.getDescription(),
         difficulty: toEdit.getDifficulty(),
         expectedStartTime: toEdit.getExpectedStartTime(),
-        startTime: toEdit.getStartTime(),
         maxDuration: toEdit.getMaxDuration(),
         location: toEdit.getLocation(),
         admins: toEdit.getAdmins(),
         invited: toEdit.getInvited(),
-        players: toEdit.getPlayers(),
-        status: toEdit.getStatus(),
         theme: toEdit.getTheme(),
-        finishTime: toEdit.getFinishTime(),
         modifiedOn: Date.now(),
       });
 

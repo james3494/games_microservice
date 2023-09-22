@@ -11,6 +11,7 @@ const { makeCreateGame } = require('./createGame');
 const { makeRemoveGame } = require('./removeGame');
 const { makeAcceptGameInvitation } = require('./acceptGameInvitation');
 const { makeDeclineGameInvitation } = require('./declineGameInvitation');
+const { makeJoinGame } = require('./joinGame');
 const { makeCreateTakeout } = require('./createTakeout');
 const { makeExecuteTakeout } = require('./executeTakeout');
 const { makeEditTakeout } = require('./editTakeout');
@@ -32,12 +33,13 @@ const removeTakeouts = makeRemoveTakeouts({ takeoutsDb, throwError });
 const createGame = makeCreateGame({ gamesDb });
 const editGame = makeEditGame({ gamesDb, throwError });
 const filterGames = makeFilterGames({ gamesDb, throwError });
-const initiateGame = makeInitiateGame({ gamesDb, throwError, filterTakeoutMethods, createTakeout, editGame, shuffleArray });
+const initiateGame = makeInitiateGame({ gamesDb, throwError, filterTakeoutMethods, createTakeout, shuffleArray });
 const removeGame = makeRemoveGame({ gamesDb, removeTakeouts, filterTakeouts, throwError });
 const acceptGameInvitation = makeAcceptGameInvitation({ gamesDb, throwError });
 const declineGameInvitation = makeDeclineGameInvitation({ gamesDb, throwError });
+const joinGame = makeJoinGame({ gamesDb, throwError });
 
-const executeTakeout = makeExecuteTakeout({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, editGame });
+const executeTakeout = makeExecuteTakeout({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, gamesDb });
 
 const takeoutMethodService = Object.freeze({
   createTakeoutMethod,
@@ -54,7 +56,8 @@ const takeoutMethodService = Object.freeze({
   filterGames,
   removeGame,
   acceptGameInvitation,
-  declineGameInvitation
+  declineGameInvitation,
+  joinGame
 });
 
 

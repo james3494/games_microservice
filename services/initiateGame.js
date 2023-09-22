@@ -1,7 +1,7 @@
 const { makeGame } = require('../entities');
 
 module.exports = {
-   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, editGame, shuffleArray }) {
+   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, shuffleArray }) {
     return async function ({ _id }) {
       const gameInfo = await gamesDb.findById({ _id });
       if (!gameInfo) {
@@ -63,11 +63,12 @@ module.exports = {
       })
 
 
-      return await editGame({
+      return await gamesDb.update({
         _id,
         status: 'inProgress',
         startTime: Date.now(),
-      })
+      });
+
     };
   }
 };

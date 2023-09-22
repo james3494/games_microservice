@@ -11,6 +11,7 @@ const {
   initiateGame,
   acceptGameInvitation,
   declineGameInvitation,
+  joinGame,
   executeTakeout,
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
@@ -22,6 +23,7 @@ const { buildPutGame } = require("./putGame");
 const { buildGetGame } = require("./getGame");
 const { buildDeleteGame } = require("./deleteGame");
 const { buildPatchGameInvited } = require("./patchGameInvited");
+const { buildPatchGamePlayers } = require("./patchGamePlayers");
 const { buildPutGameStart } = require("./putGameStart");
 const { buildGetTakeout } = require("./getTakeout");
 const { buildPutTakeoutStatus } = require("./putTakeoutExecuted");
@@ -100,6 +102,11 @@ const patchGameInvited = buildPatchGameInvited({
   throwError,
   getLoggedIn,
 });
+const patchGamePlayers = buildPatchGamePlayers({
+  joinGame,
+  throwError,
+  getLoggedIn,
+});
 const putGameStart = buildPutGameStart({
   initiateGame,
   throwError,
@@ -132,6 +139,7 @@ const takeoutMethodController = Object.freeze({
   putGameStart,
   getTakeout,
   putTakeoutStatus,
+  patchGamePlayers
 });
 
 module.exports = { ...takeoutMethodController };

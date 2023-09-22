@@ -19,6 +19,7 @@ module.exports = {
       createdOn = Date.now(),
       modifiedOn = Date.now(),
       _id = Id.makeId(),
+      joinLink = Id.makeId(),
     } = {}) {
 
       const getAll = () => ({
@@ -39,7 +40,8 @@ module.exports = {
         maxDuration,
         status,
         title, 
-        photos
+        photos,
+        joinLink
       })
 
 
@@ -144,6 +146,7 @@ module.exports = {
         getDescription: () => description,
         getTitle: () => title,
         getPhotos: () => photos,
+        getJoinLink: () => joinLink,
         getAll,
       });
     };

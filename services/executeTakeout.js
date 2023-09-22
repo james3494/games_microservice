@@ -1,6 +1,12 @@
-
 module.exports = {
-   makeExecuteTakeout ({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, editGame }) {
+  makeExecuteTakeout({
+    takeoutsDb,
+    throwError,
+    filterTakeouts,
+    createTakeout,
+    editTakeout,
+    gamesDb,
+  }) {
     return async function ({ _id }) {
       const takeoutInfo = await takeoutsDb.findById({ _id });
       if (!takeoutInfo) {
@@ -10,7 +16,7 @@ module.exports = {
           status: 404,
         });
       }
-      if (takeoutInfo.status !== 'inProgress') {
+      if (takeoutInfo.status !== "inProgress") {
         throwError({
           title: `You can only execute a takeout that is in progress.`,
           error: "takeout-invalid-status",
@@ -19,8 +25,8 @@ module.exports = {
       }
       const filteredTakeouts = await filterTakeouts({
         gameId: takeoutInfo.gameId,
-        status: 'inProgress',
-        chaserId: takeoutInfo.targetId
+        status: "inProgress",
+        chaserId: takeoutInfo.targetId,
       });
 
       if (filteredTakeouts.length !== 1) {
@@ -39,29 +45,29 @@ module.exports = {
           gameId: takeoutInfo.gameId,
           takeoutMethodId: nextTakeout.takeoutMethodId,
           methodText: nextTakeout.methodText,
-          status: 'inProgress'
-        })
+          status: "inProgress",
+        });
       } else {
         // all takeouts completed - i's the end of the game
-        await editGame({
+        await gamesDb.update({
           _id: takeoutInfo.gameId,
           finishTime: Date.now(),
-          status: 'finished',
-        })
+          status: "finished",
+        });
       }
 
       await editTakeout({
         _id,
         completedAt: Date.now(),
-        status: 'success'
-      })
+        status: "success",
+      });
       await editTakeout({
         _id: nextTakeout._id,
         completedAt: Date.now(),
-        status: 'fail'
-      })
+        status: "fail",
+      });
 
-      return { sucess: true }
+      return { sucess: true };
     };
-  }
+  },
 };
