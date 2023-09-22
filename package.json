@@ -12,12 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cuid": "^2.1.8",
+    "@paralleldrive/cuid2": "^2.2.2",
     "database": "git+ssh://git@github.com/james3494/database.git",
-    "errorHandling": "git+ssh://git@github.com/james3494/errorHandling.git",
-    "validation": "git+ssh://git@github.com/james3494/validation.git",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "errorHandling": "git+ssh://git@github.com/james3494/errorHandling.git",
+    "express": "^4.17.3",
+    "validation": "git+ssh://git@github.com/james3494/validation.git"
   },
   "devDependencies": {
     "chai": "^4.3.6",
