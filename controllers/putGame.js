@@ -15,6 +15,7 @@ module.exports = {
       } = httpRequest.body;
 
       const { _id } = httpRequest.params;
+
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
@@ -25,7 +26,17 @@ module.exports = {
         });
       }
 
-      const isAdmin = (await filterGames({ _id }))[0].admins.includes(
+      const game = (await filterGames({ _id }))[0]
+
+      if (!game) {
+        throwError({
+          status: 404,
+          title: "No game found with that id",
+          error: "game-not-found",
+        });
+      }
+
+      const isAdmin = game.admins.includes(
         loggedIn._id
       );
 
