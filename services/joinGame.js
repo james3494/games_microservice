@@ -43,11 +43,13 @@ module.exports = {
 
       const toEdit = makeGame({
         ...game,
+        invited: game.invited.filter((el) => el !== user_id),
         players: game.players.concat(user_id),
       });
 
       return await gamesDb.update({
         _id,
+        invited: toEdit.getInvited(),
         players: toEdit.getPlayers(),
       });
     };

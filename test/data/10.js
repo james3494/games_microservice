@@ -26,7 +26,8 @@ module.exports = {
         maxDuration: 14400000,
         status: "awaiting",
         photos: [],
-        title: "Birthday party"
+        title: "Birthday party",
+        joinLink: "clm8viyn100019xre4x9ghnhb"
       },
     ],
   };
