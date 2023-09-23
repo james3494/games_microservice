@@ -5,9 +5,13 @@ module.exports = {
       const { _id } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
+      // if you supply one _id and a joinLink you have a pass - anything that is found is authenticated
+      let joinLinkPass = false;
       let filterObj = {};
+
       if (_id) {
-        filterObj = { _id };
+        if (filters.joinLink) joinLinkPass = true;
+        filterObj = { ...filters, _id };
       } else filterObj = filters;
 
       const foundGames = await filterGames(filterObj);
@@ -24,6 +28,9 @@ module.exports = {
 
           // c) you are invited to the game
           if (game.invited.includes(loggedIn._id)) return true;
+
+          // d) you supply the correct joinLink for the game
+          if (joinLinkPass) return true;
           return false;
         })
         .map((game) => ({
@@ -42,7 +49,9 @@ module.exports = {
           finishTime: game.finishTime,
           maxDuration: game.maxDuration,
           status: game.status,
-          ...(loggedInIsAdmin || game.admins.includes(loggedIn._id) ? { joinLink: game.joinLink } : {}),
+          ...(loggedInIsAdmin || game.admins.includes(loggedIn._id)
+            ? { joinLink: game.joinLink }
+            : {}),
         }));
 
       if (_id) {

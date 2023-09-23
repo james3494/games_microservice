@@ -33,6 +33,13 @@ module.exports = {
           status: 403,
         });
       }
+      if (game.status !== 'awaiting') {
+        throwError({
+          title: "You cannot join a game which has already started.",
+          error: "game-already-started",
+          status: 403,
+        });
+      }
 
       const toEdit = makeGame({
         ...game,
