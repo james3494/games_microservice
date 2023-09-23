@@ -33,6 +33,13 @@ module.exports = {
           status: 404,
         });
       }
+      if (game.players.includes(user_id)) {
+        throwError({
+          title: "You cannot join a game you are already a player in.",
+          error: "game-already-joined",
+          status: 400,
+        });
+      }
       if (game.joinLink !== joinLink) {
         throwError({
           title: "The given joinLink does no match the joinLink for the game.",

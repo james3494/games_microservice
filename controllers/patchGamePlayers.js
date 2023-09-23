@@ -4,6 +4,8 @@ module.exports = {
       const { _id, joinLink } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
+      console.log({ _id, joinLink })
+
       if (!loggedIn) {
         throwError({
           title: "You must be logged in to join a game.",
@@ -18,10 +20,17 @@ module.exports = {
         user_id: loggedIn._id,
       });
 
+      if (modifiedCount !== 1) {
+        throwError({
+          title: "There was an unknown error joining the game.",
+          error: "game-unknown-error",
+          status: 400,
+        });
+      }
+      
       return {
         headers: { "Content-Type": "application/json" },
-        status: 200,
-        body: { modifiedCount, success: modifiedCount > 0 },
+        status: 200
       };
     };
   },

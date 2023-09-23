@@ -34,10 +34,17 @@ module.exports = {
       const functionToUse = accept ? acceptGameInvitation : declineGameInvitation
       const { modifiedCount } = await functionToUse({ _id, user_id });
 
+      if (modifiedCount !== 1) {
+        throwError({
+          title: "There was an unknown error responding to the invitation.",
+          error: "game-unknown-error",
+          status: 400,
+        });
+      }
+
       return {
         headers: { "Content-Type": "application/json" },
-        status: 201,
-        body: { modifiedCount, success: modifiedCount > 0 },
+        status: 200,
       };
     };
   },

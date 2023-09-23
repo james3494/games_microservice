@@ -68,8 +68,7 @@ module.exports = [
       body: { accept: true },
     },
     expect: {
-      statusCode: 201,
-      body: { success: true },
+      statusCode: 200,
     },
   },
   {
@@ -97,8 +96,7 @@ module.exports = [
       body: { accept: false },
     },
     expect: {
-      statusCode: 201,
-      body: { success: true },
+      statusCode: 200,
     },
   },
   {

@@ -16,3 +16,7 @@ A microservice for the gameplay for the takeOut app.
 - add takeoutMethod packs
 
 - split takeout methods into a seperate microservice?
+
+- make only possible to delete an awaiting game
+
+- check always at least one admin - cannot leave a game if you are the only admin

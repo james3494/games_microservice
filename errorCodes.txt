@@ -34,6 +34,7 @@ game-not-logged-in
 game-not-deleted
 game-user-not-invited
 game-already-started
+game-unknown-error
 
 takeoutMethod-invalid-id
 takeoutMethod-invalid-createdBy
