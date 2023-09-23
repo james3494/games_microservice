@@ -4,8 +4,6 @@ module.exports = {
       const { _id, joinLink } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
-      console.log({ _id, joinLink })
-
       if (!loggedIn) {
         throwError({
           title: "You must be logged in to join a game.",

@@ -18,7 +18,7 @@ module.exports = () => {
   describe("GET /takeout", () => executeTests(getTakeoutTests));
   describe("PATCH /game/:id/invited", () => executeTests(patchGameInvitedTests));
   describe("PATCH /game/:id/join/:joinLink", () => executeTests(patchGamePlayersTests));
-  describe("DELETE /game/:id/invited", () => executeTests(deleteGameTests));
+  describe("DELETE /game/:id", () => executeTests(deleteGameTests));
   describe("PUT /game/:id/started", () => executeTests(putGameStartTests));
   describe("PUT /takeout/:id/executed", () => executeTests(putTakeoutExecutedTests));
 

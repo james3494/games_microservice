@@ -73,21 +73,21 @@ module.exports = {
 
       if (startTime && startTime < Date.now() && status !== "finished" && status !== "inProgress") {
         throwError({
-          title: `Status must be inProgress while the game is in progress.`,
+          title: `Status must be inProgress if a startTIme is set but no finishTime is set.`,
           error: "game-invalid-status",
           status: 400,
         });
       }
       if (startTime && startTime > Date.now() && status !== "awaiting") {
         throwError({
-          title: `Status must be awaiting before the game has started.`,
+          title: `Status must not be awaiting if a startTime is set.`,
           error: "game-invalid-status",
           status: 400,
         });
       }
       if (finishTime && status !== "finished") {
         throwError({
-          title: `Status must be finished after the game has finished.`,
+          title: `Status must be finished if a finishTime is set.`,
           error: "game-invalid-status",
           status: 400,
         });

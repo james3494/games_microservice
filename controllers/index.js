@@ -93,6 +93,7 @@ const getGame = buildGetGame({
 });
 const deleteGame = buildDeleteGame({
   removeGame,
+  filterGames,
   throwError,
   getLoggedIn,
 });
