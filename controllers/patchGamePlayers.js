@@ -1,18 +1,20 @@
 module.exports = {
-  buildPatchGamePlayers({ joinGame, throwError, getLoggedIn }) {
+  buildPatchGamePlayers({ joinGame, leaveGame, throwError, getLoggedIn }) {
     return async function (httpRequest) {
-      const { _id, joinLink } = httpRequest.params;
+      const { _id, joinLink, leaveOrJoin } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
         throwError({
-          title: "You must be logged in to join a game.",
+          title: "You must be logged in to join / leave a game.",
           error: "game-not-logged-in",
           status: 403,
         });
       }
 
-      const { modifiedCount } = await joinGame({
+      const functionToUse = leaveOrJoin === 'join' ? joinGame : leaveGame;
+
+      const { modifiedCount } = await functionToUse({
         _id,
         joinLink,
         user_id: loggedIn._id,
@@ -20,7 +22,7 @@ module.exports = {
 
       if (modifiedCount !== 1) {
         throwError({
-          title: "There was an unknown error joining the game.",
+          title: "There was an unknown error joining / leaving the game.",
           error: "game-unknown-error",
           status: 400,
         });

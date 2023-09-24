@@ -12,6 +12,7 @@ const { makeRemoveGame } = require('./removeGame');
 const { makeAcceptGameInvitation } = require('./acceptGameInvitation');
 const { makeDeclineGameInvitation } = require('./declineGameInvitation');
 const { makeJoinGame } = require('./joinGame');
+const { makeLeaveGame } = require('./leaveGame');
 const { makeCreateTakeout } = require('./createTakeout');
 const { makeExecuteTakeout } = require('./executeTakeout');
 const { makeEditTakeout } = require('./editTakeout');
@@ -38,6 +39,7 @@ const removeGame = makeRemoveGame({ gamesDb, removeTakeouts, filterTakeouts, thr
 const acceptGameInvitation = makeAcceptGameInvitation({ gamesDb, throwError });
 const declineGameInvitation = makeDeclineGameInvitation({ gamesDb, throwError });
 const joinGame = makeJoinGame({ gamesDb, throwError });
+const leaveGame = makeLeaveGame({ gamesDb, throwError });
 
 const executeTakeout = makeExecuteTakeout({ takeoutsDb, throwError, filterTakeouts, createTakeout, editTakeout, gamesDb });
 
@@ -57,7 +59,8 @@ const takeoutMethodService = Object.freeze({
   removeGame,
   acceptGameInvitation,
   declineGameInvitation,
-  joinGame
+  joinGame,
+  leaveGame
 });
 
 

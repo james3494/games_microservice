@@ -12,6 +12,7 @@ const {
   acceptGameInvitation,
   declineGameInvitation,
   joinGame,
+  leaveGame,
   executeTakeout,
 } = require("../services");
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
@@ -105,6 +106,7 @@ const patchGameInvited = buildPatchGameInvited({
 });
 const patchGamePlayers = buildPatchGamePlayers({
   joinGame,
+  leaveGame,
   throwError,
   getLoggedIn,
 });

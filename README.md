@@ -17,4 +17,4 @@ A microservice for the gameplay for the takeOut app.
 
 - split takeout methods into a seperate microservice?
 
-- check always at least one admin - cannot leave a game if you are the only admin
+- slim down joining / leaving and accepting / declining invitations

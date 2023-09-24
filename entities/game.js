@@ -73,7 +73,7 @@ module.exports = {
 
       if (startTime && startTime < Date.now() && status !== "finished" && status !== "inProgress") {
         throwError({
-          title: `Status must be inProgress if a startTIme is set but no finishTime is set.`,
+          title: `Status must be inProgress if a startTime is set but no finishTime is set.`,
           error: "game-invalid-status",
           status: 400,
         });

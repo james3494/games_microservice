@@ -35,7 +35,7 @@ api.get( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(getGame) );
 api.get( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(getGame) );
 api.delete( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(deleteGame) );
 api.patch( `${process.env.PATH_ROUTE}/game/:_id/invited/:user_id`, makeExpressCallback(patchGameInvited) );
-api.patch( `${process.env.PATH_ROUTE}/game/:_id/join/:joinLink`, makeExpressCallback(patchGamePlayers) );
+api.patch( `${process.env.PATH_ROUTE}/game/:_id/:leaveOrJoin/:joinLink`, makeExpressCallback(patchGamePlayers) );
 api.put( `${process.env.PATH_ROUTE}/game/:_id/started`, makeExpressCallback(putGameStart) );
 
 api.get( `${process.env.PATH_ROUTE}/takeout`, makeExpressCallback(getTakeout) );
