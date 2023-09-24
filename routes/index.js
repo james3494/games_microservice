@@ -1,16 +1,26 @@
 const catchError = require('errorHandling').buildCatchError({ logErrors: process.env.LOG_ERRORS });
+const parseQuery = (query) => {
+    if (query) {
+        let newQuery = {};
+        Object.entries(query).forEach(([key, value]) => {
+          newQuery[key] =
+            value === "true"
+              ? true
+              : value === "false"
+              ? false
+              : Number(value) || value;
+        });
+        return newQuery;
+    }
+  };
 const { buildMakeExpressCallback } = require("../expressCallback")
-const makeExpressCallback = buildMakeExpressCallback({ catchError })
+const makeExpressCallback = buildMakeExpressCallback({ catchError, parseQuery })
 const express = require('express');
 const api = express.Router();
 
 
 const { 
-    postTakeoutMethod, 
     postGame,
-    putTakeoutMethodDisabled,
-    getTakeoutMethod,
-    deleteTakeoutMethod,
     putGame,
     getGame,
     deleteGame,
@@ -22,12 +32,6 @@ const {
 } = require('../controllers');
 
 api.use(express.json());
-
-api.post( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(postTakeoutMethod) );
-api.put( `${process.env.PATH_ROUTE}/takeoutMethod/:_id/disabled`, makeExpressCallback(putTakeoutMethodDisabled) );
-api.get( `${process.env.PATH_ROUTE}/takeoutMethod`, makeExpressCallback(getTakeoutMethod) );
-api.get( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(getTakeoutMethod) );
-api.delete( `${process.env.PATH_ROUTE}/takeoutMethod/:_id`, makeExpressCallback(deleteTakeoutMethod) );
 
 api.post( `${process.env.PATH_ROUTE}/game`, makeExpressCallback(postGame) );
 api.put( `${process.env.PATH_ROUTE}/game/:_id`, makeExpressCallback(putGame) );
@@ -44,6 +48,6 @@ api.get( `${process.env.PATH_ROUTE}/takeout/:_id`, makeExpressCallback(getTakeou
 api.put( `${process.env.PATH_ROUTE}/takeout/:_id/executed`, makeExpressCallback(putTakeoutStatus) );
 api.put( `${process.env.PATH_ROUTE}/takeout/executed`, makeExpressCallback(putTakeoutStatus) );
 
-api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the takeout microservice!") );
+api.get( `${process.env.PATH_ROUTE}/ping`, (req, res) => res.send("You pinged the games microservice!") );
 
 module.exports = api;

@@ -1,12 +1,8 @@
 const {
-  createTakeoutMethod,
-  editTakeoutMethod,
   createGame,
   editGame,
   filterGames,
-  filterTakeoutMethods,
   filterTakeouts,
-  removeTakeoutMethod,
   removeGame,
   initiateGame,
   acceptGameInvitation,
@@ -15,10 +11,6 @@ const {
   leaveGame,
   executeTakeout,
 } = require("../services");
-const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
-const { buildPutTakeoutMethodDisabled } = require("./putTakeoutMethodDisabled");
-const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
-const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
 const { buildPostGame } = require("./postGame");
 const { buildPutGame } = require("./putGame");
 const { buildGetGame } = require("./getGame");
@@ -49,30 +41,6 @@ const getLoggedIn = (httpRequest) => {
     });
   }
 };
-
-const postTakeoutMethod = buildPostTakeoutMethod({
-  createTakeoutMethod,
-  throwError,
-  getLoggedIn,
-});
-
-const putTakeoutMethodDisabled = buildPutTakeoutMethodDisabled({
-  editTakeoutMethod,
-  throwError,
-  getLoggedIn,
-});
-
-const getTakeoutMethod = buildGetTakeoutMethod({
-  filterTakeoutMethods,
-  throwError,
-  getLoggedIn
-});
-
-const deleteTakeoutMethod = buildDeleteTakeoutMethod({
-  removeTakeoutMethod,
-  throwError,
-  getLoggedIn,
-});
 
 const postGame = buildPostGame({
   createGame,
@@ -129,11 +97,7 @@ const putTakeoutStatus = buildPutTakeoutStatus({
   filterTakeouts
 });
 
-const takeoutMethodController = Object.freeze({
-  postTakeoutMethod,
-  putTakeoutMethodDisabled,
-  getTakeoutMethod,
-  deleteTakeoutMethod,
+const gamesController = Object.freeze({
   postGame,
   putGame,
   getGame,
@@ -145,4 +109,4 @@ const takeoutMethodController = Object.freeze({
   patchGamePlayers
 });
 
-module.exports = { ...takeoutMethodController };
+module.exports = { ...gamesController };

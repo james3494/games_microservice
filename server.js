@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     res.status(403).send({
       status: 403,
       title: "Invalid API key",
-      error: "takeout-microservice-invalid-api-key",
+      error: "games-microservice-invalid-api-key",
       detail: "Microservices can only be accessed via the API gateway."
     });
   } else next();
@@ -28,7 +28,7 @@ app.use((req, res, err) => catchError(res, err));
 
 
 const server = app.listen(port, () => {
-  console.log(`Takeout microservice listening on port ${port}`);
+  console.log(`games microservice listening on port ${port}`);
 });
 
 module.exports = { server, app };
