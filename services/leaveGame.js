@@ -26,6 +26,13 @@ module.exports = {
           status: 404,
         });
       }
+      if (!game.players.includes(user_id)) {
+        throwError({
+          title: "You cannot leave a game which you are not part of.",
+          error: "game-invalid-user-id",
+          status: 403,
+        });
+      }
       if (game.status !== 'awaiting') {
         throwError({
           title: "You cannot leave a game which has already started.",
