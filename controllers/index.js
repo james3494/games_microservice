@@ -5,8 +5,6 @@ const {
   filterTakeouts,
   removeGame,
   initiateGame,
-  acceptGameInvitation,
-  declineGameInvitation,
   joinGame,
   leaveGame,
   executeTakeout,
@@ -15,7 +13,6 @@ const { buildPostGame } = require("./postGame");
 const { buildPutGame } = require("./putGame");
 const { buildGetGame } = require("./getGame");
 const { buildDeleteGame } = require("./deleteGame");
-const { buildPatchGameInvited } = require("./patchGameInvited");
 const { buildPatchGamePlayers } = require("./patchGamePlayers");
 const { buildPutGameStart } = require("./putGameStart");
 const { buildGetTakeout } = require("./getTakeout");
@@ -66,12 +63,6 @@ const deleteGame = buildDeleteGame({
   throwError,
   getLoggedIn,
 });
-const patchGameInvited = buildPatchGameInvited({
-  acceptGameInvitation,
-  declineGameInvitation,
-  throwError,
-  getLoggedIn,
-});
 const patchGamePlayers = buildPatchGamePlayers({
   joinGame,
   leaveGame,
@@ -102,7 +93,6 @@ const gamesController = Object.freeze({
   putGame,
   getGame,
   deleteGame,
-  patchGameInvited,
   putGameStart,
   getTakeout,
   putTakeoutStatus,

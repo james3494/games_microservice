@@ -1,7 +1,8 @@
 module.exports = {
   buildPatchGamePlayers({ joinGame, leaveGame, throwError, getLoggedIn }) {
     return async function (httpRequest) {
-      const { _id, joinLink, leaveOrJoin } = httpRequest.params;
+      const { _id, leaveOrJoin } = httpRequest.params;
+      let { user_id, joinLink } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
@@ -12,8 +13,23 @@ module.exports = {
         });
       }
 
-      const functionToUse = leaveOrJoin === 'join' ? joinGame : leaveGame;
+      // default to the logged in user
+      if (!user_id) user_id = loggedIn._id;
 
+      if (
+        loggedIn._id !== user_id &&
+        !loggedIn.admin.takeout &&
+        !loggedIn.admin.super
+      ) {
+        throwError({
+          title:
+            "You must be an admin to join / leave games on behalf of others.",
+          error: "game-insufficient-admin",
+          status: 403,
+        });
+      }
+
+      const functionToUse = leaveOrJoin === 'join' ? joinGame : leaveGame;
       const { modifiedCount } = await functionToUse({
         _id,
         joinLink,

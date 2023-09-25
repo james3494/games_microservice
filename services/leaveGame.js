@@ -26,10 +26,13 @@ module.exports = {
           status: 404,
         });
       }
-      if (!game.players.includes(user_id)) {
+      const playerInGame = game.players.includes(user_id);
+      const playerInvitedToGame = game.invited.includes(user_id);
+      
+      if (!playerInGame && !playerInvitedToGame) {
         throwError({
-          title: "You cannot leave a game which you are not part of.",
-          error: "game-invalid-user-id",
+          title: "You must be either a part of or invited to a game to leave it.",
+          error: "game-user-not-invited",
           status: 403,
         });
       }
@@ -45,12 +48,14 @@ module.exports = {
         ...game,
         players: game.players.filter((el) => el !== user_id),
         admins: game.admins.filter((el) => el !== user_id),
+        invited: game.invited.filter(el => el !== user_id),
       });
 
       return await gamesDb.update({
         _id,
         players: toEdit.getPlayers(),
-        admins: toEdit.getAdmins()
+        admins: toEdit.getAdmins(),
+        invited: toEdit.getInvited()
       });
     };
   },

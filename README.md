@@ -10,5 +10,3 @@ A microservice for the gameplay for the takeOut app.
 - do anything about maxduration? auto complete?
 
 - auto finish games that have not started 4 hours after their expectedStartTime
-
-- slim down joining / leaving and accepting / declining invitations

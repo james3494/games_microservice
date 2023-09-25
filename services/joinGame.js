@@ -17,14 +17,6 @@ module.exports = {
           status: 400,
         });
       }
-      if (!joinLink) {
-        throwError({
-          title: "You must supply a joinLink to join a game.",
-          error: "game-invalid-joinLink",
-          status: 400,
-        });
-      }
-
       const game = await gamesDb.findById({ _id });
       if (!game) {
         throwError({
@@ -37,16 +29,21 @@ module.exports = {
         throwError({
           title: "You cannot join a game you are already a player in.",
           error: "game-already-joined",
-          status: 400,
-        });
-      }
-      if (game.joinLink !== joinLink) {
-        throwError({
-          title: "The given joinLink does no match the joinLink for the game.",
-          error: "game-invalid-joinLink",
           status: 403,
         });
       }
+
+      const joinLinkAcceptable = joinLink && game.joinLink !== joinLink;
+      const invitedAcceptable = game.invited.includes(user_id);
+
+      if (!joinLinkAcceptable && !invitedAcceptable) {
+        throwError({
+          title: "You must either supply a valid joinLink or be invited to join a game.",
+          error: "game-user-not-invited",
+          status: 403,
+        });
+      }
+
       if (game.status !== 'awaiting') {
         throwError({
           title: "You cannot join a game which has already started.",
