@@ -8,15 +8,15 @@ module.exports = [
       "should return an error for needing to be invited to accept an invitation",
     method,
     data,
-    endpoint: `game/${game._id}/invited/${game.players[0]}`,
+    endpoint: `game/${game._id}/join`,
     send: {
-      loggedInUser: { _id: game.players[0] },
-      body: { accept: true },
+      query: { user_id: "imnotinvitedtothegame" },
+      loggedInUser: { _id: "imnotinvitedtothegame" },
     },
     expect: {
       statusCode: 403,
       body: {
-        error: "game-user-not-invited",
+        error: "game-invalid-joinLink",
         status: 403,
       },
     },
@@ -26,15 +26,15 @@ module.exports = [
       "should return an error for needing to be invited to decline an invitation",
     method,
     data,
-    endpoint: `game/${game._id}/invited/${game.players[0]}`,
+    endpoint: `game/${game._id}/leave`,
     send: {
-      loggedInUser: { _id: game.players[0] },
-      body: { accept: false },
+      query: { user_id: "imnotinvitedtothegame" },
+      loggedInUser: { _id: "imnotinvitedtothegame" },
     },
     expect: {
       statusCode: 403,
       body: {
-        error: "game-user-not-invited",
+        error: "game-invalid-joinLink",
         status: 403,
       },
     },
@@ -44,10 +44,10 @@ module.exports = [
       "should return an error for not being able to accept an invitation on someone else behalf",
     method,
     data,
-    endpoint: `game/${game._id}/invited/${game.invited[0]}`,
+    endpoint: `game/${game._id}/join`,
     send: {
-      loggedInUser: { _id: game.players[0] },
-      body: { accept: true },
+      query: { user_id: game.invited[0] },
+      loggedInUser: { _id: "imnotinvitedtothegame" },
     },
     expect: {
       statusCode: 403,
@@ -62,10 +62,10 @@ module.exports = [
     should: "should have successfully accepted the invitation",
     method,
     data,
-    endpoint: `game/${game._id}/invited/${game.invited[0]}`,
+    endpoint: `game/${game._id}/join`,
     send: {
+      query: { user_id: game.invited[0] },
       loggedInUser: { _id: game.invited[0] },
-      body: { accept: true },
     },
     expect: {
       statusCode: 200,
@@ -90,10 +90,10 @@ module.exports = [
     should: "should have successfully declined the invitation",
     method,
     data,
-    endpoint: `game/${game._id}/invited/${game.invited[0]}`,
+    endpoint: `game/${game._id}/leave`,
     send: {
+      query: { user_id: game.invited[0] },
       loggedInUser: { _id: game.invited[0] },
-      body: { accept: false },
     },
     expect: {
       statusCode: 200,

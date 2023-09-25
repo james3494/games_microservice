@@ -32,7 +32,7 @@ module.exports = {
       if (!playerInGame && !playerInvitedToGame) {
         throwError({
           title: "You must be either a part of or invited to a game to leave it.",
-          error: "game-user-not-invited",
+          error: "game-invalid-joinLink",
           status: 403,
         });
       }

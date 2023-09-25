@@ -7,9 +7,10 @@ module.exports = [
     should: "should return an error for game not found",
     method,
     data,
-    endpoint: `game/incorrectgameid/join/${game.joinLink}`,
+    endpoint: `game/incorrectgameid/join`,
     send: {
-      loggedInUser: { _id: "clm39k3yw0002agre3ubt0j1j" },
+      query: { joinLink: game.joinLink },
+      loggedInUser: { _id: "clm3ao0ng0002k4re91iog0gr" },
     },
     expect: {
       statusCode: 404,
@@ -23,9 +24,10 @@ module.exports = [
     should: "should return an error for the incorrect game link",
     method,
     data,
-    endpoint: `game/${game._id}/join/incorrectgamelink`,
+    endpoint: `game/${game._id}/join`,
     send: {
-      loggedInUser: { _id: "clm39k3yw0002agre3ubt0j1j" },
+      query: { joinLink: "incorrectjoinlink" },
+      loggedInUser: { _id: "clm3ao0ng0002k4re91iog0gr" },
     },
     expect: {
       statusCode: 403,
@@ -40,9 +42,10 @@ module.exports = [
     should: "should return a successful status (has updated the players)",
     method,
     data,
-    endpoint: `game/${game._id}/join/${game.joinLink}`,
+    endpoint: `game/${game._id}/join`,
     send: {
-      loggedInUser: { _id: "clm39k3yw0002agre3ubt0j1j" },
+      query: { joinLink: game.joinLink },
+      loggedInUser: { _id: "clm3ao0ng0002k4re91iog0gr" },
     },
     expect: {
       statusCode: 200,
@@ -59,7 +62,7 @@ module.exports = [
     },
     expect: {
       statusCode: 200,
-      body: { players: game.players.concat("clm39k3yw0002agre3ubt0j1j") },
+      body: { players: game.players.concat("clm3ao0ng0002k4re91iog0gr") },
     },
   },
   // -------------------------------------------------------------------------------------------------------------------
@@ -68,8 +71,9 @@ module.exports = [
     should: "should return a successful status (has updated the players)",
     method,
     data,
-    endpoint: `game/${game._id}/join/${game.joinLink}`,
+    endpoint: `game/${game._id}/join`,
     send: {
+      query: { joinLink: game.joinLink },
       loggedInUser: { _id: game.invited[0] },
     },
     expect: {

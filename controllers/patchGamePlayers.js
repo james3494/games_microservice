@@ -2,7 +2,7 @@ module.exports = {
   buildPatchGamePlayers({ joinGame, leaveGame, throwError, getLoggedIn }) {
     return async function (httpRequest) {
       const { _id, leaveOrJoin } = httpRequest.params;
-      let { user_id, joinLink } = httpRequest.params;
+      let { user_id, joinLink } = httpRequest.query;
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
@@ -15,6 +15,7 @@ module.exports = {
 
       // default to the logged in user
       if (!user_id) user_id = loggedIn._id;
+
 
       if (
         loggedIn._id !== user_id &&

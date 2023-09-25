@@ -33,13 +33,13 @@ module.exports = {
         });
       }
 
-      const joinLinkAcceptable = joinLink && game.joinLink !== joinLink;
+      const joinLinkAcceptable = joinLink && game.joinLink === joinLink;
       const invitedAcceptable = game.invited.includes(user_id);
 
       if (!joinLinkAcceptable && !invitedAcceptable) {
         throwError({
           title: "You must either supply a valid joinLink or be invited to join a game.",
-          error: "game-user-not-invited",
+          error: "game-invalid-joinLink",
           status: 403,
         });
       }

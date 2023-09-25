@@ -9,7 +9,7 @@ module.exports = [
     send: { apiKey: null },
     expect: {
       body: {
-        error: "takeout-microservice-invalid-api-key",
+        error: "games-microservice-invalid-api-key",
         status: 403,
       },
       statusCode: 403,
@@ -22,7 +22,7 @@ module.exports = [
     send: { apiKey: "thewrongapikey" },
     expect: {
       body: {
-        error: "takeout-microservice-invalid-api-key",
+        error: "games-microservice-invalid-api-key",
         status: 403,
       },
       statusCode: 403,
