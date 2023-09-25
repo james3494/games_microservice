@@ -66,17 +66,10 @@ module.exports = {
         ...(admins ? { admins } : {}),
       });
 
-      if (modifiedCount !== 1) {
-        throwError({
-          title: "There was an unknown error editing the game.",
-          error: "game-unknown-error",
-          status: 400,
-        });
-      }
-
       return {
         headers: { "Content-Type": "application/json" },
-        status: 200
+        status: 200,
+        body: { modified: modifiedCount >= 1 }
       };
     };
   },
