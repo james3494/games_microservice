@@ -10,7 +10,7 @@ function shuffleArray(array) {
 }
 
 module.exports = {
-   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, verifyPack }) {
+   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, filterPackPurchases }) {
     return async function ({ _id }) {
       const gameInfo = await gamesDb.findById({ _id });
       if (!gameInfo) {
@@ -31,7 +31,8 @@ module.exports = {
         });
       }
 
-      if (!verifyPack(game)) {
+      const adminPurchases = await filterPackPurchases({ packId: game.getPackId(), userId: game.getAdmins() });
+      if (adminPurchases.length === 0) {
         throwError({
           title: `There are not the necessary permissions to use this pack for this game.`,
           error: "game-pack-error",

@@ -15,7 +15,7 @@ module.exports = {
       } else filterObj = filters;
 
       const foundGames = await filterGames(filterObj);
-      const loggedInIsAdmin = loggedIn.admin.takeout || loggedIn.admin.super;
+      const loggedInIsAdmin = loggedIn?.admin.takeout || loggedIn?.admin.super;
 
       let body = foundGames
         .filter((game) => {
@@ -24,10 +24,10 @@ module.exports = {
           if (loggedInIsAdmin) return true;
 
           // b) you are a player in the game
-          if (game.players.includes(loggedIn._id)) return true;
+          if (game.players.includes(loggedIn?._id)) return true;
 
           // c) you are invited to the game
-          if (game.invited.includes(loggedIn._id)) return true;
+          if (game.invited.includes(loggedIn?._id)) return true;
 
           // d) you supply the correct joinLink for the game
           if (joinLinkPass) return true;
