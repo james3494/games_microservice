@@ -30,7 +30,7 @@ const initiateGame = makeInitiateGame({
   throwError,
   filterTakeoutMethods,
   createTakeout,
-  shuffleArray,
+  verifyPack
 });
 const removeGame = makeRemoveGame({
   gamesDb,
@@ -66,13 +66,8 @@ const gamesService = Object.freeze({
 
 module.exports = { ...gamesService };
 
-function shuffleArray(array) {
-  let b = [...array];
-  for (let i = b.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [b[i], b[j]] = [b[j], b[i]];
-  }
-  return b;
+function verifyPack(game) {
+  return true;
 }
 
 async function filterTakeoutMethods({ ...filters }) {

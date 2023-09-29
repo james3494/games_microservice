@@ -1,7 +1,16 @@
 const { makeGame } = require('../entities');
 
+function shuffleArray(array) {
+  let b = [...array];
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+
 module.exports = {
-   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, shuffleArray }) {
+   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, verifyPack }) {
     return async function ({ _id }) {
       const gameInfo = await gamesDb.findById({ _id });
       if (!gameInfo) {
@@ -19,6 +28,15 @@ module.exports = {
           error: "game-already-started",
           status: 400,
           detail: "You cannot initiate a game which has already started"
+        });
+      }
+
+      if (!verifyPack(game)) {
+        throwError({
+          title: `There are not the necessary permissions to use this pack for this game.`,
+          error: "game-pack-error",
+          status: 403,
+          detail: "The game admin must have purchased / downloaded the pack."
         });
       }
 
