@@ -10,8 +10,7 @@ const testGame = {
   _id: "clm67jlrk0005qire3wpf97tp",
   location: "Brendan the Navigator",
   title: "Brendans birthday party",
-  theme: "party",
-  difficulty: 3,
+  packId: "clm38831h0002cjrebqfqgkca",
   expectedStartTime: Date.now() + 24 * 60 * 60 * 1000, // starts in 24hrs
   description: "This is my first game, please come and join",
   invited: ["clm38831h0002cjrebqfqgkca", "clm39w2hf0002glre11it9nq6"],
@@ -41,40 +40,7 @@ module.exports = [
         },
       }
     },
-    {
-      should: "should return an error for an invalid difficulty",
-      endpoint,
-      method, 
-      data,
-      send: {
-        loggedInUser,
-        body: { ...testGame, difficulty: 11 }
-      },
-      expect: {
-        statusCode: 400,
-        body: {
-          error: "game-invalid-difficulty",
-          status: 400
-        },
-      }
-    },
-    {
-      should: "should return an error for an invalid theme",
-      endpoint,
-      method, 
-      data,
-      send: {
-        loggedInUser,
-        body: { ...testGame, theme: "IAMAFAKETHEME" }
-      },
-      expect: {
-        statusCode: 400,
-        body: {
-          error: "game-invalid-theme",
-          status: 400
-        },
-      }
-    },
+
     {
       should: "should return an insertedId and a successful status. The game should have been created",
       endpoint,

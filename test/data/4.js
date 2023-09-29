@@ -5,8 +5,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",
@@ -34,8 +33,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",
@@ -62,8 +60,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",
@@ -90,8 +87,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",
@@ -119,8 +115,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",
@@ -147,8 +142,7 @@ module.exports = {
       createdOn: 1693859411602,
       modifiedOn: 1693859411602,
       createdBy: "clm256k9w00003g5xafvyw4ld",
-      theme: "party",
-      difficulty: 3,
+      packId: "clm37ujq700026bre6kfmdca7",
       description: "This is my first game, please come and join",
       players: [
         "clm25hoqi0002jhre5soi09vx",

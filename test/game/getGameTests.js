@@ -1,9 +1,8 @@
-const returnFields = ({ _id, location, description, difficulty, theme, players, invited, title, photos, joinLink, admins, startTime, expectedStartTime, maxDuration, status, finishTime }) => ({
+const returnFields = ({ _id, location, description, packId, players, invited, title, photos, joinLink, admins, startTime, expectedStartTime, maxDuration, status, finishTime }) => ({
   _id,
   location,
   description,
-  difficulty,
-  theme,
+  packId,
   players,
   invited,
   admins,

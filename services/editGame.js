@@ -29,13 +29,12 @@ module.exports = {
         title: toEdit.getTitle(),
         photos: toEdit.getPhotos(),
         description: toEdit.getDescription(),
-        difficulty: toEdit.getDifficulty(),
         expectedStartTime: toEdit.getExpectedStartTime(),
         maxDuration: toEdit.getMaxDuration(),
         location: toEdit.getLocation(),
         admins: toEdit.getAdmins(),
         invited: toEdit.getInvited(),
-        theme: toEdit.getTheme(),
+        packId: toEdit.getPackId(),
         modifiedOn: Date.now(),
       });
 

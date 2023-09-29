@@ -25,8 +25,7 @@ module.exports = {
       let players = game.getPlayers();
 
       let potentialTakeoutMethods = await filterTakeoutMethods({
-        difficulty: game.getDifficulty(),
-        themes: game.getTheme(),
+        packId: game.getPackId(),
         disabled: false
       });
 
