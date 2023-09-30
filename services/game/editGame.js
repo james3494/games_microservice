@@ -1,4 +1,4 @@
-const { makeGame } = require('../entities');
+const { makeGame } = require('../../entities');
 
 // TODO: depending on the status, some fields will no longer be editable.
 

@@ -1,4 +1,4 @@
-const { makeTakeout } = require('../entities');
+const { makeTakeout } = require('../../entities');
 
 module.exports = {
    makeCreateTakeout ({ takeoutsDb }) {

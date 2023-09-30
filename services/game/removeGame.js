@@ -1,4 +1,4 @@
-const { makeGame } = require('../entities');
+const { makeGame } = require('../../entities');
 
 module.exports = {
    makeRemoveGame ({ gamesDb, filterTakeouts, removeTakeouts, throwError }) {

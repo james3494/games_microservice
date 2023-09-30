@@ -1,4 +1,4 @@
-const { makeTakeout } = require('../entities');
+const { makeTakeout } = require('../../entities');
 // status is the only editable field
 
 module.exports = {

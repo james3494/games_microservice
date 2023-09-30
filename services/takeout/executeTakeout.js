@@ -5,7 +5,7 @@ module.exports = {
     filterTakeouts,
     createTakeout,
     editTakeout,
-    gamesDb,
+    editGame,
   }) {
     return async function ({ _id }) {
       const takeoutInfo = await takeoutsDb.findById({ _id });
@@ -49,7 +49,7 @@ module.exports = {
         });
       } else {
         // all takeouts completed - i's the end of the game
-        await gamesDb.update({
+        await editGame({
           _id: takeoutInfo.gameId,
           finishTime: Date.now(),
           status: "finished",

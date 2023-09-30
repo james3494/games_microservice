@@ -1,5 +1,5 @@
 module.exports = {
-  buildPutTakeoutStatus({
+  buildPutTakeoutExecuted({
     executeTakeout,
     throwError,
     getLoggedIn,
