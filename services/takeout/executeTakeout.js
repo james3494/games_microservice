@@ -3,7 +3,7 @@ module.exports = {
     takeoutsDb,
     throwError,
     filterTakeouts,
-    createTakeout,
+    createTakeouts,
     editTakeout,
     editGame,
   }) {
@@ -39,14 +39,14 @@ module.exports = {
       const nextTakeout = filteredTakeouts[0];
 
       if (nextTakeout.targetId !== takeoutInfo.chaserId) {
-        await createTakeout({
+        await createTakeouts([{
           chaserId: takeoutInfo.chaserId,
           targetId: nextTakeout.targetId,
           gameId: takeoutInfo.gameId,
           takeoutMethodId: nextTakeout.takeoutMethodId,
           methodText: nextTakeout.methodText,
           status: "inProgress",
-        });
+        }]);
       } else {
         // all takeouts completed - i's the end of the game
         await editGame({

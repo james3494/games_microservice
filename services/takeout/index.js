@@ -1,6 +1,6 @@
 const { takeoutsDb } = require("../../dataAccess");
 
-const { makeCreateTakeout } = require("./createTakeout");
+const { makeCreateTakeouts } = require("./createTakeouts");
 const { makeExecuteTakeout } = require("./executeTakeout");
 const { makeEditTakeout } = require("./editTakeout");
 const { makeFilterTakeouts } = require("./filterTakeouts");
@@ -11,7 +11,7 @@ const throwError = require("errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });
 
-const createTakeout = makeCreateTakeout({ takeoutsDb });
+const createTakeouts = makeCreateTakeouts({ takeoutsDb });
 const editTakeout = makeEditTakeout({ takeoutsDb, throwError });
 const filterTakeouts = makeFilterTakeouts({ takeoutsDb, throwError });
 const removeTakeouts = makeRemoveTakeouts({ takeoutsDb, throwError });
@@ -19,13 +19,13 @@ const executeTakeout = makeExecuteTakeout({
   takeoutsDb,
   throwError,
   filterTakeouts,
-  createTakeout,
+  createTakeouts,
   editTakeout,
   editGame,
 });
 
 module.exports = {
-  createTakeout,
+  createTakeouts,
   editTakeout,
   filterTakeouts,
   executeTakeout,

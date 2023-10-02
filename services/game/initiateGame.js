@@ -1,4 +1,4 @@
-const { makeGame } = require('../../entities');
+const { makeGame } = require("../../entities");
 
 function shuffleArray(array) {
   let b = [...array];
@@ -10,7 +10,13 @@ function shuffleArray(array) {
 }
 
 module.exports = {
-   makeInitiateGame ({ gamesDb, throwError, filterTakeoutMethods, createTakeout, filterPackPurchases }) {
+  makeInitiateGame({
+    gamesDb,
+    throwError,
+    filterTakeoutMethods,
+    createTakeouts,
+    filterPackPurchases,
+  }) {
     return async function ({ _id }) {
       const gameInfo = await gamesDb.findById({ _id });
       if (!gameInfo) {
@@ -22,22 +28,25 @@ module.exports = {
       }
       const game = makeGame({ ...gameInfo });
       const status = game.getStatus();
-      if (status !== 'awaiting') {
+      if (status !== "awaiting") {
         throwError({
           title: `Game already started`,
           error: "game-already-started",
           status: 400,
-          detail: "You cannot initiate a game which has already started"
+          detail: "You cannot initiate a game which has already started",
         });
       }
 
-      const adminPurchases = await filterPackPurchases({ packId: game.getPackId(), userId: game.getAdmins() });
+      const adminPurchases = await filterPackPurchases({
+        packId: game.getPackId(),
+        userId: game.getAdmins(),
+      });
       if (adminPurchases.length === 0) {
         throwError({
           title: `There are not the necessary permissions to use this pack for this game.`,
           error: "game-pack-error",
           status: 403,
-          detail: "The game admin must have purchased / downloaded the pack."
+          detail: "The game admin must have purchased / downloaded the pack.",
         });
       }
 
@@ -45,7 +54,7 @@ module.exports = {
 
       let potentialTakeoutMethods = await filterTakeoutMethods({
         packId: game.getPackId(),
-        disabled: false
+        disabled: false,
       });
 
       if (players.length > potentialTakeoutMethods.length) {
@@ -53,7 +62,8 @@ module.exports = {
           title: `More players than available takeoutMethods`,
           error: "game-insufficient-takeout-methods",
           status: 400,
-          detail: "You could either ask an admin to add more takeoutMethods or reduce the size of the game."
+          detail:
+            "You could either ask an admin to add more takeoutMethods or reduce the size of the game.",
         });
       }
       if (players.length < 2) {
@@ -61,7 +71,7 @@ module.exports = {
           title: `You must have at least 2 players to start a game`,
           error: "game-insufficient-players",
           status: 400,
-          detail: "You could invite more players to the game"
+          detail: "You could invite more players to the game",
         });
       }
 
@@ -69,24 +79,22 @@ module.exports = {
       players = shuffleArray(players);
       potentialTakeoutMethods = shuffleArray(potentialTakeoutMethods);
 
-      players.forEach(async (playerId, index) => {
-        await createTakeout({
+      await createTakeouts(
+        players.map((playerId, index) => ({
           chaserId: players[index],
-          targetId: players[ (index + 1) % players.length ],
+          targetId: players[(index + 1) % players.length],
           gameId: _id,
           takeoutMethodId: potentialTakeoutMethods[index]._id,
           methodText: potentialTakeoutMethods[index].description,
-          status: 'inProgress'
-        })
-      })
-
+          status: "inProgress",
+        }))
+      );
 
       return await gamesDb.update({
         _id,
-        status: 'inProgress',
+        status: "inProgress",
         startTime: Date.now(),
       });
-
     };
-  }
+  },
 };
