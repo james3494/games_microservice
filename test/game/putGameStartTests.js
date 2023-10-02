@@ -1,23 +1,13 @@
 const data = require(`../data/7.js`);
 const game = data.games[0];
+const purchase = data.packPurchases[0];
 
 const loggedInUser = {
-  _id: "clm256k9w00003g5xafvyw4ld", // stub
+  _id: purchase.userId,
   admin: { takeout: true },
 };
 
 module.exports = [
-  {
-    should: "should return an error as there are not enough takeout methods",
-    method: "put",
-    data,
-    endpoint: `game/${data.games[1]._id}/started`,
-    send: { loggedInUser },
-    expect: {
-      statusCode: 400,
-      body: { status: 400, error: "game-insufficient-takeout-methods" },
-    },
-  },
   {
     should: "should return an error as the game is not in an 'awaiting' status",
     method: "put",

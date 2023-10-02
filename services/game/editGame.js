@@ -35,6 +35,8 @@ module.exports = {
         admins: toEdit.getAdmins(),
         invited: toEdit.getInvited(),
         packId: toEdit.getPackId(),
+        status: toEdit.getStatus(),
+        finishTime: toEdit.getFinishTime(),
         modifiedOn: Date.now(),
       });
 

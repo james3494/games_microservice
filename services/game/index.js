@@ -7,7 +7,9 @@ const { makeCreateGame } = require("./createGame");
 const { makeRemoveGame } = require("./removeGame");
 const { makeJoinGame } = require("./joinGame");
 const { makeLeaveGame } = require("./leaveGame");
-const { createTakeouts, removeTakeouts, filterTakeouts } = require("../takeout");
+const { makeExecuteTakeout } = require("./executeTakeout");
+
+const { createTakeouts, removeTakeouts, filterTakeouts, editTakeout } = require("../takeout");
 const { filterTakeoutMethods } = require("../takeoutMethod");
 const { filterPackPurchases } = require("../packPurchase");
 
@@ -33,6 +35,13 @@ const removeGame = makeRemoveGame({
 });
 const joinGame = makeJoinGame({ gamesDb, throwError });
 const leaveGame = makeLeaveGame({ gamesDb, throwError });
+const executeTakeout = makeExecuteTakeout({
+  throwError,
+  filterTakeouts,
+  createTakeouts,
+  editTakeout,
+  editGame,
+});
 
 module.exports = {
   createGame,
@@ -42,5 +51,6 @@ module.exports = {
   removeGame,
   joinGame,
   leaveGame,
+  executeTakeout
 };
 

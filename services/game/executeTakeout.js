@@ -7,7 +7,7 @@ module.exports = {
     editGame,
   }) {
     return async function ({ _id }) {
-      const takeoutInfo = await filterTakeouts({ _id })[0];
+      const takeoutInfo = (await filterTakeouts({ _id }))[0];
       if (!takeoutInfo) {
         throwError({
           title: `No takeout found to execute.`,

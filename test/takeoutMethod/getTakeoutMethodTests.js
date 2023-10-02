@@ -1,8 +1,8 @@
-
-const returnFields = ({ _id, description, packId }) => ({
+const returnFields = ({ _id, description, packId, numberPlays }) => ({
   _id,
   description,
-  packId
+  packId,
+  numberPlays,
 });
 
 const data = require(`../data/11.js`);
@@ -23,7 +23,7 @@ module.exports = [
     send: { loggedInUser },
     expect: {
       statusCode: 200,
-      body: returnFields(data.takeoutMethods[0]),
+      body: returnFields({ ...data.takeoutMethods[0], numberPlays: 0 }),
     },
   },
 ];

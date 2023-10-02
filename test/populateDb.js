@@ -6,17 +6,10 @@ b) an object with collection keys. This corresponds to direct data (similar to w
 c) falsy - implies the data populated doesn't matter - this will do nothing. 
 Similarly, if a particular database is blank it implies the data doesn't matter.
 
-Structure of data:
-
-data = {
-    games: [],
-    takeouts: [],
-    takeoutMethods: []
-}
 
 */
 
-const { takeoutMethodsDb, takeoutsDb, gamesDb } = require('../dataAccess');
+const { takeoutMethodsDb, takeoutsDb, gamesDb, packsDb, ratingsDb, packPurchasesDb } = require('../dataAccess');
 
 
 module.exports = async (data) => {
@@ -38,6 +31,19 @@ module.exports = async (data) => {
     if (data.takeoutMethods) {
         await takeoutMethodsDb.removeAll()
         if (data.takeoutMethods.length) await takeoutMethodsDb.insertMany(data.takeoutMethods)
+    }
+
+    if (data.packs) {
+        await packsDb.removeAll()
+        if (data.packs.length) await packsDb.insertMany(data.packs)
+    }
+    if (data.packPurchases) {
+        await packPurchasesDb.removeAll()
+        if (data.packPurchases.length) await packPurchasesDb.insertMany(data.packPurchases)
+    }
+    if (data.ratings) {
+        await ratingsDb.removeAll()
+        if (data.ratings.length) await ratingsDb.insertMany(data.ratings)
     }
 
 }
