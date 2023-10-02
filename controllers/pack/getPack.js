@@ -1,5 +1,5 @@
 module.exports = {
-    buildGetPack({ filterPacks, filterTakeoutMethods, filterPackPurchases, throwError }) {
+    buildGetPack({ filterPacks, filterGames, filterTakeoutMethods, filterPackPurchases, throwError }) {
       return async function (httpRequest) {
         const { ...filters } = httpRequest.query;
         const { _id } = httpRequest.params;
@@ -24,7 +24,7 @@ module.exports = {
             difficulty: pack.difficulty,
             numberTakeoutMethods: (await filterTakeoutMethods({ packId: pack._id, disabled: false })).length,
             numberPurchases: (await filterPackPurchases({ packId: pack._id })).length,
-            numberPlays: ""
+            numberPlays: (await filterGames({ packId: pack._id })).length,
           }));
   
         if (_id) {

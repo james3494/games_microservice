@@ -1,7 +1,6 @@
-// check this user was the chaser for the takeout
 
 module.exports = {
-    buildPostRating({ createRating, throwError, getLoggedIn }) {
+    buildPostRating({ createRating, filterTakeouts, throwError, getLoggedIn }) {
       return async function (httpRequest) {
         const { ...ratingInfo } = httpRequest.body;
   
@@ -13,6 +12,17 @@ module.exports = {
             status: 403,
           });
         }
+        const isChaser = (
+          await filterTakeouts({ _id: rating.takeoutId })
+        )[0].chaserId === loggedIn._id;
+        if (!isChaser) {
+          throwError({
+            title: "You must be the chaser to create a rating for a takeoutMethod.",
+            error: "rating-not-chaser",
+            status: 403,
+          });
+        }
+
 
         const { insertedId } = await createRating({
           createdBy: loggedIn._id,

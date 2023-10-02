@@ -1,6 +1,6 @@
 
 module.exports = {
-  buildGetTakeoutMethod({ filterTakeoutMethods, throwError, getLoggedIn }) {
+  buildGetTakeoutMethod({ filterTakeoutMethods, filterTakeouts, throwError, getLoggedIn }) {
     return async function (httpRequest) {
       const { secret, ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
@@ -31,10 +31,11 @@ module.exports = {
       } else filterObj = filters;
 
       const filtered = await filterTakeoutMethods(filterObj);
-      let body = filtered.map((takeoutMethod) => ({
+      let body = filtered.map(async(takeoutMethod) => ({
         _id: takeoutMethod._id,
         description: takeoutMethod.description,
         packId: takeoutMethod.packId,
+        numberPlays: (await filterTakeouts({ takeoutMethodId: takeoutMethod._id })).length,
       }));
 
       if (_id) {

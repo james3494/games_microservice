@@ -5,6 +5,7 @@ const {
   filterTakeoutMethods,
   filterPackPurchases,
   filterRatings,
+  filterGames
 } = require("../../services");
 
 const { buildPostPack } = require("./postPack");
@@ -21,7 +22,7 @@ module.exports = ({ getLoggedIn, throwError }) => {
 
   const patchPack = buildPatchPack({
     editPack,
-    filterPacks,
+    filterGames,
     throwError,
     getLoggedIn,
   });
@@ -32,6 +33,7 @@ module.exports = ({ getLoggedIn, throwError }) => {
     getLoggedIn,
     filterTakeoutMethods,
     filterPackPurchases,
+    filterGames
   });
 
   const getPackRating = buildGetPackRating({

@@ -4,6 +4,7 @@ const {
   getTakeoutMethod,
   getTakeoutMethodRating,
   deleteTakeoutMethod,
+  patchTakeoutMethod
 } = require("../controllers");
 
 module.exports = {
@@ -15,6 +16,10 @@ module.exports = {
     api.put(
       `${process.env.PATH_ROUTE}/takeoutMethod/:_id/disabled`,
       makeExpressCallback(putTakeoutMethodDisabled)
+    );
+    api.patch(
+      `${process.env.PATH_ROUTE}/takeoutMethod/:_id`,
+      makeExpressCallback(patchTakeoutMethod)
     );
     api.get(
       `${process.env.PATH_ROUTE}/takeoutMethod`,

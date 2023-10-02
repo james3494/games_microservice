@@ -4,11 +4,13 @@ const {
   editTakeoutMethod,
   filterTakeoutMethods,
   removeTakeoutMethod,
-  filterRatings
+  filterRatings,
+  filterTakeouts
 } = require("../../services");
 
 const { buildPostTakeoutMethod } = require("./postTakeoutMethod");
 const { buildPutTakeoutMethodDisabled } = require("./putTakeoutMethodDisabled");
+const { buildPatchTakeoutMethod } = require("./patchTakeoutMethod");
 const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
 const { buildGetTakeoutMethodRating } = require("./getTakeoutMethodRating");
 const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
@@ -17,6 +19,12 @@ module.exports = ({ throwError, getLoggedIn }) => {
   const postTakeoutMethod = buildPostTakeoutMethod({
     createTakeoutMethod,
     createManyTakeoutMethods,
+    throwError,
+    getLoggedIn,
+  });
+  const patchTakeoutMethod = buildPatchTakeoutMethod({
+    editTakeoutMethod,
+    filterTakeouts,
     throwError,
     getLoggedIn,
   });
@@ -29,6 +37,7 @@ module.exports = ({ throwError, getLoggedIn }) => {
 
   const getTakeoutMethod = buildGetTakeoutMethod({
     filterTakeoutMethods,
+    filterTakeouts,
     throwError,
     getLoggedIn,
   });
@@ -50,5 +59,6 @@ module.exports = ({ throwError, getLoggedIn }) => {
     getTakeoutMethod,
     deleteTakeoutMethod,
     getTakeoutMethodRating,
+    patchTakeoutMethod
   };
 };
