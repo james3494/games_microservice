@@ -1,5 +1,5 @@
 module.exports = {
-  buildMakeTakeout({ Id, throwError, validation }) {
+  buildMakeTakeout({ Id, throwError, validate }) {
     return function makeTakeout({
       chaserId,
       targetId,
@@ -12,8 +12,6 @@ module.exports = {
       startedAt = Date.now(),
       _id = Id.makeId(),
     } = {}) {
-      
-      
       const getAll = () => ({
         createdOn,
         _id,
@@ -24,30 +22,12 @@ module.exports = {
         targetId,
         methodText,
         completedAt,
-        startedAt
-      })
-
-
-      Object.entries( getAll() ).forEach(([key, value]) => {
-        if (!validation[key])
-          throwError({
-            status: 500,
-            title: "no validation found for " + key,
-            error: "validation-missing-key",
-          });
-        const { passed, rule, reason } = validation[key](value);
-        if (!passed)
-          throwError({
-            status: 400,
-            error: "takeout-invalid-" + key,
-            title: rule,
-            detail: reason,
-          });
+        startedAt,
       });
 
+      validate(getAll());
 
-
-      if ( completedAt && !["success", "fail"].includes(status) ) {
+      if (completedAt && !["success", "fail"].includes(status)) {
         throwError({
           title:
             "CompletedAt must only be set if the status is 'success' or 'fail'.",
@@ -56,11 +36,9 @@ module.exports = {
         });
       }
 
-
-      if ( completedAt && completedAt < startedAt ) {
+      if (completedAt && completedAt < startedAt) {
         throwError({
-          title:
-            "completedAt must be after the game started.",
+          title: "completedAt must be after the game started.",
           error: "takeout-invalid-completedAt",
           status: 400,
         });

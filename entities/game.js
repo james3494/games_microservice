@@ -1,5 +1,5 @@
 module.exports = {
-  buildMakeGame({ Id, throwError, validation }) {
+  buildMakeGame({ Id, throwError, validate }) {
     return function makeGame({
       location, // in time this can be coordinates or something chosen on a map
       startTime,
@@ -43,20 +43,7 @@ module.exports = {
       })
 
 
-      Object.entries( getAll() ).forEach(([key, value]) => {
-        if (!validation[key]) throwError({
-          status: 500,
-          title: "no validation found for " + key,
-          error: "validation-missing-key"
-        })
-        const { passed, rule, reason } = validation[key](value)
-        if ( !passed ) throwError({
-          status: 400,
-          error: "game-invalid-" + key,
-          title: rule,
-          detail: reason
-        })
-      })
+      validate(getAll());
 
 
       // validation between fields

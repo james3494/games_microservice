@@ -1,0 +1,32 @@
+const { createRating, editRating, filterRatings } = require("../../services");
+
+const { buildPostRating } = require("./postRating");
+const { buildPatchRating } = require("./patchRating");
+const { buildGetRating } = require("./getRating");
+
+module.exports = ({ throwError, getLoggedIn }) => {
+  const postRating = buildPostRating({
+    createRating,
+    throwError,
+    getLoggedIn,
+  });
+
+  const patchRating = buildPatchRating({
+    editRating,
+    filterRatings,
+    throwError,
+    getLoggedIn,
+  });
+
+  const getRating = buildGetRating({
+    filterRatings,
+    throwError,
+    getLoggedIn,
+  });
+
+  return {
+    postRating,
+    patchRating,
+    getRating,
+  };
+};

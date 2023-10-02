@@ -23,4 +23,8 @@ const getLoggedIn = (httpRequest) => {
 module.exports = {
   ...require("./game")({ throwError, getLoggedIn }),
   ...require("./takeout")({ throwError, getLoggedIn }),
+  ...require("./pack")({ throwError, getLoggedIn }),
+  ...require("./packPurchase")({ throwError, getLoggedIn }),
+  ...require("./rating")({ throwError, getLoggedIn }),
+  ...require("./takeoutMethod")({ throwError, getLoggedIn }),
 };
