@@ -6,27 +6,23 @@ module.exports = {
     getLoggedIn,
   }) {
     return async function (httpRequest) {
-      const { secret, ...filters } = httpRequest.query;
+      const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
 
-      if (secret && secret === process.env.SECRET) {
-        // skip the tests - this comes directly from another microservice
-      } else {
-        const loggedIn = getLoggedIn(httpRequest);
-        if (!loggedIn) {
-          throwError({
-            title: "You must be logged in to get a takeoutMethod.",
-            error: "takeoutMethod-not-logged-in",
-            status: 403,
-          });
-        }
-        if (!loggedIn.admin.takeout && !loggedIn.admin.super) {
-          throwError({
-            title: "You must be an admin to get a takeoutMethod.",
-            error: "takeoutMethod-insufficient-admin",
-            status: 403,
-          });
-        }
+      const loggedIn = getLoggedIn(httpRequest);
+      if (!loggedIn) {
+        throwError({
+          title: "You must be logged in to get a takeoutMethod.",
+          error: "takeoutMethod-not-logged-in",
+          status: 403,
+        });
+      }
+      if (!loggedIn.admin.takeout && !loggedIn.admin.super) {
+        throwError({
+          title: "You must be an admin to get a takeoutMethod.",
+          error: "takeoutMethod-insufficient-admin",
+          status: 403,
+        });
       }
 
       let filterObj = {};

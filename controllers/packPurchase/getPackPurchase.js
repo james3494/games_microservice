@@ -1,7 +1,7 @@
 module.exports = {
   buildGetPackPurchase({ filterPackPurchases, throwError, getLoggedIn }) {
     return async function (httpRequest) {
-      const { secret, ...filters } = httpRequest.query;
+      const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
       const loggedIn = getLoggedIn(httpRequest);
 
@@ -16,18 +16,13 @@ module.exports = {
 
       let body = foundPackPurchases
         .filter((packPurchase) => {
-          if (secret && secret === process.env.SECRET) {
-            // skip the tests - this comes directly from another microservice
-            return true;
-          } else {
-            // can get a packPurchase if:
-            // a) you are an admin
-            if (loggedInIsAdmin) return true;
+          // can get a packPurchase if:
+          // a) you are an admin
+          if (loggedInIsAdmin) return true;
 
-            // b) you own this packPurchase
-            if (packPurchase.userId === loggedIn._id) return true;
-            return false;
-          }
+          // b) you own this packPurchase
+          if (packPurchase.userId === loggedIn._id) return true;
+          return false;
         })
         .map((packPurchase) => ({
           _id: packPurchase._id,
