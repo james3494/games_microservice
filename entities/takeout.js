@@ -10,11 +10,13 @@ module.exports = {
       status = "inProgress",
       createdOn = Date.now(),
       startedAt = Date.now(),
+      secret = Id.makeId(),
       _id = Id.makeId(),
     } = {}) {
       const getAll = () => ({
         createdOn,
         _id,
+        secret,
         status,
         takeoutMethodId,
         gameId,
@@ -47,6 +49,7 @@ module.exports = {
       return Object.freeze({
         getCreatedOn: () => createdOn,
         getId: () => _id,
+        getSecret: () => secret,
         getStatus: () => status,
         getTakeoutMethodId: () => takeoutMethodId,
         getMethodText: () => methodText,

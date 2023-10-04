@@ -43,6 +43,9 @@ module.exports = {
           status: takeout.status,
           completedAt: takeout.completedAt,
           startedAt: takeout.startedAt,
+          ...(loggedInIsAdmin || loggedIn._id === takeout.chaserId
+          ? { secret: takeout.secret }
+          : {}),
         }));
 
       if (_id) {

@@ -7,7 +7,7 @@ module.exports = {
   }) {
     return async function (httpRequest) {
       let { _id } = httpRequest.params;
-      const { gameId, targetId } = httpRequest.query;
+      const { gameId, targetId, secret } = httpRequest.query;
       const loggedIn = getLoggedIn(httpRequest);
 
       if (!loggedIn) {
@@ -40,12 +40,15 @@ module.exports = {
         _id = takeout._id;
       }
 
+
       if (!takeout) takeout = (await filterTakeouts({ _id }))[0];
 
       const isTarget = takeout.targetId === loggedIn._id;
+      const isAdmin = loggedIn.admin.super || loggedIn.admin.takeout;
+      const secretPass = secret && secret === takeout.secret;
 
-      // only the target can legitimise the takeout
-      if (!isTarget && !loggedIn.admin.super && !loggedIn.admin.takeout) {
+      // the takeout can be legitimised by : a) the target, b) an admin, c) another player with the secret
+      if (!isTarget && !isAdmin && !secretPass) {
         throwError({
           title:
             "You must be an admin to execute a takeout which you are not the target of.",

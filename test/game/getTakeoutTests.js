@@ -7,7 +7,8 @@ const returnFields = ({
   status,
   completedAt,
   startedAt,
-  methodText
+  methodText,
+  secret
 }) => ({
   _id,
   gameId,
@@ -17,7 +18,8 @@ const returnFields = ({
   status,
   completedAt,
   startedAt,
-  methodText
+  methodText,
+  secret
 });
 
 const data = require(`../data/6.js`);
