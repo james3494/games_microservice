@@ -13,7 +13,7 @@ module.exports = {
       admins = [],
       status = "awaiting",
       packId,
-      maxDuration = 1000 * 60 * 60 * 4, // in ms
+      maxDuration, // in ms
       finishTime,
       createdOn = Date.now(),
       modifiedOn = Date.now(),
