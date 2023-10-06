@@ -29,7 +29,7 @@ const { buildPackPurchaseRoutes } = require("./packPurchase");
 const express = require("express");
 const api = express.Router();
 
-api.use(express.json());
+api.use(express.json({limit: '20mb'}));
 
 buildTakeoutRoutes({ makeExpressCallback, api });
 buildGameRoutes({ makeExpressCallback, api });
