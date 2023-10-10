@@ -1,3 +1,5 @@
+const takeout = require("validation/takeout");
+
 module.exports = {
   buildGetTakeoutMethod({
     filterTakeoutMethods,
@@ -36,6 +38,7 @@ module.exports = {
           _id: takeoutMethod._id,
           description: takeoutMethod.description,
           packId: takeoutMethod.packId,
+          disabled: takeoutMethod.disabled,
           numberPlays: (
             await filterTakeouts({ takeoutMethodId: takeoutMethod._id })
           ).length,
