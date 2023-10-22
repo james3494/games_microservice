@@ -20,8 +20,9 @@ module.exports = {
           // a) you are an admin
           if (loggedInIsAdmin) return true;
 
-          // b) you are the chaser
+          // b) you are the chaser or target
           if (loggedIn._id === takeout.chaserId) return true;
+          if (loggedIn._id === takeout.targetId) return true;
 
           // c) you are part of the game and the status is success/fail
           const statusOk =
@@ -33,20 +34,31 @@ module.exports = {
 
           return false;
         })
-        .map((takeout) => ({
-          _id: takeout._id,
-          gameId: takeout.gameId,
-          chaserId: takeout.chaserId,
-          targetId: takeout.targetId,
-          takeoutMethodId: takeout.takeoutMethodId,
-          methodText: takeout.methodText,
-          status: takeout.status,
-          completedAt: takeout.completedAt,
-          startedAt: takeout.startedAt,
-          ...(loggedInIsAdmin || loggedIn._id === takeout.chaserId
-          ? { secret: takeout.secret }
-          : {}),
-        }));
+        .map((takeout) => {
+          if (
+            loggedIn._id === takeout.targetId &&
+            takeout.status === "inProgress"
+          ) {
+            return {
+              _id: takeout._id,
+              gameId: takeout.gameId,
+              targetId: takeout.targetId,
+              secret: takeout.secret,
+            };
+          } else {
+            return {
+              _id: takeout._id,
+              gameId: takeout.gameId,
+              chaserId: takeout.chaserId,
+              targetId: takeout.targetId,
+              takeoutMethodId: takeout.takeoutMethodId,
+              methodText: takeout.methodText,
+              status: takeout.status,
+              completedAt: takeout.completedAt,
+              startedAt: takeout.startedAt,
+            };
+          }
+        });
 
       if (_id) {
         if (body.length < 1) {
