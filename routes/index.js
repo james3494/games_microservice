@@ -1,4 +1,4 @@
-const catchError = require("errorHandling").buildCatchError({
+const catchError = require("../errorHandling").buildCatchError({
   logErrors: process.env.LOG_ERRORS,
 });
 const parseQuery = (query) => {

@@ -3,7 +3,7 @@ const { packPurchasesDb } = require("../../dataAccess");
 const { makeCreatePackPurchase } = require("./createPackPurchase");
 const { makeFilterPackPurchases } = require("./filterPackPurchases");
 
-const throwError = require("errorHandling").buildThrowError({
+const throwError = require("../../errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });
 

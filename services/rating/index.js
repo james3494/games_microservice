@@ -4,7 +4,7 @@ const { makeCreateRating } = require("./createRating");
 const { makeEditRating } = require("./editRating");
 const { makeFilterRatings } = require("./filterRatings");
 
-const throwError = require("errorHandling").buildThrowError({
+const throwError = require("../../errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,
 });
 

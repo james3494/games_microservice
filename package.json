@@ -14,7 +14,6 @@
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
     "dotenv": "^16.0.0",
-    "errorHandling": "git+ssh://git@github.com/james3494/errorHandling.git",
     "validation": "git+ssh://git@github.com/james3494/validation.git",
     "express": "^4.17.3"
   },
