@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
-    "database": "git+ssh://git@github.com/james3494/database.git",
     "dotenv": "^16.0.0",
     "errorHandling": "git+ssh://git@github.com/james3494/errorHandling.git",
     "validation": "git+ssh://git@github.com/james3494/validation.git",

@@ -5,7 +5,7 @@ const { makePackPurchasesDb } = require('./packPurchasesDb');
 const { makeRatingsDb } = require('./ratingsDb');
 const { makeGamesDb } = require('./gamesDb');
 const { makeTakeoutMethodsDb } = require('./takeoutMethodsDb');
-const { makeDb, buildGeneralDb } = require('database');
+const { makeDb, buildGeneralDb } = require('../database');
 
 const takeoutsDb = makeTakeoutsDb({ makeDb, buildGeneralDb });
 const gamesDb = makeGamesDb({ makeDb, buildGeneralDb });
