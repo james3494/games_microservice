@@ -12,7 +12,7 @@ const {
   buildRatingValidation,
   buildPackValidation,
   buildPackPurchaseValidation,
-} = require("validation");
+} = require("../validation");
 
 const throwError = require("../errorHandling").buildThrowError({
   logErrors: process.env.LOG_ERRORS,

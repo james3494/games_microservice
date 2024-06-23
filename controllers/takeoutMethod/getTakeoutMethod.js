@@ -1,5 +1,3 @@
-const takeout = require("validation/takeout");
-
 module.exports = {
   buildGetTakeoutMethod({
     filterTakeoutMethods,

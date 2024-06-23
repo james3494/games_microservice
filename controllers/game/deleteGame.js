@@ -1,5 +1,3 @@
-const game = require("validation/game");
-
 module.exports = {
     buildDeleteGame ({ filterGames, removeGame, getLoggedIn, throwError }) {
       return async function (httpRequest) {

@@ -4,3 +4,6 @@
 [submodule "errorHandling"]
 	path = errorHandling
 	url = git@github.com:james3494/errorHandling.git
+[submodule "validation"]
+	path = validation
+	url = git@github.com:james3494/validation.git
