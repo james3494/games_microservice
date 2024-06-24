@@ -1,24 +1,9 @@
 const catchError = require("../errorHandling").buildCatchError({
   logErrors: process.env.LOG_ERRORS,
 });
-const parseQuery = (query) => {
-  if (query) {
-    let newQuery = {};
-    Object.entries(query).forEach(([key, value]) => {
-      try {
-        newQuery[key] = JSON.parse(value);
-      } catch {
-        newQuery[key] = value;
-      }
-    });
-    return newQuery;
-  }
-};
 const { buildMakeExpressCallback } = require("../expressCallback");
-const makeExpressCallback = buildMakeExpressCallback({
-  catchError,
-  parseQuery,
-});
+const makeExpressCallback = buildMakeExpressCallback({ catchError });
+
 const { buildTakeoutRoutes } = require("./takeout");
 const { buildGameRoutes } = require("./game");
 const { buildTakeoutMethodRoutes } = require("./takeoutMethod");
