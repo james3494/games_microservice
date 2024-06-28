@@ -9,7 +9,7 @@ module.exports = {
       const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
 
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
       if (!loggedIn) {
         throwError({
           title: "You must be logged in to get a takeoutMethod.",

@@ -1,8 +1,8 @@
 module.exports = {
-    buildDeleteGame ({ filterGames, removeGame, getLoggedIn, throwError }) {
+    buildDeleteGame ({ filterGames, removeGame, throwError }) {
       return async function (httpRequest) {
         const { _id } = httpRequest.params;
-        const loggedIn = getLoggedIn(httpRequest);
+        const loggedIn = httpRequest.user;
 
         const game = (await filterGames({ _id }))[0]
 

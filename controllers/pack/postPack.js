@@ -1,9 +1,9 @@
 module.exports = {
-    buildPostPack({ createPack, throwError, getLoggedIn }) {
+    buildPostPack({ createPack, throwError }) {
       return async function (httpRequest) {
         const { ...packInfo } = httpRequest.body;
   
-        const loggedIn= getLoggedIn(httpRequest);
+        const loggedIn= httpRequest.user;
         if (!loggedIn._id) {
           throwError({
             title: "You must be logged in to create a pack.",

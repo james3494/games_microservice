@@ -12,7 +12,7 @@ module.exports = {
       const { title, description, icon, example, difficulty, cost, disabled } =
         httpRequest.body;
       const { _id } = httpRequest.params;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       if (!loggedIn._id) {
         throwError({

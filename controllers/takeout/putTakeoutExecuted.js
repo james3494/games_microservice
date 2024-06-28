@@ -8,7 +8,7 @@ module.exports = {
     return async function (httpRequest) {
       let { _id } = httpRequest.params;
       const { gameId, targetId, secret } = httpRequest.query;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       if (!loggedIn) {
         throwError({

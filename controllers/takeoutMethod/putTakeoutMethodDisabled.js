@@ -1,10 +1,10 @@
 
 module.exports = {
-    buildPutTakeoutMethodDisabled({ editTakeoutMethod, throwError, getLoggedIn }) {
+    buildPutTakeoutMethodDisabled({ editTakeoutMethod, throwError }) {
       return async function (httpRequest) {
         const { disabled } = httpRequest.body; 
         const { _id } = httpRequest.params;
-        const loggedIn = getLoggedIn(httpRequest);
+        const loggedIn = httpRequest.user;
   
         if (!loggedIn) {
           throwError({

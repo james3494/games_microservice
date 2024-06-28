@@ -1,10 +1,10 @@
 // should we also pass in the pack id?
 
 module.exports = {
-  buildGetTakeoutMethodRating({ filterRatings, throwError, getLoggedIn }) {
+  buildGetTakeoutMethodRating({ filterRatings, throwError }) {
     return async function (httpRequest) {
       const { _id } = httpRequest.params;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       const foundRatings = await filterRatings({ takeoutMethodId: _id });
       const loggedInIsAdmin = loggedIn && loggedIn.admin.takeout || loggedIn.admin.super;

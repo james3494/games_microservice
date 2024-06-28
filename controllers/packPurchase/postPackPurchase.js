@@ -1,9 +1,9 @@
 module.exports = {
-  buildPostPackPurchase({ createPackPurchase, throwError, getLoggedIn }) {
+  buildPostPackPurchase({ createPackPurchase, throwError }) {
     return async function (httpRequest) {
       const { ...packPurchaseInfo } = httpRequest.body;
 
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
       if (!loggedIn._id) {
         throwError({
           title: "You must be logged in to create a packPurchase.",

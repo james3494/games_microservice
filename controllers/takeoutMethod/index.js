@@ -15,7 +15,7 @@ const { buildGetTakeoutMethod } = require("./getTakeoutMethod");
 const { buildGetTakeoutMethodRating } = require("./getTakeoutMethodRating");
 const { buildDeleteTakeoutMethod } = require("./deleteTakeoutMethod");
 
-module.exports = ({ throwError, getLoggedIn }) => {
+module.exports = ({ throwError }) => {
   const postTakeoutMethod = buildPostTakeoutMethod({
     createTakeoutMethod,
     createManyTakeoutMethods,

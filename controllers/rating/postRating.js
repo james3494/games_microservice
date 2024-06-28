@@ -1,10 +1,10 @@
 
 module.exports = {
-    buildPostRating({ createRating, filterTakeouts, throwError, getLoggedIn }) {
+    buildPostRating({ createRating, filterTakeouts, throwError }) {
       return async function (httpRequest) {
         const { ...ratingInfo } = httpRequest.body;
   
-        const loggedIn = getLoggedIn(httpRequest);
+        const loggedIn = httpRequest.user;
         if (!loggedIn._id) {
           throwError({
             title: "You must be logged in to create a rating.",

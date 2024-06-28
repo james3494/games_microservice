@@ -7,7 +7,7 @@ const {
 const { buildGetTakeout } = require("./getTakeout");
 const { buildPutTakeoutExecuted } = require("./putTakeoutExecuted");
 
-module.exports = ({ throwError, getLoggedIn }) => {
+module.exports = ({ throwError }) => {
   const getTakeout = buildGetTakeout({
     filterTakeouts,
     throwError,

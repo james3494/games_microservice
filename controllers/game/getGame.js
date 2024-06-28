@@ -1,9 +1,9 @@
 module.exports = {
-  buildGetGame({ filterGames, throwError, getLoggedIn }) {
+  buildGetGame({ filterGames, throwError }) {
     return async function (httpRequest) {
       const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       // if you supply one _id and a joinLink you have a pass - anything that is found is authenticated
       let joinLinkPass = false;

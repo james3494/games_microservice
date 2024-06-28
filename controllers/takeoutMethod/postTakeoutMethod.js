@@ -6,7 +6,7 @@ module.exports = {
     getLoggedIn,
   }) {
     return async function (httpRequest) {
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
       if (!loggedIn._id) {
         throwError({
           title: "You must be logged in to create a takeoutMethod.",

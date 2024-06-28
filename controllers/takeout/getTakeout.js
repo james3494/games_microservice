@@ -1,11 +1,11 @@
 // TODO: add error handling - i.e who can access this?
 
 module.exports = {
-  buildGetTakeout({ filterTakeouts, throwError, getLoggedIn, filterGames }) {
+  buildGetTakeout({ filterTakeouts, throwError, filterGames }) {
     return async function (httpRequest) {
       const { ...filters } = httpRequest.query;
       const { _id } = httpRequest.params;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
       const loggedInIsAdmin = loggedIn.admin.takeout || loggedIn.admin.super;
 
       let filterObj = {};

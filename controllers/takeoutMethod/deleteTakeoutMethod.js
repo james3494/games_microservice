@@ -1,9 +1,9 @@
 
 module.exports = {
-    buildDeleteTakeoutMethod ({ removeTakeoutMethod, getLoggedIn, throwError }) {
+    buildDeleteTakeoutMethod ({ removeTakeoutMethod, throwError }) {
       return async function (httpRequest) {
         const { _id } = httpRequest.params;
-        const loggedIn = getLoggedIn(httpRequest);
+        const loggedIn = httpRequest.user;
 
         if (!loggedIn.admin?.super) {
           throwError({

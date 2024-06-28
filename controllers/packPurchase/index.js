@@ -3,7 +3,7 @@ const { createPackPurchase, filterPackPurchases, filterTakeoutMethods } = requir
 const { buildPostPackPurchase } = require("./postPackPurchase");
 const { buildGetPackPurchase } = require("./getPackPurchase");
 
-module.exports = ({ throwError, getLoggedIn }) => {
+module.exports = ({ throwError }) => {
   const postPackPurchase = buildPostPackPurchase({
     createPackPurchase,
     throwError,

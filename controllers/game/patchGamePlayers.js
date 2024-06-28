@@ -1,9 +1,9 @@
 module.exports = {
-  buildPatchGamePlayers({ joinGame, leaveGame, throwError, getLoggedIn }) {
+  buildPatchGamePlayers({ joinGame, leaveGame, throwError }) {
     return async function (httpRequest) {
       const { _id, leaveOrJoin } = httpRequest.params;
       let { user_id, joinLink } = httpRequest.query;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       if (!loggedIn) {
         throwError({

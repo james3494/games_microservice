@@ -14,7 +14,7 @@ const { buildDeleteGame } = require("./deleteGame");
 const { buildPatchGamePlayers } = require("./patchGamePlayers");
 const { buildPutGameStart } = require("./putGameStart");
 
-module.exports = ({ throwError, getLoggedIn }) => {
+module.exports = ({ throwError }) => {
   const postGame = buildPostGame({
     createGame,
     throwError,

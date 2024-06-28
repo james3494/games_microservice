@@ -1,6 +1,6 @@
 
 module.exports = {
-  buildPatchRating({ editRating, filterRatings, throwError, getLoggedIn }) {
+  buildPatchRating({ editRating, filterRatings, throwError }) {
     return async function (httpRequest) {
       const {
         likeIt,
@@ -11,7 +11,7 @@ module.exports = {
         additionalComments,
       } = httpRequest.body;
       const { _id } = httpRequest.params;
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       if (!loggedIn._id) {
         throwError({

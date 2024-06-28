@@ -1,5 +1,5 @@
 module.exports = {
-  buildPutGame({ editGame, throwError, getLoggedIn, filterGames }) {
+  buildPutGame({ editGame, throwError, filterGames }) {
     return async function (httpRequest) {
       const {
         location,
@@ -15,7 +15,7 @@ module.exports = {
 
       const { _id } = httpRequest.params;
 
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
 
       if (!loggedIn) {
         throwError({

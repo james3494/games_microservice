@@ -4,7 +4,7 @@ const { buildPostRating } = require("./postRating");
 const { buildPatchRating } = require("./patchRating");
 const { buildGetRating } = require("./getRating");
 
-module.exports = ({ throwError, getLoggedIn }) => {
+module.exports = ({ throwError }) => {
   const postRating = buildPostRating({
     createRating,
     filterTakeouts,

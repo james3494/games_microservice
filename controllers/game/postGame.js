@@ -1,9 +1,9 @@
 module.exports = {
-  buildPostGame({ createGame, throwError, getLoggedIn }) {
+  buildPostGame({ createGame, throwError }) {
     return async function (httpRequest) {
       const { ...gameInfo } = httpRequest.body;
 
-      const loggedIn = getLoggedIn(httpRequest);
+      const loggedIn = httpRequest.user;
       if (!loggedIn) {
         throwError({
           title: "You must be logged in to create a game.",
