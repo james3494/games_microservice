@@ -11,13 +11,11 @@ module.exports = ({ throwError }) => {
   const getTakeout = buildGetTakeout({
     filterTakeouts,
     throwError,
-    getLoggedIn,
     filterGames,
   });
   const putTakeoutExecuted = buildPutTakeoutExecuted({
     executeTakeout,
     throwError,
-    getLoggedIn,
     filterTakeouts,
   });
 

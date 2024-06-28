@@ -7,13 +7,11 @@ module.exports = ({ throwError }) => {
   const postPackPurchase = buildPostPackPurchase({
     createPackPurchase,
     throwError,
-    getLoggedIn,
   });
 
   const getPackPurchase = buildGetPackPurchase({
     filterPackPurchases,
     throwError,
-    getLoggedIn,
     filterTakeoutMethods,
   });
 

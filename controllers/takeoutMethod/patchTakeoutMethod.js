@@ -3,7 +3,6 @@ module.exports = {
     editTakeoutMethod,
     filterTakeouts,
     throwError,
-    getLoggedIn,
   }) {
     return async function (httpRequest) {
       const { description } = httpRequest.body;

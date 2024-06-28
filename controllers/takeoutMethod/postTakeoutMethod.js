@@ -3,7 +3,6 @@ module.exports = {
     createTakeoutMethod,
     createManyTakeoutMethods,
     throwError,
-    getLoggedIn,
   }) {
     return async function (httpRequest) {
       const loggedIn = httpRequest.user;

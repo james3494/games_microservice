@@ -20,37 +20,31 @@ module.exports = ({ throwError }) => {
     createTakeoutMethod,
     createManyTakeoutMethods,
     throwError,
-    getLoggedIn,
   });
   const patchTakeoutMethod = buildPatchTakeoutMethod({
     editTakeoutMethod,
     filterTakeouts,
     throwError,
-    getLoggedIn,
   });
 
   const putTakeoutMethodDisabled = buildPutTakeoutMethodDisabled({
     editTakeoutMethod,
     throwError,
-    getLoggedIn,
   });
 
   const getTakeoutMethod = buildGetTakeoutMethod({
     filterTakeoutMethods,
     filterTakeouts,
     throwError,
-    getLoggedIn,
   });
   const getTakeoutMethodRating = buildGetTakeoutMethodRating({
     filterRatings,
     throwError,
-    getLoggedIn,
   });
 
   const deleteTakeoutMethod = buildDeleteTakeoutMethod({
     removeTakeoutMethod,
     throwError,
-    getLoggedIn,
   });
 
   return {

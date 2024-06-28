@@ -6,7 +6,6 @@ module.exports = {
     filterPacks,
     filterGames,
     throwError,
-    getLoggedIn,
   }) {
     return async function (httpRequest) {
       const { title, description, icon, example, difficulty, cost, disabled } =

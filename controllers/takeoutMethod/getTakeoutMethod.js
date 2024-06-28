@@ -3,7 +3,6 @@ module.exports = {
     filterTakeoutMethods,
     filterTakeouts,
     throwError,
-    getLoggedIn,
   }) {
     return async function (httpRequest) {
       const { ...filters } = httpRequest.query;

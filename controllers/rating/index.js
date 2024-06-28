@@ -9,20 +9,17 @@ module.exports = ({ throwError }) => {
     createRating,
     filterTakeouts,
     throwError,
-    getLoggedIn,
   });
 
   const patchRating = buildPatchRating({
     editRating,
     filterRatings,
     throwError,
-    getLoggedIn,
   });
 
   const getRating = buildGetRating({
     filterRatings,
     throwError,
-    getLoggedIn,
   });
 
   return {

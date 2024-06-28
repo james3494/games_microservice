@@ -2,7 +2,6 @@ module.exports = {
   buildPutTakeoutExecuted({
     executeTakeout,
     throwError,
-    getLoggedIn,
     filterTakeouts,
   }) {
     return async function (httpRequest) {

@@ -18,37 +18,31 @@ module.exports = ({ throwError }) => {
   const postGame = buildPostGame({
     createGame,
     throwError,
-    getLoggedIn,
   });
 
   const putGame = buildPutGame({
     editGame,
     throwError,
-    getLoggedIn,
     filterGames,
   });
 
   const getGame = buildGetGame({
     filterGames,
     throwError,
-    getLoggedIn,
   });
   const deleteGame = buildDeleteGame({
     removeGame,
     filterGames,
     throwError,
-    getLoggedIn,
   });
   const patchGamePlayers = buildPatchGamePlayers({
     joinGame,
     leaveGame,
     throwError,
-    getLoggedIn,
   });
   const putGameStart = buildPutGameStart({
     initiateGame,
     throwError,
-    getLoggedIn,
     filterGames,
   });
 
