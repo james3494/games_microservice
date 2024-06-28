@@ -1,12 +1,9 @@
 const catchError = require("../errorHandling").buildCatchError({
   logErrors: process.env.LOG_ERRORS,
 });
-const throwError = require("../errorHandling").buildThrowError({
-  logErrors: process.env.LOG_ERRORS,
-});
 
 const { buildMakeExpressCallback } = require("../expressCallback");
-const makeExpressCallback = buildMakeExpressCallback({ catchError, throwError });
+const makeExpressCallback = buildMakeExpressCallback({ catchError });
 
 const { buildTakeoutRoutes } = require("./takeout");
 const { buildGameRoutes } = require("./game");
