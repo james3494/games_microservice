@@ -3,7 +3,6 @@
 module.exports = {
     buildPatchPack({
         editPack,
-        filterPacks,
         filterGames,
         throwError
     }) {
@@ -32,7 +31,7 @@ module.exports = {
                 packId: _id 
             });
 
-
+            
 
             const { modifiedCount } = await editPack({
                 _id,

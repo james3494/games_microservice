@@ -36,7 +36,7 @@ module.exports = {
                 },
                 status: 201,
                 body: {
-                    modifiedCount, success: modifiedCount == 1 
+                    modifiedCount, success: modifiedCount === 1 
                 }
             };
         };

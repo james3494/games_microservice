@@ -19,7 +19,7 @@ module.exports = {
             const loggedInIsAdmin = loggedIn.admin.takeout || loggedIn.admin.super;
   
             let body = foundRatings
-                .filter((game) => {
+                .filter((rating) => {
                     // can get a rating if:
                     // a) you are an admin
                     if (loggedInIsAdmin) {
@@ -27,7 +27,7 @@ module.exports = {
                     }
   
                     // b) you created this rating
-                    if (foundRatings.createdBy === loggedIn._id) {
+                    if (rating.createdBy === loggedIn._id) {
                         return true;
                     }
                     return false;

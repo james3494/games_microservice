@@ -8,7 +8,7 @@ module.exports = {
                 _id 
             });
 
-            if (takeoutInfo.status == "success" || takeoutInfo.status == "fail") {
+            if (takeoutInfo.status === "success" || takeoutInfo.status === "fail") {
                 throwError({
                     title: `You cannot update the status from ${takeoutInfo.status}.`,
                     error: "takeout-status-fixed",

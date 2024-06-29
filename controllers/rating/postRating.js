@@ -14,7 +14,7 @@ module.exports = {
             }
             const isChaser = (
                 await filterTakeouts({
-                    _id: rating.takeoutId 
+                    _id: ratingInfo.takeoutId 
                 })
             )[0].chaserId === loggedIn._id;
             if (!isChaser) {
