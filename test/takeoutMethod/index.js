@@ -4,10 +4,10 @@ const getTakeoutMethodTests = require("./getTakeoutMethodTests.js");
 const deleteTakeoutMethodTests = require("./deleteTakeoutMethodTests.js");
 
 module.exports = () => {
-  describe("POST /takeoutMethod", () => executeTests(postTakeoutMethodTests));
+    describe("POST /takeoutMethod", () => executeTests(postTakeoutMethodTests));
 
-  describe("GET /takeoutMethod", () => executeTests(getTakeoutMethodTests));
+    describe("GET /takeoutMethod", () => executeTests(getTakeoutMethodTests));
 
-  describe("DELETE /takeoutMethod", () =>
-    executeTests(deleteTakeoutMethodTests));
+    describe("DELETE /takeoutMethod", () =>
+        executeTests(deleteTakeoutMethodTests));
 };

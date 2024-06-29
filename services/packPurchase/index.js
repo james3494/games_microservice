@@ -4,16 +4,18 @@ const { makeCreatePackPurchase } = require("./createPackPurchase");
 const { makeFilterPackPurchases } = require("./filterPackPurchases");
 
 const throwError = require("../../errorHandling").buildThrowError({
-  logErrors: process.env.LOG_ERRORS,
+    logErrors: process.env.LOG_ERRORS
 });
 
-const createPackPurchase = makeCreatePackPurchase({ packPurchasesDb });
+const createPackPurchase = makeCreatePackPurchase({
+    packPurchasesDb 
+});
 const filterPackPurchases = makeFilterPackPurchases({
-  packPurchasesDb,
-  throwError,
+    packPurchasesDb,
+    throwError
 });
 
 module.exports = {
-  createPackPurchase,
-  filterPackPurchases,
+    createPackPurchase,
+    filterPackPurchases
 };

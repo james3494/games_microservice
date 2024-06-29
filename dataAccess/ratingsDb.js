@@ -1,5 +1,7 @@
 module.exports = {
-  makeRatingsDb({ makeDb, buildGeneralDb }) {
-    return buildGeneralDb({ makeDb, collectionName: "ratings" });
-  },
+    makeRatingsDb({ makeDb, buildGeneralDb }) {
+        return buildGeneralDb({
+            makeDb, collectionName: "ratings" 
+        });
+    }
 };

@@ -1,13 +1,15 @@
-const { makeRating } = require('../../entities');
+const { makeRating } = require("../../entities");
 
 module.exports = {
-   makeCreateRating ({ ratingsDb }) {
-    return async function ({ ...ratingParams }) {
-      const rating = makeRating({ ...ratingParams });
+    makeCreateRating ({ ratingsDb }) {
+        return async function ({ ...ratingParams }) {
+            const rating = makeRating({
+                ...ratingParams 
+            });
 
-      return await ratingsDb.insert({
-        ... rating.getAll()
-      });
-    };
-  }
+            return await ratingsDb.insert({
+                ... rating.getAll()
+            });
+        };
+    }
 };

@@ -4,19 +4,19 @@ const { buildPostPackPurchase } = require("./postPackPurchase");
 const { buildGetPackPurchase } = require("./getPackPurchase");
 
 module.exports = ({ throwError }) => {
-  const postPackPurchase = buildPostPackPurchase({
-    createPackPurchase,
-    throwError,
-  });
+    const postPackPurchase = buildPostPackPurchase({
+        createPackPurchase,
+        throwError
+    });
 
-  const getPackPurchase = buildGetPackPurchase({
-    filterPackPurchases,
-    throwError,
-    filterTakeoutMethods,
-  });
+    const getPackPurchase = buildGetPackPurchase({
+        filterPackPurchases,
+        throwError,
+        filterTakeoutMethods
+    });
 
-  return {
-    postPackPurchase,
-    getPackPurchase,
-  };
+    return {
+        postPackPurchase,
+        getPackPurchase
+    };
 };

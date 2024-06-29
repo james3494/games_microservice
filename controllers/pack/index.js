@@ -1,11 +1,11 @@
 const {
-  createPack,
-  editPack,
-  filterPacks,
-  filterTakeoutMethods,
-  filterPackPurchases,
-  filterRatings,
-  filterGames
+    createPack,
+    editPack,
+    filterPacks,
+    filterTakeoutMethods,
+    filterPackPurchases,
+    filterRatings,
+    filterGames
 } = require("../../services");
 
 const { buildPostPack } = require("./postPack");
@@ -14,33 +14,33 @@ const { buildGetPack } = require("./getPack");
 const { buildGetPackRating } = require("./getPackRating");
 
 module.exports = ({ throwError }) => {
-  const postPack = buildPostPack({
-    createPack,
-    throwError,
-  });
+    const postPack = buildPostPack({
+        createPack,
+        throwError
+    });
 
-  const patchPack = buildPatchPack({
-    editPack,
-    filterGames,
-    throwError,
-  });
+    const patchPack = buildPatchPack({
+        editPack,
+        filterGames,
+        throwError
+    });
 
-  const getPack = buildGetPack({
-    filterPacks,
-    throwError,
-    filterTakeoutMethods,
-    filterPackPurchases,
-    filterGames
-  });
+    const getPack = buildGetPack({
+        filterPacks,
+        throwError,
+        filterTakeoutMethods,
+        filterPackPurchases,
+        filterGames
+    });
 
-  const getPackRating = buildGetPackRating({
-    filterRatings,
-  });
+    const getPackRating = buildGetPackRating({
+        filterRatings
+    });
 
-  return {
-    postPack,
-    patchPack,
-    getPack,
-    getPackRating,
-  };
+    return {
+        postPack,
+        patchPack,
+        getPack,
+        getPackRating
+    };
 };

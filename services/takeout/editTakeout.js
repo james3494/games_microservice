@@ -1,25 +1,29 @@
-const { makeTakeout } = require('../../entities');
+const { makeTakeout } = require("../../entities");
 // status is the only editable field
 
 module.exports = {
-   makeEditTakeout ({ takeoutsDb, throwError }) {
-    return async function ({ _id, status, completedAt }) {
-      const takeoutInfo = await takeoutsDb.findById({ _id });
+    makeEditTakeout ({ takeoutsDb, throwError }) {
+        return async function ({ _id, status, completedAt }) {
+            const takeoutInfo = await takeoutsDb.findById({
+                _id 
+            });
 
-      if (takeoutInfo.status == 'success' || takeoutInfo.status == 'fail') {
-        throwError({
-          title: `You cannot update the status from ${takeoutInfo.status}.`,
-          error: "takeout-status-fixed",
-          status: 400,
-        });
-      }
-      const takeout = makeTakeout({ ...takeoutInfo, status, completedAt });
+            if (takeoutInfo.status == "success" || takeoutInfo.status == "fail") {
+                throwError({
+                    title: `You cannot update the status from ${takeoutInfo.status}.`,
+                    error: "takeout-status-fixed",
+                    status: 400
+                });
+            }
+            const takeout = makeTakeout({
+                ...takeoutInfo, status, completedAt 
+            });
 
-      return await takeoutsDb.update({
-        _id: takeout.getId(),
-        status: takeout.getStatus(),
-        completedAt: takeout.getCompletedAt()
-      });
-    };
-  }
+            return await takeoutsDb.update({
+                _id: takeout.getId(),
+                status: takeout.getStatus(),
+                completedAt: takeout.getCompletedAt()
+            });
+        };
+    }
 };

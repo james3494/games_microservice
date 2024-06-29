@@ -1,6 +1,8 @@
 module.exports = {
     makePackPurchasesDb({ makeDb, buildGeneralDb }) {
-      return buildGeneralDb({ makeDb, collectionName: "packPurchases" });
-    },
-  };
+        return buildGeneralDb({
+            makeDb, collectionName: "packPurchases" 
+        });
+    }
+};
   
