@@ -15,6 +15,7 @@ module.exports = {
         throwError,
         filterTakeoutMethods,
         createTakeouts,
+        filterPacks,
         filterPackPurchases
     }) {
         return async function ({ _id }) {
@@ -41,18 +42,25 @@ module.exports = {
                 });
             }
 
-            const adminPurchases = await filterPackPurchases({
-                packId: game.getPackId(),
-                userId: game.getAdmins()
+            const pack = await filterPacks({
+                _id:  game.getPackId()
             });
-            if (adminPurchases.length === 0) {
-                throwError({
-                    title: "There are not the necessary permissions to use this pack for this game.",
-                    error: "game-pack-error",
-                    status: 403,
-                    detail: "The game admin must have purchased / downloaded the pack."
+
+            if (pack.requiresPurchase) {
+                const adminPurchases = await filterPackPurchases({
+                    packId: game.getPackId(),
+                    userId: game.getAdmins()
                 });
+                if (adminPurchases.length === 0) {
+                    throwError({
+                        title: "There are not the necessary permissions to use this pack for this game.",
+                        error: "game-pack-error",
+                        status: 403,
+                        detail: "The game admin must have purchased / downloaded the pack."
+                    });
+                }
             }
+
 
             let players = game.getPlayers();
 

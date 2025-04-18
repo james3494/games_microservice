@@ -12,6 +12,7 @@ const { makeExecuteTakeout } = require("./executeTakeout");
 const { createTakeouts, removeTakeouts, filterTakeouts, editTakeout } = require("../takeout");
 const { filterTakeoutMethods } = require("../takeoutMethod");
 const { filterPackPurchases } = require("../packPurchase");
+const { filterPacks } = require("../pack");
 
 const throwError = require("../../errorHandling").buildThrowError({
     logErrors: process.env.LOG_ERRORS
@@ -31,7 +32,8 @@ const initiateGame = makeInitiateGame({
     throwError,
     filterTakeoutMethods,
     createTakeouts,
-    filterPackPurchases
+    filterPackPurchases,
+    filterPacks
 });
 const removeGame = makeRemoveGame({
     gamesDb,

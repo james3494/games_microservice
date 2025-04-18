@@ -8,6 +8,7 @@ module.exports = {
             difficulty = 3,
             cost = 0,
             disabled = true,
+            requiresPurchase = true,
             createdBy,
             createdOn = Date.now(),
             modifiedOn = Date.now(),
@@ -24,6 +25,7 @@ module.exports = {
                 createdOn,
                 modifiedOn,
                 difficulty,
+                requiresPurchase,
                 _id
             });
 
@@ -33,6 +35,7 @@ module.exports = {
                 getTitle: () => title,
                 getDescription: () => description,
                 getDifficulty: () => difficulty,
+                getRequiresPurchase: () => requiresPurchase,
                 getIcon: () => icon,
                 getExample: () => example,
                 getCost: () => cost,

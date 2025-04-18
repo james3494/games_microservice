@@ -7,7 +7,7 @@ module.exports = {
         throwError
     }) {
         return async function (httpRequest) {
-            const { title, description, icon, example, difficulty, cost, disabled } =
+            const { title, description, icon, example, difficulty, cost, disabled, requiredPurchase } =
         httpRequest.body;
             const { _id } = httpRequest.params;
             const loggedIn = httpRequest.user;
@@ -55,6 +55,9 @@ module.exports = {
                 } : {}),
                 ...(disabled !== undefined ? {
                     disabled 
+                } : {}),
+                ...(requiredPurchase !== undefined ? {
+                    requiredPurchase 
                 } : {})
             });
 
