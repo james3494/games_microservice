@@ -52,7 +52,7 @@ module.exports = {
                 if (body.length < 1) {
                     throwError({
                         status: 404,
-                        title: "pack not found with specified id",
+                        title: `pack not found with id ${_id}`,
                         error: "pack-not-found"
                     });
                 }
