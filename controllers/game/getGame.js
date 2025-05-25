@@ -73,7 +73,7 @@ module.exports = {
                 if (body.length < 1) {
                     throwError({
                         status: 404,
-                        title: "game not found with specified id",
+                        title: `game not found with id: ${_id}`,
                         error: "game-not-found"
                     });
                 }
